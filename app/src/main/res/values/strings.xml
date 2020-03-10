@@ -1,0 +1,45 @@
+<resources>
+    <string name="desarrollo">Desarrollada por BlueDot</string>
+    <string name="app_name">Vale</string>
+    <string name="loginuser">Nombre de usuario</string>
+    <string name="loginpass">Contraseña</string>
+    <string name="loginbutton">Entrar</string>
+    <string name="txtactividades">ACTIVIDADES</string>
+    <string name="txtsugerencias">QUIERO HACER...</string>
+    <string name="txtmisActividades">MIS ACTIVIDADES</string>
+    <string name="txtperfil">PERFIL</string>
+    <string name="button_historial_actividades">Mis actividades</string>
+    <string name="info">Aplicación desarrollada por BlueDot en la universidad de Granada para la asociación Vale</string>
+    <string name="version">Version 1.1</string>
+    <string name="passlogin">Contraseña</string>
+    <string name="title_activity_peticiones">Peticiones</string>
+    <string name="titulochat">CHAT</string>
+    <string name="titulosalir">SALIR</string>
+    <string name="agregarnueva">AÑADIR ACTIVIDAD</string>
+    <string name="listaautorizaciones">LISTA DE AUTORIZACIONES</string>
+    <string name="Agregar_peticiones">AÑADIR PETICION</string>
+    <string name="ListaPeticiones">LISTA DE PETICIONES</string>
+    <string name="contactodeemergencia">CONTACTO DE EMERGENCIA</string>
+    <string name="preferencias">PREFERENCIAS DEL USUARIO</string>
+    <string name="perro">PERRO</string>
+    <string name="gato">GATO</string>
+    <string name="pajaro">PAJARO</string>
+    <string name="elefante">ELEFANTE</string>
+    <string name="vaca">VACA</string>
+    <string name="delfin">DELFÍN</string>
+    <string name="borrar">BORRAR</string>
+    <string name="datosadicionales">DATOS ADICIONALES</string>
+    <string name="correo">CORREO ELECTRÓNICO</string>
+    <string name="volver">VOLVER ATRÁS</string>
+    <string name="title_activity_debuglogin">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+
+
+</resources>

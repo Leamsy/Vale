@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:screenOrientation="portrait"
+    tools:context=".Principal">
+
+    <ImageView
+        android:id="@+id/LogoPrincipal"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/valelogo" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LogoPrincipal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|top"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/imbactividades"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:adjustViewBounds="true"
+                    android:backgroundTint="#3F51B5"
+                    android:contentDescription="ACTIVIDADES"
+                    android:onClick="irListaActividades"
+                    android:scaleType="fitCenter"
+                    android:textAlignment="center"
+                    app:srcCompat="@drawable/actividades_y_fiestas" />
+
+                <TextView
+                    android:id="@+id/txtactividades"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:onClick="irListaActividades"
+                    android:text="@string/txtactividades"
+                    android:textAlignment="center"
+                    android:textColor="#3F51B5"
+                    android:textSize="24sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/iconomisactividades"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:backgroundTint="#3F51B5"
+                        android:contentDescription="MIS ACTIVIDADES"
+                        android:onClick="cambiarMisActividades"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/mio" />
+
+                    <TextView
+                        android:id="@+id/txtmisActividades"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed"
+                        android:onClick="cambiarMisActividades"
+                        android:text="@string/txtmisActividades"
+                        android:textAlignment="center"
+                        android:textColor="#3F51B5"
+                        android:textSize="24sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|top"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/iconosms"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:contentDescription="CHAT"
+                        android:onClick="abrirChat"
+                        app:srcCompat="@drawable/whatsapp2" />
+
+                    <TextView
+                        android:id="@+id/nombrechat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/titulochat"
+                        android:textAlignment="center"
+                        android:textColor="#3F51B5"
+                        android:textSize="24sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/imageButton"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:backgroundTint="#3F51B5"
+                    android:contentDescription="QUIERO HACER..."
+                    android:onClick="cambiarSugerencias"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/tenerunaidea" />
+
+                <TextView
+                    android:id="@+id/txtsugerencias"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-condensed"
+                    android:onClick="irPeticiones"
+                    android:text="@string/txtsugerencias"
+                    android:textAlignment="center"
+                    android:textColor="#3F51B5"
+                    android:textSize="24sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/imbPerfil"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:adjustViewBounds="true"
+                        android:backgroundTint="#3F51B5"
+                        android:contentDescription="PERFIL"
+                        android:onClick="cambiarPerfil"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/perfil" />
+
+                    <TextView
+                        android:id="@+id/txtPerfil"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed"
+                        android:onClick="cambiarPerfil"
+                        android:text="@string/txtperfil"
+                        android:textAlignment="center"
+                        android:textColor="#3F51B5"
+                        android:textSize="24sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|top"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/iconosalir"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:clickable="true"
+                        android:contentDescription="SALIR"
+                        android:onClick="cerrarApp"
+                        app:srcCompat="@drawable/salida" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/titulosalir"
+                        android:textColor="#3F51B5"
+                        android:textSize="24sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|top"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

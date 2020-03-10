@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.bluedot.bluedot_vale"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="22"
+        android:targetSdkVersion="28" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
+        android:debuggable="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+        <activity
+            android:name="com.bluedot.bluedot_vale.ui.login.DEBUGlogin"
+            android:label="@string/title_activity_debuglogin" />
+        <activity android:name="com.bluedot.bluedot_vale.Menu_tutor" />
+        <activity android:name="com.bluedot.bluedot_vale.Autorizacion" />
+        <activity android:name="com.bluedot.bluedot_vale.ListaAutorizaciones" />
+        <activity android:name="com.bluedot.bluedot_vale.AgregarSugerencia" />
+        <activity
+            android:name="com.bluedot.bluedot_vale.Peticiones"
+            android:label="@string/title_activity_peticiones"
+            android:theme="@style/NoActionBar" />
+        <activity android:name="com.bluedot.bluedot_vale.VistaActividad" />
+        <activity android:name="com.bluedot.bluedot_vale.Login" />
+        <activity android:name="com.bluedot.bluedot_vale.Informacion" />
+        <activity android:name="com.bluedot.bluedot_vale.Pantalla_error_conexion" />
+        <activity android:name="com.bluedot.bluedot_vale.Lista_actividades" />
+        <activity android:name="com.bluedot.bluedot_vale.Historial_actividades" />
+        <activity android:name="com.bluedot.bluedot_vale.Principal" />
+        <activity android:name="com.bluedot.bluedot_vale.splashscreen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.bluedot.bluedot_vale.AgregarActividad" />
+        <activity android:name="com.bluedot.bluedot_vale.PerfilUsuario" />
+
+        <provider
+            android:name="com.squareup.picasso.PicassoProvider"
+            android:authorities="com.bluedot.bluedot_vale.com.squareup.picasso"
+            android:exported="false" />
+        <provider
+            android:name="android.arch.lifecycle.ProcessLifecycleOwnerInitializer"
+            android:authorities="com.bluedot.bluedot_vale.lifecycle-trojan"
+            android:exported="false"
+            android:multiprocess="true" />
+    </application>
+
+</manifest>
