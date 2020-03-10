@@ -102,10 +102,10 @@ public class Login extends AppCompatActivity {
         login(V, this);
     }
 
-    public void clickPerro(android.view.View V){
+    public void clickJugador(android.view.View V){
         if(!perro){
             perro = true;
-            findViewById(R.id.perro).setAlpha((float)0.4);
+            findViewById(R.id.jugador).setAlpha((float)0.4);
             Global.pass += "p";
         }
 
@@ -165,7 +165,7 @@ public class Login extends AppCompatActivity {
         vaca=false;
         pajaro=false;
         delfin=false;
-        findViewById(R.id.perro).setAlpha((float)1);
+        findViewById(R.id.jugador).setAlpha((float)1);
         findViewById(R.id.gato).setAlpha((float)1);
         findViewById(R.id.elefante).setAlpha((float)1);
         findViewById(R.id.vaca).setAlpha((float)1);
