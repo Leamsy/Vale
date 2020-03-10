@@ -24,12 +24,12 @@
         "source": "C:\\Users\\ismam\\Desktop\\Ismael\\Universidad\\Vale\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_foreground.png"
     },
     {
-        "merged": "C:\\Users\\ismam\\Desktop\\Ismael\\Universidad\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\drawable_delfin2.png.flat",
-        "source": "C:\\Users\\ismam\\Desktop\\Ismael\\Universidad\\Vale\\app\\src\\main\\res\\drawable\\delfin2.png"
-    },
-    {
         "merged": "C:\\Users\\ismam\\Desktop\\Ismael\\Universidad\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\drawable_blackline.png.flat",
         "source": "C:\\Users\\ismam\\Desktop\\Ismael\\Universidad\\Vale\\app\\src\\main\\res\\drawable\\blackline.png"
+    },
+    {
+        "merged": "C:\\Users\\ismam\\Desktop\\Ismael\\Universidad\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\drawable_delfin2.png.flat",
+        "source": "C:\\Users\\ismam\\Desktop\\Ismael\\Universidad\\Vale\\app\\src\\main\\res\\drawable\\delfin2.png"
     },
     {
         "merged": "C:\\Users\\ismam\\Desktop\\Ismael\\Universidad\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_mis_actividades.xml.flat",
@@ -144,12 +144,12 @@
         "source": "C:\\Users\\ismam\\Desktop\\Ismael\\Universidad\\Vale\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_foreground.png"
     },
     {
-        "merged": "C:\\Users\\ismam\\Desktop\\Ismael\\Universidad\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\drawable_triste.png.flat",
-        "source": "C:\\Users\\ismam\\Desktop\\Ismael\\Universidad\\Vale\\app\\src\\main\\res\\drawable\\triste.png"
-    },
-    {
         "merged": "C:\\Users\\ismam\\Desktop\\Ismael\\Universidad\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\drawable_foto.png.flat",
         "source": "C:\\Users\\ismam\\Desktop\\Ismael\\Universidad\\Vale\\app\\src\\main\\res\\drawable\\foto.png"
+    },
+    {
+        "merged": "C:\\Users\\ismam\\Desktop\\Ismael\\Universidad\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\drawable_triste.png.flat",
+        "source": "C:\\Users\\ismam\\Desktop\\Ismael\\Universidad\\Vale\\app\\src\\main\\res\\drawable\\triste.png"
     },
     {
         "merged": "C:\\Users\\ismam\\Desktop\\Ismael\\Universidad\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_perfil_usuario.xml.flat",

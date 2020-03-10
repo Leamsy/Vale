@@ -2,6 +2,7 @@ package com.bluedot.bluedot_vale;
 
 import android.app.Activity;
 import android.app.TimePickerDialog;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -23,6 +24,7 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.DatePicker;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -44,7 +46,7 @@ import java.util.Map;
 import static android.view.View.INVISIBLE;
 
 @RequiresApi(api = Build.VERSION_CODES.N)
-public class AgregarActividad extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
+public class AgregarActividad extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
 
     private static final int GALLERY_REQUEST_CODE = 100;
 
@@ -52,6 +54,17 @@ public class AgregarActividad extends AppCompatActivity implements TimePickerDia
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_actividad);
+    }
+
+    public void openDate(android.view.View V){
+        DialogFragment datePicker = new DatePickerFragment();
+        datePicker.show(getSupportFragmentManager(), "datePicker");
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int day) {
+        TextView textView = (TextView) findViewById(R.id.fecha);
+        textView.setText(day + "/" + month + "/" + year);
     }
 
     public void openTime(android.view.View V){
