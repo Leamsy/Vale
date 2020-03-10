@@ -64,7 +64,7 @@ public class AgregarActividad extends AppCompatActivity implements TimePickerDia
     @Override
     public void onDateSet(DatePicker view, int year, int month, int day) {
         TextView textView = (TextView) findViewById(R.id.fecha);
-        textView.setText(day + "/" + month + "/" + year);
+        textView.setText(day + "/" + (month+1) + "/" + year);
     }
 
     public void openTime(android.view.View V){
