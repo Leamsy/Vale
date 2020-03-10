@@ -16,16 +16,16 @@
         "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\drawable\\dinero.png"
     },
     {
-        "merged": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\drawable_flecha_volver.png.flat",
-        "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\drawable\\flecha_volver.png"
+        "merged": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\drawable_calendario.png.flat",
+        "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\drawable\\calendario.png"
     },
     {
         "merged": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\drawable_pajaro2.png.flat",
         "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\drawable\\pajaro2.png"
     },
     {
-        "merged": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\drawable_calendario.png.flat",
-        "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\drawable\\calendario.png"
+        "merged": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\drawable_flecha_volver.png.flat",
+        "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\drawable\\flecha_volver.png"
     },
     {
         "merged": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\drawable_tenerunaidea.png.flat",
@@ -222,6 +222,10 @@
     {
         "merged": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_splashscreen.xml.flat",
         "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\layout\\activity_splashscreen.xml"
+    },
+    {
+        "merged": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\drawable_jugador.jpeg.flat",
+        "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\drawable\\jugador.jpeg"
     },
     {
         "merged": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\drawable_sugerencia.png.flat",
