@@ -112,46 +112,46 @@ public class Login extends AppCompatActivity {
         Log.d("aa", Global.pass);
     }
 
-    public void clickGato(android.view.View V){
+    public void clickJuego(android.view.View V){
         if(!gato){
             gato = true;
-            findViewById(R.id.gato).setAlpha((float)0.4);
+            findViewById(R.id.juegomesa).setAlpha((float)0.4);
             Global.pass += "g";
         }
         Log.d("aa", Global.pass);
     }
 
-    public void clickElefante(android.view.View V){
+    public void clickPlaya(android.view.View V){
         if(!elefante){
             elefante = true;
-            findViewById(R.id.elefante).setAlpha((float)0.4);
+            findViewById(R.id.playa).setAlpha((float)0.4);
             Global.pass += "e";
         }
         Log.d("aa", Global.pass);
     }
 
-    public void clickVaca(android.view.View V){
+    public void clickFlamenco(android.view.View V){
         if(!vaca){
             vaca = true;
-            findViewById(R.id.vaca).setAlpha((float)0.4);
+            findViewById(R.id.flamenco).setAlpha((float)0.4);
             Global.pass += "v";
         }
         Log.d("aa", Global.pass);
     }
 
-    public void clickPajaro(android.view.View V){
+    public void clickPaseo(android.view.View V){
         if(!pajaro){
             pajaro = true;
-            findViewById(R.id.pajaro).setAlpha((float)0.4);
+            findViewById(R.id.paseo).setAlpha((float)0.4);
             Global.pass += "b";
         }
         Log.d("aa", Global.pass);
     }
 
-    public void clickDelfin(android.view.View V){
+    public void clickCorriendo(android.view.View V){
         if(!delfin){
             delfin = true;
-            findViewById(R.id.delfin).setAlpha((float)0.4);
+            findViewById(R.id.corriendo).setAlpha((float)0.4);
             Global.pass += "d";
         }
 
@@ -166,11 +166,11 @@ public class Login extends AppCompatActivity {
         pajaro=false;
         delfin=false;
         findViewById(R.id.jugador).setAlpha((float)1);
-        findViewById(R.id.gato).setAlpha((float)1);
-        findViewById(R.id.elefante).setAlpha((float)1);
-        findViewById(R.id.vaca).setAlpha((float)1);
-        findViewById(R.id.pajaro).setAlpha((float)1);
-        findViewById(R.id.delfin).setAlpha((float)1);
+        findViewById(R.id.juegomesa).setAlpha((float)1);
+        findViewById(R.id.playa).setAlpha((float)1);
+        findViewById(R.id.flamenco).setAlpha((float)1);
+        findViewById(R.id.paseo).setAlpha((float)1);
+        findViewById(R.id.corriendo).setAlpha((float)1);
         Global.pass="";
         Log.d("aa", Global.pass);
     }
