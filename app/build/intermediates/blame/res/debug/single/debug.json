@@ -12,20 +12,24 @@
         "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
+        "merged": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\drawable_corriendo.jpg.flat",
+        "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\drawable\\corriendo.jpg"
+    },
+    {
         "merged": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\drawable_dinero.png.flat",
         "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\drawable\\dinero.png"
     },
     {
-        "merged": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\drawable_calendario.png.flat",
-        "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\drawable\\calendario.png"
+        "merged": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\drawable_flecha_volver.png.flat",
+        "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\drawable\\flecha_volver.png"
     },
     {
         "merged": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\drawable_pajaro2.png.flat",
         "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\drawable\\pajaro2.png"
     },
     {
-        "merged": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\drawable_flecha_volver.png.flat",
-        "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\drawable\\flecha_volver.png"
+        "merged": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\drawable_calendario.png.flat",
+        "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\drawable\\calendario.png"
     },
     {
         "merged": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\drawable_tenerunaidea.png.flat",
@@ -80,12 +84,12 @@
         "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\drawable\\autorizacion.png"
     },
     {
-        "merged": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
-    },
-    {
         "merged": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
         "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
     },
     {
         "merged": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\drawable_perro2.png.flat",
@@ -164,6 +168,10 @@
         "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
+        "merged": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\drawable_juegomesa.jpg.flat",
+        "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\drawable\\juegomesa.jpg"
+    },
+    {
         "merged": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\drawable_salir.png.flat",
         "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\drawable\\salir.png"
     },
@@ -236,6 +244,10 @@
         "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
     },
     {
+        "merged": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\drawable_flamenco.jpg.flat",
+        "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\drawable\\flamenco.jpg"
+    },
+    {
         "merged": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_foreground.png.flat",
         "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_foreground.png"
     },
@@ -248,6 +260,10 @@
         "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
     },
     {
+        "merged": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\drawable_paseo.jpg.flat",
+        "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\drawable\\paseo.jpg"
+    },
+    {
         "merged": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\drawable_lapicero.png.flat",
         "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\drawable\\lapicero.png"
     },
@@ -258,6 +274,10 @@
     {
         "merged": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher_round.png.flat",
         "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\drawable_playa.jpeg.flat",
+        "source": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\src\\main\\res\\drawable\\playa.jpeg"
     },
     {
         "merged": "C:\\Users\\manua\\AndroidStudioProjects\\Vale\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_vista_actividad.xml.flat",
