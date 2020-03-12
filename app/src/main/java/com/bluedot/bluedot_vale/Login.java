@@ -31,12 +31,12 @@ import static android.view.View.VISIBLE;
 public class Login extends AppCompatActivity {
 
 
-    Boolean perro=false;
-    Boolean gato=false;
-    Boolean elefante=false;
-    Boolean vaca=false;
-    Boolean pajaro=false;
-    Boolean delfin=false;
+    Boolean jugador=false;
+    Boolean juego=false;
+    Boolean playa=false;
+    Boolean flamenco=false;
+    Boolean paseo=false;
+    Boolean corriendo=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,8 +103,8 @@ public class Login extends AppCompatActivity {
     }
 
     public void clickJugador(android.view.View V){
-        if(!perro){
-            perro = true;
+        if(!jugador){
+            jugador = true;
             findViewById(R.id.jugador).setAlpha((float)0.4);
             Global.pass += "p";
         }
@@ -113,8 +113,8 @@ public class Login extends AppCompatActivity {
     }
 
     public void clickJuego(android.view.View V){
-        if(!gato){
-            gato = true;
+        if(!juego){
+            juego = true;
             findViewById(R.id.juegomesa).setAlpha((float)0.4);
             Global.pass += "g";
         }
@@ -122,8 +122,8 @@ public class Login extends AppCompatActivity {
     }
 
     public void clickPlaya(android.view.View V){
-        if(!elefante){
-            elefante = true;
+        if(!playa){
+            playa = true;
             findViewById(R.id.playa).setAlpha((float)0.4);
             Global.pass += "e";
         }
@@ -131,8 +131,8 @@ public class Login extends AppCompatActivity {
     }
 
     public void clickFlamenco(android.view.View V){
-        if(!vaca){
-            vaca = true;
+        if(!flamenco){
+            flamenco = true;
             findViewById(R.id.flamenco).setAlpha((float)0.4);
             Global.pass += "v";
         }
@@ -140,8 +140,8 @@ public class Login extends AppCompatActivity {
     }
 
     public void clickPaseo(android.view.View V){
-        if(!pajaro){
-            pajaro = true;
+        if(!paseo){
+            paseo = true;
             findViewById(R.id.paseo).setAlpha((float)0.4);
             Global.pass += "b";
         }
@@ -149,8 +149,8 @@ public class Login extends AppCompatActivity {
     }
 
     public void clickCorriendo(android.view.View V){
-        if(!delfin){
-            delfin = true;
+        if(!corriendo){
+            corriendo = true;
             findViewById(R.id.corriendo).setAlpha((float)0.4);
             Global.pass += "d";
         }
@@ -159,12 +159,12 @@ public class Login extends AppCompatActivity {
     }
 
     public void clickGoma(android.view.View V){
-        perro=false;
-        gato=false;
-        elefante=false;
-        vaca=false;
-        pajaro=false;
-        delfin=false;
+        jugador=false;
+        juego=false;
+        playa=false;
+        flamenco=false;
+        paseo=false;
+        corriendo=false;
         findViewById(R.id.jugador).setAlpha((float)1);
         findViewById(R.id.juegomesa).setAlpha((float)1);
         findViewById(R.id.playa).setAlpha((float)1);
