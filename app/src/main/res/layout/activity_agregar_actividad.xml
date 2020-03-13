@@ -240,7 +240,9 @@
                     android:textAlignment="center"
                     android:textColor="#FFFFFF"
                     android:textSize="14pt" />
+
             </LinearLayout>
+            
         </ScrollView>
 
 
