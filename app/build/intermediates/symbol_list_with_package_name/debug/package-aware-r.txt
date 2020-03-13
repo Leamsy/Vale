@@ -1080,10 +1080,12 @@ drawable whatsapp2
 id ALT
 id CTRL
 id FUNCTION
+id LinearActividades
 id LogoPrincipal
 id META
 id SHIFT
 id SYM
+id aconosalir
 id action_bar
 id action_bar_activity_content
 id action_bar_container
@@ -1183,12 +1185,8 @@ id homeAsUp
 id hora
 id icon
 id icon_group
-id iconomisactividades
-id iconosalir
-id iconosms
 id ifRoom
 id image
-id imageButton
 id imageButton2
 id imageView
 id imageView10
@@ -1235,6 +1233,8 @@ id line3
 id linearLayout
 id linearLayout2
 id linearLayout3
+id linearPerfil
+id linearsalir
 id listMode
 id list_item
 id listaSuge
@@ -1249,7 +1249,6 @@ id mtrl_internal_children_alpha_tag
 id multiply
 id navigation_header_container
 id never
-id nombrechat
 id none
 id normal
 id notification_background
@@ -1358,8 +1357,6 @@ id txtPerfil
 id txtactividades
 id txtactividades2
 id txtactividades3
-id txtmisActividades
-id txtsugerencias
 id uniform
 id unlabeled
 id up
