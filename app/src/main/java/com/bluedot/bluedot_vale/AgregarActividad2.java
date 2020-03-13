@@ -20,6 +20,10 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
         setContentView(R.layout.activity_agregar_actividad2);
     }
 
+    public void volver(android.view.View V) {
+        finish();
+    }
+
     public void openDate(android.view.View V){
         DialogFragment datePicker = new DatePickerFragment();
         datePicker.show(getSupportFragmentManager(), "datePicker");
