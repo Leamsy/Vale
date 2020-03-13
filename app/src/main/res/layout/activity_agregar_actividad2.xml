@@ -32,7 +32,7 @@
                 android:contentDescription="@string/volver"
                 android:onClick="volver"
                 app:srcCompat="@drawable/atras" />
-            
+
         </LinearLayout>
 
         <ScrollView
