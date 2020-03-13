@@ -1078,6 +1078,8 @@ id ALT
 id CTRL
 id FUNCTION
 id LinearActividades
+id LinearMisActividades
+id LinearSugerencias
 id LogoPrincipal
 id META
 id SHIFT
@@ -1222,6 +1224,7 @@ id line3
 id linearLayout
 id linearLayout2
 id linearLayout3
+id linearLayout4
 id linearPerfil
 id linearsalir
 id listMode
@@ -1305,6 +1308,7 @@ id start
 id stretch
 id submenuarrow
 id submit_area
+id sugerencias
 id tabMode
 id tag_transition_group
 id tag_unhandled_key_event_manager
@@ -1331,6 +1335,7 @@ id time
 id title
 id titleDividerNoCustom
 id title_template
+id todaslasactividades
 id top
 id topPanel
 id touch_outside
@@ -1340,9 +1345,10 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id txtPerfil
-id txtactividades
 id txtactividades2
 id txtactividades3
+id txtmisactividades
+id txtsugerencias
 id uniform
 id unlabeled
 id up
@@ -1413,6 +1419,7 @@ layout activity_perfil_usuario
 layout activity_peticiones
 layout activity_principal
 layout activity_splashscreen
+layout activity_submenu__actividades
 layout activity_vista_actividad
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -1536,6 +1543,7 @@ string txtactividades
 string txtmisActividades
 string txtperfil
 string txtsugerencias
+string txttodaslasactividades
 string version
 string volver
 string welcome
