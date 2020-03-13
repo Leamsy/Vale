@@ -46,7 +46,7 @@ import java.util.Map;
 import static android.view.View.INVISIBLE;
 
 @RequiresApi(api = Build.VERSION_CODES.N)
-public class AgregarActividad extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
+public class AgregarActividad extends AppCompatActivity{
 
     private static final int GALLERY_REQUEST_CODE = 100;
 
@@ -56,26 +56,9 @@ public class AgregarActividad extends AppCompatActivity implements TimePickerDia
         setContentView(R.layout.activity_agregar_actividad);
     }
 
-    public void openDate(android.view.View V){
-        DialogFragment datePicker = new DatePickerFragment();
-        datePicker.show(getSupportFragmentManager(), "datePicker");
-    }
-
-    @Override
-    public void onDateSet(DatePicker view, int year, int month, int day) {
-        TextView textView = (TextView) findViewById(R.id.fecha);
-        textView.setText(day + "/" + (month+1) + "/" + year);
-    }
-
-    public void openTime(android.view.View V){
-        DialogFragment timePicker = new TimePickerFragment();
-        timePicker.show(getSupportFragmentManager(), "time picker");
-    }
-
-    @Override
-    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        TextView textView = (TextView) findViewById(R.id.hora);
-        textView.setText(hourOfDay + " : " + minute);
+    public void siguiente(android.view.View V) {
+        Intent intent = new Intent(this, AgregarActividad2.class);
+        startActivity(intent);
     }
 
     public void volver(android.view.View V) {

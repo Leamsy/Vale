@@ -1010,6 +1010,7 @@ drawable autorizacion
 drawable avd_hide_password
 drawable avd_show_password
 drawable blackline
+drawable blackline_vertical
 drawable bluedotimage
 drawable calendario
 drawable corriendo
@@ -1038,6 +1039,8 @@ drawable jugador
 drawable lapicero
 drawable loader2
 drawable logougr
+drawable mas
+drawable menos
 drawable mio
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
@@ -1157,6 +1160,8 @@ id editText5
 id editText6
 id editText9
 id edit_query
+id edit_socios
+id edit_voluntarios
 id end
 id enterAlways
 id enterAlwaysCollapsed
@@ -1186,6 +1191,7 @@ id ifRoom
 id image
 id imageButton2
 id imageView
+id imageView10
 id imageView11
 id imageView12
 id imageView13
@@ -1194,12 +1200,16 @@ id imageView15
 id imageView16
 id imageView17
 id imageView18
-id imageView19
 id imageView2
 id imageView20
 id imageView21
 id imageView22
 id imageView23
+id imageView24
+id imageView25
+id imageView26
+id imageView27
+id imageView28
 id imageView3
 id imageView4
 id imageView5
@@ -1321,12 +1331,15 @@ id textStart
 id textView
 id textView10
 id textView11
+id textView12
 id textView2
+id textView3
 id textView4
 id textView5
 id textView6
 id textView7
 id textView8
+id textView9
 id text_input_password_toggle
 id textinput_counter
 id textinput_error
@@ -1408,6 +1421,7 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_agregar_actividad
+layout activity_agregar_actividad2
 layout activity_agregar_peticion
 layout activity_autorizacion
 layout activity_lista_actividades
