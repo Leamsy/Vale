@@ -6,4 +6,135 @@
     android:layout_height="match_parent"
     tools:context=".Submenu_Actividades">
 
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="100dp"
+            android:layout_height="75dp"
+            android:contentDescription="@string/volver"
+            android:onClick="volver"
+            app:srcCompat="@drawable/atras" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearMisActividades"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="50dp"
+        android:gravity="center|top"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.659"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LinearActividades">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/todaslasactividades"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_weight="1"
+            android:backgroundTint="#3F51B5"
+            android:contentDescription="MIS ACTIVIDADES"
+            android:onClick="irListaActividades"
+            android:src="@drawable/actividades_y_fiestas"
+            app:civ_border_width="7dp" />
+
+        <TextView
+            android:id="@+id/txtmisactividades"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:onClick="irListaActividades"
+            android:text="@string/txtmisActividades"
+            android:textAlignment="center"
+            android:textColor="#3F51B5"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearActividades"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:gravity="center|top"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.876"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="204dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imbactividades"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_weight="1"
+            android:backgroundTint="#3F51B5"
+            android:contentDescription="TODAS LAS ACTIVIDADES"
+            android:onClick="irListaActividades"
+            android:src="@drawable/actividades_y_fiestas"
+            app:civ_border_width="7dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:onClick="irListaActividades"
+            android:text="@string/txttodaslasactividades"
+            android:textAlignment="center"
+            android:textColor="#3F51B5"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearSugerencias"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:gravity="center|top"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.601"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="532dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/sugerencias"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_weight="1"
+            android:backgroundTint="#3F51B5"
+            android:contentDescription="MIS ACTIVIDADES"
+            android:onClick="irListaActividades"
+            android:src="@drawable/actividades_y_fiestas"
+            app:civ_border_width="7dp" />
+
+        <TextView
+            android:id="@+id/txtsugerencias"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:onClick="irListaActividades"
+            android:text="@string/txtmisActividades"
+            android:textAlignment="center"
+            android:textColor="#3F51B5"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+
 </android.support.constraint.ConstraintLayout>
