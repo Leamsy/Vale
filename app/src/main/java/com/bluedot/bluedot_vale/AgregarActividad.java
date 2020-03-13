@@ -59,6 +59,7 @@ public class AgregarActividad extends AppCompatActivity{
     public void siguiente(android.view.View V) {
         Intent intent = new Intent(this, AgregarActividad2.class);
         startActivity(intent);
+        finish();
     }
 
     public void volver(android.view.View V) {

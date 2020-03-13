@@ -134,7 +134,7 @@
                         android:background="#ffffff"
                         android:ems="10"
                         android:hint="Precio..."
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         android:textAlignment="center"
                         android:textSize="24sp" />
                 </LinearLayout>
