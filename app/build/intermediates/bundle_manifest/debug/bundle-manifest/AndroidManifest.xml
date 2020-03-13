@@ -21,8 +21,7 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
-        <activity android:name="com.bluedot.bluedot_vale.AgregarActividad3" />
-        <activity android:name="com.bluedot.bluedot_vale.AgregarActividad2" />
+        <activity android:name="com.bluedot.bluedot_vale.Submenu_Actividades" />
         <activity
             android:name="com.bluedot.bluedot_vale.ui.login.DEBUGlogin"
             android:label="@string/title_activity_debuglogin" />
