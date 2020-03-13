@@ -91,7 +91,7 @@
             app:civ_border_width="7dp" />
 
         <TextView
-            android:id="@+id/txtactividades"
+            android:id="@+id/txtsugerencias"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed"
