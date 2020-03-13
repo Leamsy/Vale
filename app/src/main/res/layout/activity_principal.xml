@@ -20,220 +20,131 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/valelogo" />
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:orientation="vertical"
+
+    <!--
+    <ImageButton
+
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:adjustViewBounds="true"
+        android:backgroundTint="#3F51B5"
+        android:contentDescription="ACTIVIDADES"
+        android:onClick="irListaActividades"
+        android:scaleType="fitCenter"
+        android:textAlignment="center"
+        app:srcCompat="@drawable/actividades_y_fiestas"
+        tools:layout_editor_absoluteX="18dp"
+        tools:layout_editor_absoluteY="474dp" />
+    -->
+
+    <!--
+    <ImageButton
+        android:id="@+id/imbPerfil"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:adjustViewBounds="true"
+        android:backgroundTint="#3F51B5"
+        android:contentDescription="PERFIL"
+        android:onClick="cambiarPerfil"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/perfil"
+        tools:layout_editor_absoluteX="270dp"
+        tools:layout_editor_absoluteY="478dp" />
+    -->
+
+    <!--
+    <ImageView
+        android:id="@+id/iconosalir"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:clickable="true"
+        android:contentDescription="SALIR"
+        android:onClick="cerrarApp"
+        app:srcCompat="@drawable/salida"
+        tools:layout_editor_absoluteX="155dp"
+        tools:layout_editor_absoluteY="459dp" />
+     -->
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imbPerfil"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginEnd="116dp"
+        android:layout_weight="1"
+        android:backgroundTint="#3F51B5"
+        android:onClick="cambiarPerfil"
+        android:src="@drawable/perfil"
+        app:civ_border_width="7dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LogoPrincipal">
+        tools:layout_editor_absoluteY="544dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/txtPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
+        android:onClick="cambiarPerfil"
+        android:text="@string/txtperfil"
+        android:textAlignment="center"
+        android:textColor="#3F51B5"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="263dp"
+        tools:layout_editor_absoluteY="780dp" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/aconosalir"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_weight="1"
+        android:backgroundTint="#3F51B5"
+        android:onClick="cerrarApp"
+        android:src="@drawable/salida"
+        app:civ_border_width="7dp"
+        tools:layout_editor_absoluteX="293dp"
+        tools:layout_editor_absoluteY="636dp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/titulosalir"
+        android:textColor="#3F51B5"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="173dp"
+        tools:layout_editor_absoluteY="683dp" />
+
+    <LinearLayout
+        android:id="@+id/LinearActividades"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="176dp"
+        android:gravity="center|top"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/LogoPrincipal"
+        tools:layout_editor_absoluteX="26dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imbactividades"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_weight="1"
+            android:backgroundTint="#3F51B5"
+            android:contentDescription="ACTIVIDADES"
+            android:onClick="irListaActividades"
+            android:src="@drawable/actividades_y_fiestas"
+            app:civ_border_width="7dp" />
+
+        <TextView
+            android:id="@+id/txtactividades"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center|top"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:id="@+id/imbactividades"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:adjustViewBounds="true"
-                    android:backgroundTint="#3F51B5"
-                    android:contentDescription="ACTIVIDADES"
-                    android:onClick="irListaActividades"
-                    android:scaleType="fitCenter"
-                    android:textAlignment="center"
-                    app:srcCompat="@drawable/actividades_y_fiestas" />
-
-                <TextView
-                    android:id="@+id/txtactividades"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:onClick="irListaActividades"
-                    android:text="@string/txtactividades"
-                    android:textAlignment="center"
-                    android:textColor="#3F51B5"
-                    android:textSize="24sp" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageButton
-                        android:id="@+id/iconomisactividades"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
-                        android:backgroundTint="#3F51B5"
-                        android:contentDescription="MIS ACTIVIDADES"
-                        android:onClick="cambiarMisActividades"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/mio" />
-
-                    <TextView
-                        android:id="@+id/txtmisActividades"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-condensed"
-                        android:onClick="cambiarMisActividades"
-                        android:text="@string/txtmisActividades"
-                        android:textAlignment="center"
-                        android:textColor="#3F51B5"
-                        android:textSize="24sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center|top"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/iconosms"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:contentDescription="CHAT"
-                        android:onClick="abrirChat"
-                        app:srcCompat="@drawable/whatsapp2" />
-
-                    <TextView
-                        android:id="@+id/nombrechat"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/titulochat"
-                        android:textAlignment="center"
-                        android:textColor="#3F51B5"
-                        android:textSize="24sp" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageButton
-                    android:id="@+id/imageButton"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:backgroundTint="#3F51B5"
-                    android:contentDescription="QUIERO HACER..."
-                    android:onClick="cambiarSugerencias"
-                    android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/tenerunaidea" />
-
-                <TextView
-                    android:id="@+id/txtsugerencias"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:onClick="irPeticiones"
-                    android:text="@string/txtsugerencias"
-                    android:textAlignment="center"
-                    android:textColor="#3F51B5"
-                    android:textSize="24sp" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageButton
-                        android:id="@+id/imbPerfil"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
-                        android:adjustViewBounds="true"
-                        android:backgroundTint="#3F51B5"
-                        android:contentDescription="PERFIL"
-                        android:onClick="cambiarPerfil"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/perfil" />
-
-                    <TextView
-                        android:id="@+id/txtPerfil"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-condensed"
-                        android:onClick="cambiarPerfil"
-                        android:text="@string/txtperfil"
-                        android:textAlignment="center"
-                        android:textColor="#3F51B5"
-                        android:textSize="24sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center|top"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/iconosalir"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:clickable="true"
-                        android:contentDescription="SALIR"
-                        android:onClick="cerrarApp"
-                        app:srcCompat="@drawable/salida" />
-
-                    <TextView
-                        android:id="@+id/textView5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/titulosalir"
-                        android:textColor="#3F51B5"
-                        android:textSize="24sp" />
-                </LinearLayout>
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center|top"
-            android:orientation="horizontal">
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-        </LinearLayout>
-
+            android:fontFamily="sans-serif-condensed"
+            android:onClick="irListaActividades"
+            android:text="@string/txtactividades"
+            android:textAlignment="center"
+            android:textColor="#3F51B5"
+            android:textSize="24sp" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

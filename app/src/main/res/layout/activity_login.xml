@@ -172,10 +172,10 @@
 
         <pl.droidsonroids.gif.GifImageView
             android:id="@+id/gif"
-            android:layout_width="match_parent"
+            android:layout_width="423dp"
             android:layout_height="match_parent"
             android:src="@drawable/loader2"
-            android:visibility="invisible"/>
+            android:visibility="invisible" />
     </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>
