@@ -1200,7 +1200,6 @@ id imageView15
 id imageView16
 id imageView17
 id imageView18
-id imageView19
 id imageView2
 id imageView20
 id imageView21
@@ -1423,7 +1422,6 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_agregar_actividad
 layout activity_agregar_actividad2
-layout activity_agregar_actividad3
 layout activity_agregar_peticion
 layout activity_autorizacion
 layout activity_lista_actividades
