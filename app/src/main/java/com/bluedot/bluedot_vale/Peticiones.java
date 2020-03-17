@@ -82,9 +82,8 @@ public class Peticiones extends AppCompatActivity {
         requestQueue.add( objectRequest );
     }
 
-    public void volverPrincipal(android.view.View V){
-        Intent intent = new Intent(this, Principal.class);
-        startActivity(intent);
+    public void volver(android.view.View V){
+        finish();
     }
 
     public void aniadirPeticion(android.view.View V){
