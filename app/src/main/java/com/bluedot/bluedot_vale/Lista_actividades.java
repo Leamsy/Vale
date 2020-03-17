@@ -97,9 +97,8 @@ public class Lista_actividades extends AppCompatActivity {
 
     }
 
-    public void volverPrincipal(android.view.View V){
-        Intent intent = new Intent(this, Principal.class);
-        startActivity(intent);
+    public void volver(android.view.View V){
+        finish();
     }
 
     public void aniadir(android.view.View V){
