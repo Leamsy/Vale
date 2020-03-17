@@ -13,9 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".AgregarActividad2" />
-        <activity
-            android:name=".ui.login.DEBUGlogin"
-            android:label="@string/title_activity_debuglogin" />
         <activity android:name=".Menu_tutor" />
         <activity android:name=".Autorizacion" />
         <activity android:name=".ListaAutorizaciones" />
@@ -26,8 +23,8 @@
             android:theme="@style/NoActionBar" />
         <activity android:name=".VistaActividad" />
         <activity android:name=".Login" />
-        <activity android:name=".Pantalla_error_conexion" />
         <activity android:name=".Lista_actividades" />
+        <activity android:name=".Submenu_Actividades" />
         <activity android:name=".Mis_actividades" />
         <activity android:name=".Principal" />
         <activity android:name=".splashscreen">
