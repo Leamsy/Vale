@@ -48,7 +48,7 @@ public class Login extends AppCompatActivity {
     public void login(android.view.View V, final Context context){
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "https://vale-web.000webhostapp.com/wp-json/vale/v1/usuario/" + Global.user;
+        String url = "https://adminvale.es/wp-json/vale/v1/usuario/" + Global.user;
 
         JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
