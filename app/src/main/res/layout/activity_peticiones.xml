@@ -34,7 +34,7 @@
                 android:layout_height="75dp"
                 android:layout_weight="0"
                 android:contentDescription="@string/volver"
-                android:onClick="volverPrincipal"
+                android:onClick="volver"
                 app:srcCompat="@drawable/atras" />
         </LinearLayout>
 
