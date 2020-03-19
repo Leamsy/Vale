@@ -33,7 +33,7 @@ public class Principal extends AppCompatActivity {
         setContentView(R.layout.activity_principal);
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "https://vale-web.000webhostapp.com/wp-json/vale/v1/usuario/" + Global.user;
+        String url = Global.web + "/wp-json/vale/v1/usuario/" + Global.user;
 
         JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override

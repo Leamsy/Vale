@@ -34,7 +34,7 @@ import static android.view.View.VISIBLE;
 
 public class Lista_actividades extends AppCompatActivity {
 
-    private String url = "https://vale-web.000webhostapp.com/wp-json/vale/v1/actividades/1";
+    private String url = Global.web + "/wp-json/vale/v1/actividades/1";
 
     private ListView lista;
     private String[] arrayList;
