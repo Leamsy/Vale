@@ -33,7 +33,7 @@ public class Principal extends AppCompatActivity {
         setContentView(R.layout.activity_principal);
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "https://vale-web.000webhostapp.com/wp-json/vale/v1/usuario/" + Global.user;
+        String url = Global.web + "/wp-json/vale/v1/usuario/" + Global.user;
 
         JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -73,13 +73,8 @@ public class Principal extends AppCompatActivity {
     }
 
 
-    public void irListaActividades(android.view.View V){
-        Intent intent = new Intent(this, Lista_actividades.class);
-        startActivity(intent);
-    }
-
-    public void irPeticiones(android.view.View V){
-        Intent intent = new Intent(this, Peticiones.class);
+    public void irSubmenu(android.view.View V){
+        Intent intent = new Intent(this, Submenu_Actividades.class);
         startActivity(intent);
     }
 
@@ -88,11 +83,14 @@ public class Principal extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void cambiarMisActividades(android.view.View V){
-        Intent intent = new Intent(this, Mis_actividades.class);
+    public void cerrarApp(android.view.View V){
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
+    /*
     public boolean openApp(Context context, String packageName) {
         PackageManager manager = context.getPackageManager();
         try {
@@ -108,36 +106,11 @@ public class Principal extends AppCompatActivity {
             return false;
         }
     }
-
-    public void abrirChat(android.view.View V){
-        openApp(this, "com.whatsapp");
-    }
+    */
 
     /*public void salir(android.view.View V){
         moveTaskToBack(true);
         android.os.Process.killProcess(android.os.Process.myPid());
         System.exit(1);
     }*/
-
-    public void cambiarMisAutorizaciones(android.view.View V){
-        Intent intent = new Intent(this, ListaAutorizaciones.class);
-        startActivity(intent);
-    }
-
-    public void cambiarAgregarSugerencias(android.view.View V){
-        Intent intent = new Intent(this, AgregarPeticion.class);
-        startActivity(intent);
-    }
-
-    public void cambiarSugerencias(android.view.View V){
-        Intent intent = new Intent(this, Peticiones.class);
-        startActivity(intent);
-    }
-
-    public void cerrarApp(android.view.View V){
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_HOME);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-    }
 }
