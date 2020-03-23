@@ -1,12 +1,7 @@
 package com.bluedot.bluedot_vale;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.util.Log;
 import android.widget.ArrayAdapter;
@@ -28,9 +23,15 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import static android.content.res.Configuration.ORIENTATION_PORTRAIT;
 import static android.view.View.INVISIBLE;
-import static android.view.View.VISIBLE;
+
+;
 
 public class Lista_actividades extends AppCompatActivity {
 
