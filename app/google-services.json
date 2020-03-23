@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "68658700321",
+    "firebase_url": "https://valeapp-28b8e.firebaseio.com",
+    "project_id": "valeapp-28b8e",
+    "storage_bucket": "valeapp-28b8e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:68658700321:android:a8a8d2f2425eed4425c360",
+        "android_client_info": {
+          "package_name": "com.bluedot.bluedot_vale"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "68658700321-birh6hh62mottfcjetbd3shrja4spe5l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeXEnK0KRvRo8BubKIXabJIyFUSIfdAIQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "68658700321-birh6hh62mottfcjetbd3shrja4spe5l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
