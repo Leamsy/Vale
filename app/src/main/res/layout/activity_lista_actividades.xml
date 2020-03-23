@@ -32,7 +32,7 @@
                 android:id="@+id/imageView"
                 android:layout_width="100dp"
                 android:layout_height="75dp"
-                android:onClick="volverPrincipal"
+                android:onClick="volver"
                 app:srcCompat="@drawable/atras" />
         </LinearLayout>
 

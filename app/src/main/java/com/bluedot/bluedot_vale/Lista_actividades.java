@@ -34,7 +34,7 @@ import static android.view.View.VISIBLE;
 
 public class Lista_actividades extends AppCompatActivity {
 
-    private String url = "https://vale-web.000webhostapp.com/wp-json/vale/v1/actividades/1";
+    private String url = Global.web + "/wp-json/vale/v1/actividades/1";
 
     private ListView lista;
     private String[] arrayList;
@@ -97,9 +97,8 @@ public class Lista_actividades extends AppCompatActivity {
 
     }
 
-    public void volverPrincipal(android.view.View V){
-        Intent intent = new Intent(this, Principal.class);
-        startActivity(intent);
+    public void volver(android.view.View V){
+        finish();
     }
 
     public void aniadir(android.view.View V){

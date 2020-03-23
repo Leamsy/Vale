@@ -46,7 +46,7 @@
                 <ImageView
                     android:id="@+id/imageView23"
                     android:layout_width="wrap_content"
-                    android:layout_height="23dp"
+                    android:layout_height="45dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/blackline" />
 
@@ -61,73 +61,44 @@
                     android:textAlignment="center"
                     android:textSize="24sp" />
 
-                <ImageView
-                    android:id="@+id/imageView19"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="23dp"
-                    app:srcCompat="@drawable/blackline" />
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/imageView11"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:onClick="openDate"
-                        app:srcCompat="@drawable/calendario" />
-
-                    <Button
-                        android:id="@+id/fecha"
-                        android:layout_width="320dp"
-                        android:layout_height="80dp"
-                        android:backgroundTint="#3F51B5"
-                        android:onClick="openDate"
-                        android:text="Elegir fecha"
-                        android:textColor="#FFFFFF"
-                        android:textSize="36sp" />
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/imageView21"
-                    android:layout_width="wrap_content"
-                    android:layout_height="23dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/blackline" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/imageView12"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:onClick="openTime"
-                        app:srcCompat="@drawable/hora"
-                        tools:layout_editor_absoluteX="173dp"
-                        tools:layout_editor_absoluteY="640dp" />
-
-                    <Button
-                        android:id="@+id/hora"
-                        android:layout_width="320dp"
-                        android:layout_height="80dp"
-                        android:onClick="openTime"
-                        android:text="Hora"
-                        android:textColor="#FFFFFF"
-                        android:textSize="36sp"
-                        android:backgroundTint="#3F51B5"/>
-                </LinearLayout>
+                    android:orientation="horizontal"/>
 
                 <ImageView
                     android:id="@+id/imageView20"
                     android:layout_width="wrap_content"
-                    android:layout_height="23dp"
+                    android:layout_height="45dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/blackline" />
+
+                <EditText
+                    android:id="@+id/editText5"
+                    android:layout_width="match_parent"
+                    android:layout_height="201dp"
+                    android:background="#ffffff"
+                    android:ems="10"
+                    android:hint="Descripcion..."
+                    android:inputType="textMultiLine"
+                    android:textAlignment="center"
+                    android:textSize="24sp" />
+
+                <ImageView
+                    android:id="@+id/imageView18"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    app:srcCompat="@drawable/blackline" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -173,70 +144,18 @@
                     android:layout_weight="1"
                     app:srcCompat="@drawable/blackline" />
 
-                <LinearLayout
+                <Space
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/imageView14"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:onClick="openTime"
-                        app:srcCompat="@drawable/dinero"
-                        tools:layout_editor_absoluteX="173dp"
-                        tools:layout_editor_absoluteY="640dp" />
-
-                    <EditText
-                        android:id="@+id/precio"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#ffffff"
-                        android:ems="10"
-                        android:hint="Precio..."
-                        android:inputType="number"
-                        android:textAlignment="center"
-                        android:textSize="24sp" />
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/imageView18"
-                    android:layout_width="match_parent"
-                    android:layout_height="23dp"
-                    app:srcCompat="@drawable/blackline" />
-
-                <EditText
-                    android:id="@+id/editText5"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="#ffffff"
-                    android:ems="10"
-                    android:hint="Descripcion..."
-                    android:inputType="textMultiLine"
-                    android:textAlignment="center"
-                    android:textSize="24sp" />
-
-                <ImageView
-                    android:id="@+id/imageView17"
-                    android:layout_width="wrap_content"
-                    android:layout_height="23dp"
-                    app:srcCompat="@drawable/blackline" />
-
-                <CheckBox
-                    android:id="@+id/checkBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="¿Es una actividad especial?"
-                    android:textAlignment="center"
-                    android:textSize="24sp" />
+                    android:layout_height="12dp"
+                    android:layout_weight="1" />
 
                 <Button
                     android:id="@+id/button3"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="75dp"
                     android:backgroundTint="#3F51B5"
-                    android:onClick="enviar"
-                    android:text="Enviar"
+                    android:onClick="siguiente"
+                    android:text="Siguiente"
                     android:textAlignment="center"
                     android:textColor="#FFFFFF"
                     android:textSize="14pt" />
@@ -244,8 +163,6 @@
             </LinearLayout>
             
         </ScrollView>
-
-
 
 
     </LinearLayout>
