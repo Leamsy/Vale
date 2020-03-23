@@ -1,7 +1,8 @@
 package com.bluedot.bluedot_vale;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Mis_actividades extends AppCompatActivity {
 
