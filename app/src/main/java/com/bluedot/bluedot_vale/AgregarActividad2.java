@@ -2,15 +2,15 @@ package com.bluedot.bluedot_vale;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 public class AgregarActividad2 extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
 
@@ -25,7 +25,7 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
     }
 
     public void openDate(android.view.View V){
-        DialogFragment datePicker = new DatePickerFragment();
+        DatePickerFragment  datePicker = new DatePickerFragment ();
         datePicker.show(getSupportFragmentManager(), "datePicker");
     }
 
@@ -36,7 +36,7 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
     }
 
     public void openTime(android.view.View V){
-        DialogFragment timePicker = new TimePickerFragment();
+        TimePickerFragment timePicker = new TimePickerFragment();
         timePicker.show(getSupportFragmentManager(), "time picker");
     }
 

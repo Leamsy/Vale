@@ -2,11 +2,12 @@ package com.bluedot.bluedot_vale;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 
 import java.util.Calendar;
 
-public class DatePickerFragment extends DialogFragment{
+import androidx.fragment.app.DialogFragment;
+
+public class DatePickerFragment extends DialogFragment {
 
     @Override
     public DatePickerDialog onCreateDialog(Bundle savedInstanceState) {
