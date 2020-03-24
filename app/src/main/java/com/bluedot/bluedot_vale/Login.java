@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Base64;
-import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,16 +36,26 @@ public class Login extends AppCompatActivity {
     Boolean paseo=false;
     Boolean corriendo=false;
 
+    String user="";
+    String pass="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
     }
 
-    public void login(android.view.View V, final Context context){
+    public void login(android.view.View V, final Context context) throws Exception {
+
+        TextView myTextView = findViewById(R.id.logintxt);
+        user = myTextView.getText().toString();
+
+        Global.user = Global.encriptar(user, Global.key);
+        Global.pass = Global.encriptar(pass, Global.key);
+
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = Global.web + "/wp-json/vale/v1/usuario/" + Global.user;
+        String url = Global.web + "/wp-json/vale/v1/usuario/" + Global.desencriptar(Global.user, Global.key);
 
         JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -64,13 +73,16 @@ public class Login extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 findViewById(R.id.gif).setVisibility(INVISIBLE);
                 Toast.makeText(context, "Usuario o contraseña incorrectos.", Toast.LENGTH_LONG).show();
-                //FALSEADO
-                cambiar("uwu");
             }}){
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
-                String credentials = Global.user + ":" + Global.pass;
+                String credentials = null;
+                try {
+                    credentials = Global.desencriptar(Global.user, Global.key) + ":" + Global.desencriptar(Global.pass, Global.key);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 String auth = "Basic " + Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
                 headers.put("Content-Type", "application/json");
                 headers.put("Authorization", auth);
@@ -79,7 +91,6 @@ public class Login extends AppCompatActivity {
         };
 
         requestQueue.add(objectRequest);
-
     }
 
     public void cambiar(String rol){
@@ -93,10 +104,8 @@ public class Login extends AppCompatActivity {
         }
     }
 
-    public void enviar(android.view.View V){
+    public void enviar(android.view.View V) throws Exception {
         findViewById(R.id.gif).setVisibility(VISIBLE);
-        TextView myTextView = findViewById(R.id.logintxt);
-        Global.user = myTextView.getText().toString();
         login(V, this);
     }
 
@@ -104,56 +113,48 @@ public class Login extends AppCompatActivity {
         if(!jugador){
             jugador = true;
             findViewById(R.id.jugador).setAlpha((float)0.4);
-            Global.pass += "p";
+            pass += "p";
         }
-
-        Log.d("aa", Global.pass);
     }
 
     public void clickJuego(android.view.View V){
         if(!juego){
             juego = true;
             findViewById(R.id.juegomesa).setAlpha((float)0.4);
-            Global.pass += "g";
+            pass += "g";
         }
-        Log.d("aa", Global.pass);
     }
 
     public void clickPlaya(android.view.View V){
         if(!playa){
             playa = true;
             findViewById(R.id.playa).setAlpha((float)0.4);
-            Global.pass += "e";
+            pass += "e";
         }
-        Log.d("aa", Global.pass);
     }
 
     public void clickFlamenco(android.view.View V){
         if(!flamenco){
             flamenco = true;
             findViewById(R.id.flamenco).setAlpha((float)0.4);
-            Global.pass += "v";
+            pass += "v";
         }
-        Log.d("aa", Global.pass);
     }
 
     public void clickPaseo(android.view.View V){
         if(!paseo){
             paseo = true;
             findViewById(R.id.paseo).setAlpha((float)0.4);
-            Global.pass += "b";
+            pass += "b";
         }
-        Log.d("aa", Global.pass);
     }
 
     public void clickCorriendo(android.view.View V){
         if(!corriendo){
             corriendo = true;
             findViewById(R.id.corriendo).setAlpha((float)0.4);
-            Global.pass += "d";
+            pass += "d";
         }
-
-        Log.d("aa", Global.pass);
     }
 
     public void clickGoma(android.view.View V){
@@ -169,7 +170,6 @@ public class Login extends AppCompatActivity {
         findViewById(R.id.flamenco).setAlpha((float)1);
         findViewById(R.id.paseo).setAlpha((float)1);
         findViewById(R.id.corriendo).setAlpha((float)1);
-        Global.pass="";
-        Log.d("aa", Global.pass);
+        pass="";
     }
 }
