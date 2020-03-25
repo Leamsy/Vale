@@ -1,51 +1,53 @@
 package com.bluedot.bluedot_vale;
 
+import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
+
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
-    private String[] mDataset;
+public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private List<ItemAdapter> mList;
+    private Context mContext;
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
-        public TextView textView;
-        public MyViewHolder(TextView v) {
-            super(v);
-            textView = v;
+
+    public MyAdapter(List<ItemAdapter> list, Context context){
+        super();
+        mList = list;
+        mContext = context;
+    }
+    @NonNull
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_custom, parent, false);
+        ViewHolder viewHolder = new ViewHolder(v);
+        return viewHolder;
+    }
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
+        ItemAdapter itemAdapter = mList.get(position);
+        ((ViewHolder) viewHolder).mTv_name.setText(itemAdapter.getText());
+        ((ViewHolder) viewHolder).mImg.setImageResource(itemAdapter.getImage());
+
+    }
+    @Override
+    public int getItemCount() {
+        return mList.size();
+    }
+    class ViewHolder extends RecyclerView.ViewHolder{
+        public TextView mTv_name;
+        public ImageView mImg;
+        public ViewHolder(View itemView) {
+            super(itemView);
+            mTv_name = (TextView) itemView.findViewById(R.id.tv_name);
+            mImg = (ImageView) itemView.findViewById(R.id.img_item);
         }
     }
 
-    // Provide a suitable constructor (depends on the kind of dataset)
-    public MyAdapter(String[] myDataset) {
-        mDataset = myDataset;
-    }
-
-    // Create new views (invoked by the layout manager)
-    @Override
-    public MyAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
-                                                     int viewType) {
-        // create a new view
-        TextView v = (TextView) LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.text_view, parent, false);
-        MyViewHolder vh = new MyViewHolder(v);
-        return vh;
-    }
-
-    // Replace the contents of a view (invoked by the layout manager)
-    @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
-        holder.textView.setText(mDataset[position]);
-
-    }
-
-    // Return the size of your dataset (invoked by the layout manager)
-    @Override
-    public int getItemCount() {
-        return mDataset.length;
-    }
 }
