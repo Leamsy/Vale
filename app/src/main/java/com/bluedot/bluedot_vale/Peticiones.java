@@ -2,29 +2,9 @@ package com.bluedot.bluedot_vale;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Base64;
-import android.util.Log;
-
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import static android.view.View.INVISIBLE;
 
 public class Peticiones extends AppCompatActivity {
 
@@ -39,7 +19,7 @@ public class Peticiones extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_peticiones);
-
+/*
         recyclerView = (RecyclerView) findViewById( R.id.listaSuge );
 
         layoutManager = new LinearLayoutManager( this );
@@ -80,7 +60,7 @@ public class Peticiones extends AppCompatActivity {
             }
         };
 
-        requestQueue.add( objectRequest );
+        requestQueue.add( objectRequest );*/
     }
 
     public void volver(android.view.View V){
