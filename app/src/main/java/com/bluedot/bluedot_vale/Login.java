@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +15,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,6 +28,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import static android.view.View.INVISIBLE;
@@ -28,7 +36,8 @@ import static android.view.View.VISIBLE;
 
 public class Login extends AppCompatActivity {
 
-
+    private FirebaseAuth mAuth;
+    private static final String TAG = "Guardar en firebase";
     Boolean jugador=false;
     Boolean juego=false;
     Boolean playa=false;
@@ -43,6 +52,8 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        mAuth = FirebaseAuth.getInstance();
     }
 
     public void login(android.view.View V, final Context context) throws Exception {
@@ -60,6 +71,7 @@ public class Login extends AppCompatActivity {
         JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                registrarUsuario();
                 findViewById(R.id.gif).setVisibility(INVISIBLE);
                 Toast.makeText(context, "Entrando...", Toast.LENGTH_LONG).show();
                 try {
@@ -172,4 +184,44 @@ public class Login extends AppCompatActivity {
         findViewById(R.id.corriendo).setAlpha((float)1);
         pass="";
     }
+
+    private void registrarUsuario(){
+        String usuario = user;
+        String tipo = "No asignado";
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        DocumentReference docRef = db.collection("users").document(usuario);
+
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                    } else {
+                        FirebaseFirestore db = FirebaseFirestore.getInstance();
+                        String meterusuario = user;
+                        String tipo = "No asignado";
+                        //Log.d(TAG, "No such document");
+                        Map<String, Object> map = new HashMap<>();
+                        map.put("nombre", meterusuario);
+                        map.put("tipo", tipo);
+
+                        db.collection("users")
+                                .document(meterusuario)
+                                .set(map);
+
+                        Toast.makeText(getApplicationContext(),
+                                "Bienvenido por primera vez", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+
+        });
+    }//registrarUsuario
+
 }
