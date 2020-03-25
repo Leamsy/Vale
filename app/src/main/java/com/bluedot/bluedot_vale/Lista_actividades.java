@@ -1,11 +1,11 @@
 package com.bluedot.bluedot_vale;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -20,7 +20,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,12 +39,12 @@ public class Lista_actividades extends AppCompatActivity {
 
     private String url = Global.web + "/wp-json/vale/v1/actividades/1";
 
-    private ListView lista;
-    private String[] arrayList;
+    private List<ItemAdapter> data = new ArrayList<>();
     private ArrayAdapter<TextView> arrayAdapter;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter mAdapter;
+    Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,17 +66,20 @@ public class Lista_actividades extends AppCompatActivity {
             @Override
             public void onResponse(JSONArray response) {
                 findViewById(R.id.gif).setVisibility(INVISIBLE);
-                arrayList = new String [response.length()];
+
                 for( int i = 0; i < response.length(); i++ ) {
                     try {
                         JSONObject actividad = response.getJSONObject(i);
-                        arrayList[i] = actividad.getString("titulo");
-                        Log.i("asdf", actividad.getString("titulo"));
+
+                        ItemAdapter itemAdapter = new ItemAdapter();
+                        itemAdapter.setText(actividad.getString("titulo"));
+                        itemAdapter.setImage(R.drawable.dinero);
+                        data.add(itemAdapter);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
-                mAdapter = new MyAdapter(arrayList);
+                mAdapter = new MyAdapter(data, context);
                 recyclerView.setAdapter(mAdapter);
             }
         }, new Response.ErrorListener() {
@@ -86,7 +91,12 @@ public class Lista_actividades extends AppCompatActivity {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
-                String credentials = Global.user + ":" + Global.pass;
+                String credentials = null;
+                try {
+                    credentials = Global.desencriptar(Global.user, Global.key) + ":" + Global.desencriptar(Global.pass, Global.key);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 String auth = "Basic " + Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
                 headers.put("Content-Type", "application/json");
                 headers.put("Authorization", auth);
@@ -95,7 +105,6 @@ public class Lista_actividades extends AppCompatActivity {
         };
 
         requestQueue.add( objectRequest );
-
     }
 
     public void volver(android.view.View V){
@@ -107,8 +116,10 @@ public class Lista_actividades extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void verActividad(android.view.View V){
+    public void openActivity(android.view.View V){
         Intent intent = new Intent(this, VistaActividad.class);
+        TextView titulo = findViewById(R.id.tv_name);
+        intent.putExtra("titulo", titulo.getText().toString());
         startActivity(intent);
     }
 
