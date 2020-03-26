@@ -33,8 +33,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import static android.content.res.Configuration.ORIENTATION_PORTRAIT;
 import static android.view.View.INVISIBLE;
 
-;
-
 public class Lista_actividades extends AppCompatActivity {
 
     private String url = Global.web + "/wp-json/vale/v1/actividades/1";
@@ -113,13 +111,6 @@ public class Lista_actividades extends AppCompatActivity {
 
     public void aniadir(android.view.View V){
         Intent intent = new Intent(this, AgregarActividad.class);
-        startActivity(intent);
-    }
-
-    public void openActivity(android.view.View V){
-        Intent intent = new Intent(this, VistaActividad.class);
-        TextView titulo = findViewById(R.id.tv_name);
-        intent.putExtra("titulo", titulo.getText().toString());
         startActivity(intent);
     }
 
