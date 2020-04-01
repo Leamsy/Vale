@@ -136,7 +136,9 @@ public class PerfilUsuario extends AppCompatActivity {
         finish();
     }
 
-    public void editar(android.view.View V){
+    public void cerrar_sesion(android.view.View V){
+
         Toast.makeText(this, "Datos actualizados.", Toast.LENGTH_SHORT).show();
+
     }
 }

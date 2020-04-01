@@ -119,6 +119,21 @@
                 android:hint="Contacto de emergencia..."
                 android:textSize="24sp" />
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="35dp" />
+
+            <Button
+                android:id="@+id/cerrar_sesion"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:backgroundTint="#3F51B5"
+                android:onClick="cerrar_sesion"
+                android:text="Cerrar sesión"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="14pt" />
+
         </LinearLayout>
     </ScrollView>
         <FrameLayout
