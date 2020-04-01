@@ -1,6 +1,9 @@
 package com.bluedot.bluedot_vale;
 
-public class ItemAdapter {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class ItemAdapter extends AppCompatActivity {
+
     private int image;
     private String text;
 
@@ -19,4 +22,5 @@ public class ItemAdapter {
     public String getText() {
         return text;
     }
+
 }
