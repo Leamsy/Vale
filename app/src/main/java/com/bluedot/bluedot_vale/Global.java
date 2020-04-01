@@ -8,8 +8,6 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
 public class Global {
-
-    /*
     public static String user = "";
     public static String pass = "";
     public static String key = "pds9f87gj43o63498gdsf8h435noeg80ha7g4npga08h7";
@@ -42,5 +40,5 @@ public class Global {
         SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
         return secretKey;
     }
-    */
+
 }
