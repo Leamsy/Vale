@@ -2,7 +2,7 @@ package com.bluedot.bluedot_vale;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,7 +17,10 @@ public class VistaActividad extends AppCompatActivity {
 
         Intent intent = getIntent();
         titulo = intent.getStringExtra("titulo");
-        Log.i("aa", titulo);
+
+        TextView titulo_text = (TextView) findViewById(R.id.textView8);
+
+        titulo_text.setText(titulo);
     }
 
     public void volver(android.view.View V){
