@@ -59,37 +59,34 @@
             android:orientation="horizontal">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/jugador"
-                android:src="@drawable/jugador"
-                app:civ_border_width="5dp"
-                android:onClick="clickJugador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:contentDescription="@string/jugador"
-                android:layout_weight="1"
-                />
+                android:onClick="onClick"
+                android:src="@drawable/jugador"
+                app:civ_border_width="5dp" />
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/juegomesa"
-                android:src="@drawable/juegomesa"
-                app:civ_border_width="5dp"
-                android:onClick="clickJuego"
-                android:contentDescription="@string/juegomesa"
-                android:layout_weight="1"
-                />
-
-            <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/playa"
-                android:src="@drawable/playa"
-                app:civ_border_width="5dp"
-                android:onClick="clickPlaya"
-                android:contentDescription="@string/playa"
                 android:layout_weight="1"
-                />
+                android:contentDescription="@string/juegomesa"
+                android:onClick="onClick"
+                android:src="@drawable/juegomesa"
+                app:civ_border_width="5dp" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/playa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/playa"
+                android:onClick="onClick"
+                android:src="@drawable/playa"
+                app:civ_border_width="5dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -99,37 +96,34 @@
             android:orientation="horizontal">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/flamenco"
-                android:src="@drawable/flamenco"
-                app:civ_border_width="5dp"
-                android:onClick="clickFlamenco"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:contentDescription="@string/flamenco"
-                android:layout_weight="1"
-                />
+                android:onClick="onClick"
+                android:src="@drawable/flamenco"
+                app:civ_border_width="5dp" />
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/paseo"
-                android:src="@drawable/paseo"
-                app:civ_border_width="5dp"
-                android:onClick="clickPaseo"
-                android:contentDescription="@string/paseocaballo"
-                android:layout_weight="1"
-                />
-
-            <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/corriendo"
-                android:src="@drawable/corriendo"
-                app:civ_border_width="5dp"
-                android:onClick="clickCorriendo"
-                android:contentDescription="@string/corriendo"
                 android:layout_weight="1"
-                />
+                android:contentDescription="@string/paseocaballo"
+                android:onClick="onClick"
+                android:src="@drawable/paseo"
+                app:civ_border_width="5dp" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/corriendo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:contentDescription="@string/corriendo"
+                android:onClick="onClick"
+                android:src="@drawable/corriendo"
+                app:civ_border_width="5dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -146,7 +140,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:contentDescription="@string/borrar"
-                android:onClick="clickGoma"
+                android:onClick="onClick"
                 app:srcCompat="@drawable/goma2" />
 
             <Button
@@ -157,7 +151,7 @@
                 android:layout_marginEnd="16dp"
                 android:backgroundTint="#3F51B5"
                 android:fontFamily="sans-serif-condensed"
-                android:onClick="enviar"
+                android:onClick="onClick"
                 android:text="@string/loginbutton"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
