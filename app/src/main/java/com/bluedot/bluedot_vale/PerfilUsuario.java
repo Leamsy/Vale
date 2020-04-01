@@ -15,6 +15,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -23,7 +30,9 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 import static android.view.View.INVISIBLE;
 
@@ -31,12 +40,15 @@ import static android.view.View.INVISIBLE;
 public class PerfilUsuario extends AppCompatActivity {
 
     Context context = this;
+    FirebaseFirestore database;
+    String uid;
+    String nombre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil_usuario);
-
+        /*
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         String url = null;
         try {
@@ -130,6 +142,33 @@ public class PerfilUsuario extends AppCompatActivity {
 
 
         requestQueue.add(objectRequest);
+         */
+
+        uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        database = FirebaseFirestore.getInstance();
+
+        DocumentReference docRef = database.collection("users").document(uid);
+
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d("aa", "DocumentSnapshot data: " + document.getData());
+
+                    } else {
+                        Log.d("aa", "No such document");
+                    }
+                } else {
+                    Log.d("aa", "get failed with ", task.getException());
+                }
+            }
+        });
+
+
+
     }
 
     public void volver(android.view.View V){
