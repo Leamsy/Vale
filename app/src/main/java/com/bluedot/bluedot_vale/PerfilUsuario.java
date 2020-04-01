@@ -1,53 +1,37 @@
 package com.bluedot.bluedot_vale;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Base64;
-import android.util.Log;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.squareup.picasso.Picasso;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
-import static android.view.View.INVISIBLE;
-
-
-public class PerfilUsuario extends AppCompatActivity {
+public class PerfilUsuario extends AppCompatActivity implements View.OnClickListener{
 
     Context context = this;
     FirebaseFirestore database;
     String uid;
     String nombre;
+    private FirebaseAuth mAuth;
+    private Button mBtnLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil_usuario);
+        mAuth = FirebaseAuth.getInstance();
+        mBtnLogout = (Button) findViewById(R.id.cerrar_sesion);
+
+        mBtnLogout.setOnClickListener(this);
+
+        Toast.makeText(PerfilUsuario.this, "Bienvenido usuario: " + Sesion.dniusuario,
+                Toast.LENGTH_SHORT).show();
         /*
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         String url = null;
@@ -144,6 +128,7 @@ public class PerfilUsuario extends AppCompatActivity {
         requestQueue.add(objectRequest);
          */
 
+        /*
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         database = FirebaseFirestore.getInstance();
@@ -166,20 +151,43 @@ public class PerfilUsuario extends AppCompatActivity {
                 }
             }
         });
+        */
+    }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
+    }
 
+    private void signOut() {
+        Sesion.dniusuario = "";
+        mAuth.signOut();
+        updateUI(null);
+    }
 
+    private void updateUI(FirebaseUser user) {
+        if (user == null) {
+            Intent intent = new Intent(PerfilUsuario.this, Login.class);
+            startActivity(intent);
+            finish();
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.cerrar_sesion:
+                signOut();
+                break;
+        }
     }
 
     public void volver(android.view.View V){
         finish();
     }
 
-
-    public void cerrar_sesion(android.view.View V){
-
-        Toast.makeText(this, "Datos actualizados.", Toast.LENGTH_SHORT).show();
-
-    }
 
 }

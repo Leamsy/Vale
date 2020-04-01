@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/atrasperfil"
             android:layout_width="100dp"
             android:layout_height="75dp"
             android:contentDescription="@string/volver"

@@ -8,13 +8,15 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
 public class Global {
-
-    /*
+    public  String identificador = "";
     public static String user = "";
     public static String pass = "";
     public static String key = "pds9f87gj43o63498gdsf8h435noeg80ha7g4npga08h7";
     public static String web = "https://vale-web.000webhostapp.com";
 
+    public void setIdentificador(String identificador) {
+        this.identificador = identificador;
+    }
 
     public static String encriptar(String datos, String password) throws Exception{
         SecretKeySpec secretKey = generateKey(password);
@@ -42,5 +44,5 @@ public class Global {
         SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
         return secretKey;
     }
-    */
+
 }
