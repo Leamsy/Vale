@@ -1,6 +1,7 @@
 package com.bluedot.bluedot_vale;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,10 +31,26 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return viewHolder;
     }
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
-        ItemAdapter itemAdapter = mList.get(position);
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, int position) {
+        final ItemAdapter itemAdapter = mList.get(position);
         ((ViewHolder) viewHolder).mTv_name.setText(itemAdapter.getText());
+        ((ViewHolder) viewHolder).mTv_name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(((ViewHolder) viewHolder).context, VistaActividad.class);
+                intent.putExtra("titulo", ((ViewHolder) viewHolder).mTv_name.getText());
+                ((ViewHolder) viewHolder).context.startActivity(intent);
+            }
+        });
         ((ViewHolder) viewHolder).mImg.setImageResource(itemAdapter.getImage());
+        ((ViewHolder) viewHolder).mImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(((ViewHolder) viewHolder).context, VistaActividad.class);
+                intent.putExtra("titulo", ((ViewHolder) viewHolder).mTv_name.getText());
+                ((ViewHolder) viewHolder).context.startActivity(intent);
+            }
+        });
 
     }
     @Override
@@ -43,8 +60,10 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     class ViewHolder extends RecyclerView.ViewHolder{
         public TextView mTv_name;
         public ImageView mImg;
+        private final Context context;
         public ViewHolder(View itemView) {
             super(itemView);
+            context = itemView.getContext();
             mTv_name = (TextView) itemView.findViewById(R.id.tv_name);
             mImg = (ImageView) itemView.findViewById(R.id.img_item);
         }
