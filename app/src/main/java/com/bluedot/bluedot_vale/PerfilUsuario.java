@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseUser;
@@ -19,19 +21,21 @@ public class PerfilUsuario extends AppCompatActivity implements View.OnClickList
     String uid;
     String nombre;
     private FirebaseAuth mAuth;
-    private Button mBtnLogout;
+    public Button mBtnLogout;
+    public ImageButton mBtnAtras;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil_usuario);
         mAuth = FirebaseAuth.getInstance();
-        mBtnLogout = (Button) findViewById(R.id.cerrar_sesion);
+
+        mBtnLogout = findViewById(R.id.cerrar_sesion);
+        mBtnAtras = findViewById(R.id.atrasperfil);
 
         mBtnLogout.setOnClickListener(this);
+        mBtnAtras.setOnClickListener(this);
 
-        Toast.makeText(PerfilUsuario.this, "Bienvenido usuario: " + Sesion.dniusuario,
-                Toast.LENGTH_SHORT).show();
         /*
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         String url = null;
@@ -163,7 +167,6 @@ public class PerfilUsuario extends AppCompatActivity implements View.OnClickList
     }
 
     private void signOut() {
-        Sesion.dniusuario = "";
         mAuth.signOut();
         updateUI(null);
     }
@@ -176,18 +179,20 @@ public class PerfilUsuario extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    public void volver(){
+        finish();
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.cerrar_sesion:
                 signOut();
                 break;
+            case R.id.atrasperfil:
+                volver();
+                break;
         }
     }
-
-    public void volver(android.view.View V){
-        finish();
-    }
-
 
 }

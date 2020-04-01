@@ -91,7 +91,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                             Log.d(TAG, "Mail usuario: " /*+ document.getData()*/);
                             //Que meta en usermail el email
                             useremail = document.getData().get("email").toString();
-                            Sesion.dniusuario = username.getText().toString().trim();
                             //Poner Login aquí
                             enterFirebase();
                             //

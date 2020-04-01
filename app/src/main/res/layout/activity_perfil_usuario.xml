@@ -10,141 +10,131 @@
 
 
     <LinearLayout
+        android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#00FFFFFF"
+        android:onClick="onClick"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/atrasperfil"
             android:layout_width="100dp"
             android:layout_height="75dp"
-            android:contentDescription="@string/volver"
+            android:background="#00FFFFFF"
             android:onClick="volver"
+            android:scaleType="fitCenter"
             app:srcCompat="@drawable/atras" />
 
 
     </LinearLayout>
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center|top"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_weight="1" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="202dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="VOLUNTARIO"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:id="@+id/editText4"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#ffffff"
+            android:contentDescription="NOMBRE"
+            android:ems="10"
+            android:hint="Nombre"
+            android:textSize="24sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:id="@+id/editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="72dp"
-            android:gravity="center|top"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:background="#ffffff"
+            android:contentDescription="GUSTOS"
+            android:ems="10"
+            android:hint="Preferencias y gustos..."
+            android:textSize="24sp" />
 
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_weight="1" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="20dp" />
-
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="202dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="VOLUNTARIO"
-                android:textAlignment="center"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="20dp" />
-
-            <TextView
-                android:id="@+id/editText4"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#ffffff"
-                android:contentDescription="NOMBRE"
-                android:ems="10"
-                android:hint="Nombre"
-                android:textSize="24sp" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="20dp" />
-
-            <TextView
-                android:id="@+id/editText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ffffff"
-                android:contentDescription="GUSTOS"
-                android:ems="10"
-                android:hint="Preferencias y gustos..."
-                android:textSize="24sp" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="20dp" />
-
-            <TextView
-                android:id="@+id/editText3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ffffff"
-                android:contentDescription="@string/datosadicionales"
-                android:ems="10"
-                android:hint="Datos adicionales..."
-                android:textSize="24sp" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="20dp" />
-
-            <TextView
-                android:id="@+id/editText2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ffffff"
-                android:contentDescription="Contacto de emergencia"
-                android:ems="10"
-                android:hint="Contacto de emergencia..."
-                android:textSize="24sp" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="35dp" />
-
-            <Button
-                android:id="@+id/cerrar_sesion"
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:backgroundTint="#3F51B5"
-                android:onClick="cerrar_sesion"
-                android:text="Cerrar sesión"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="14pt" />
-
-        </LinearLayout>
-    </ScrollView>
-        <FrameLayout
+        <Space
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="20dp" />
 
-            <pl.droidsonroids.gif.GifImageView
-                android:id="@+id/gif"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/loader2"
-                android:visibility="visible" />
-        </FrameLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/editText3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:contentDescription="@string/datosadicionales"
+            android:ems="10"
+            android:hint="Datos adicionales..."
+            android:textSize="24sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <TextView
+            android:id="@+id/editText2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:contentDescription="Contacto de emergencia"
+            android:ems="10"
+            android:hint="Contacto de emergencia..."
+            android:textSize="24sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="35dp" />
+
+        <Button
+            android:id="@+id/cerrar_sesion"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:backgroundTint="#3F51B5"
+            android:onClick="cerrar_sesion"
+            android:text="Cerrar sesión"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="14pt" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
