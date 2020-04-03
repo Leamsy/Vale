@@ -282,7 +282,7 @@
                     app:srcCompat="@drawable/blackline" />
 
                 <CheckBox
-                    android:id="@+id/checkBox"
+                    android:id="@+id/requiere_autorizacion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="¿Requiere autorización?"
