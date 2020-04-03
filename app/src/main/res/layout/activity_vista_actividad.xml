@@ -52,7 +52,7 @@
                     android:orientation="horizontal">
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/imageView30"
+                        android:id="@+id/imagen"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:civ_border_width="5dp"
@@ -60,7 +60,7 @@
                         android:src="@drawable/corriendo" />
 
                     <TextView
-                        android:id="@+id/textView8"
+                        android:id="@+id/titulo"
                         android:layout_width="match_parent"
                         android:layout_height="35dp"
                         android:layout_weight="1"
@@ -80,7 +80,7 @@
                     app:srcCompat="@drawable/blackline" />
 
                 <TextView
-                    android:id="@+id/vistaDescripcion"
+                    android:id="@+id/descripcion"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:background="#FFFFFF"
@@ -97,7 +97,7 @@
                     app:srcCompat="@drawable/blackline" />
 
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/hora"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:layout_gravity="center"
@@ -109,7 +109,7 @@
                     android:textSize="30sp" />
 
                 <TextView
-                    android:id="@+id/textView14"
+                    android:id="@+id/fecha"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:layout_gravity="center"
@@ -143,7 +143,7 @@
                         tools:layout_editor_absoluteY="640dp" />
 
                     <TextView
-                        android:id="@+id/textView15"
+                        android:id="@+id/precio"
                         android:layout_width="match_parent"
                         android:layout_height="49dp"
                         android:layout_gravity="center"
