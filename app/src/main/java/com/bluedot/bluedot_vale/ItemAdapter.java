@@ -1,17 +1,20 @@
 package com.bluedot.bluedot_vale;
 
+import android.graphics.Bitmap;
+import android.net.Uri;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ItemAdapter extends AppCompatActivity {
 
-    private int image;
+    private String image;
     private String text;
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

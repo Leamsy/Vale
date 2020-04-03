@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -42,7 +44,11 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 ((ViewHolder) viewHolder).context.startActivity(intent);
             }
         });
-        ((ViewHolder) viewHolder).mImg.setImageResource(itemAdapter.getImage());
+        try {
+            Picasso.get().load(itemAdapter.getImage()).into(((ViewHolder) viewHolder).mImg);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         ((ViewHolder) viewHolder).mImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
