@@ -99,6 +99,8 @@ public class Lista_actividades extends AppCompatActivity {
                         imagen_url = document.getData().get("imagen").toString();
                         itemAdapter.setImage(imagen_url);
 
+                        itemAdapter.setUid(document.getId());
+
                         data.add(itemAdapter);
                     }
                     mAdapter = new MyAdapter(data, context);
@@ -119,52 +121,6 @@ public class Lista_actividades extends AppCompatActivity {
                 }
             }
         });
-/*
-        RequestQueue requestQueue = Volley.newRequestQueue( this );
-
-        JsonArrayRequest objectRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                findViewById(R.id.gif).setVisibility(INVISIBLE);
-
-                for( int i = 0; i < response.length(); i++ ) {
-                    try {
-                        JSONObject actividad = response.getJSONObject(i);
-
-                        ItemAdapter itemAdapter = new ItemAdapter();
-                        itemAdapter.setText(actividad.getString("titulo"));
-                        itemAdapter.setImage(R.drawable.dinero);
-                        data.add(itemAdapter);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-                mAdapter = new MyAdapter(data, context);
-                recyclerView.setAdapter(mAdapter);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.i("asdf","No funca");
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<>();
-                String credentials = null;
-                try {
-                    credentials = Global.desencriptar(Global.user, Global.key) + ":" + Global.desencriptar(Global.pass, Global.key);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                String auth = "Basic " + Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
-                headers.put("Content-Type", "application/json");
-                headers.put("Authorization", auth);
-                return headers;
-            }
-        };
-
-        requestQueue.add( objectRequest );*/
     }
 
     public void volver(android.view.View V){
