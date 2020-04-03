@@ -2,12 +2,19 @@ package com.bluedot.bluedot_vale;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+
+import java.io.ByteArrayOutputStream;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,8 +39,17 @@ public class AgregarActividad extends AppCompatActivity {
         intent.putExtra("titulo", titulo.getText().toString());
         EditText descripcion = findViewById(R.id.editText5);
         intent.putExtra("descripcion", descripcion.getText().toString());
-        //ImageView imagen = findViewById(R.id.prueba);
-        //intent.putExtra("imagen", imagen.getDrawable());
+
+        ImageView imagen = findViewById(R.id.imageView22);
+        imagen.setDrawingCacheEnabled(true);
+        imagen.buildDrawingCache();
+        Bitmap bitmap = ((BitmapDrawable) imagen.getDrawable()).getBitmap();
+
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+
+        intent.putExtra("imagen", byteArray);
         startActivity(intent);
         finish();
     }
@@ -58,6 +74,7 @@ public class AgregarActividad extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Result code is RESULT_OK only if the user selects an Image
+        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
 
             switch (requestCode) {
