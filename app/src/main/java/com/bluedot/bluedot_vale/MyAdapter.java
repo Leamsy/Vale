@@ -40,7 +40,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(((ViewHolder) viewHolder).context, VistaActividad.class);
-                intent.putExtra("titulo", ((ViewHolder) viewHolder).mTv_name.getText());
+                intent.putExtra("uid", itemAdapter.getUid());
                 ((ViewHolder) viewHolder).context.startActivity(intent);
             }
         });
@@ -53,7 +53,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(((ViewHolder) viewHolder).context, VistaActividad.class);
-                intent.putExtra("titulo", ((ViewHolder) viewHolder).mTv_name.getText());
+                intent.putExtra("uid", itemAdapter.getUid());
                 ((ViewHolder) viewHolder).context.startActivity(intent);
             }
         });
