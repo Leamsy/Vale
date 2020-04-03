@@ -9,10 +9,16 @@ public class ItemAdapter extends AppCompatActivity {
 
     private String image;
     private String text;
+    private String uid;
 
     public String getImage() {
         return image;
     }
+    public String getText() {
+        return text;
+    }
+
+    public String getUid(){ return uid; }
 
     public void setImage(String image) {
         this.image = image;
@@ -22,8 +28,10 @@ public class ItemAdapter extends AppCompatActivity {
         this.text = text;
     }
 
-    public String getText() {
-        return text;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
+
+
 
 }

@@ -28,45 +28,6 @@ public class Principal extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = Global.web + "/wp-json/vale/v1/usuario/" + Global.user;
-
-        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-
-                Log.i("asdf", "Funca");
-
-
-                ImageView myImageView = (ImageView) findViewById(R.id.imbPerfil);
-                try {
-                    Picasso.get().load(response.getString("fotografia_url")).into(myImageView);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-                Log.i("asdf", "No funca");
-
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<>();
-                String credentials = Global.user + ":" + Global.pass;
-                String auth = "Basic " + Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
-                headers.put("Content-Type", "application/json");
-                headers.put("Authorization", auth);
-                return headers;
-            }
-        };
-
-        requestQueue.add(objectRequest);
     }
 
 
