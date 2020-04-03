@@ -151,7 +151,6 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
             }
         });
 
-
         TextView fecha = findViewById(R.id.fecha);
         map.put("fecha", fecha.getText().toString());
         TextView hora = findViewById(R.id.hora);
