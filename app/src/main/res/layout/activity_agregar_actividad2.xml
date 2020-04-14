@@ -65,8 +65,9 @@
 
                     <Button
                         android:id="@+id/fecha"
-                        android:layout_width="320dp"
-                        android:layout_height="80dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/estiloboton"
                         android:backgroundTint="#3F51B5"
                         android:onClick="openDate"
                         android:text="Elegir fecha"
@@ -97,13 +98,14 @@
 
                     <Button
                         android:id="@+id/hora"
-                        android:layout_width="320dp"
-                        android:layout_height="80dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/estiloboton"
+                        android:backgroundTint="#3F51B5"
                         android:onClick="openTime"
                         android:text="Hora"
                         android:textColor="#FFFFFF"
-                        android:textSize="36sp"
-                        android:backgroundTint="#3F51B5"/>
+                        android:textSize="36sp" />
                 </LinearLayout>
 
                 <ImageView
@@ -299,7 +301,8 @@
                 <Button
                     android:id="@+id/button3"
                     android:layout_width="match_parent"
-                    android:layout_height="75dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/estiloboton"
                     android:backgroundTint="#3F51B5"
                     android:onClick="enviar"
                     android:text="Enviar"
