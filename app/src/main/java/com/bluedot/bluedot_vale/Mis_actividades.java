@@ -57,62 +57,35 @@ public class Mis_actividades extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        //Recoger de mis actividades
-        final CollectionReference colRef = FirebaseFirestore.getInstance().collection("users").document(uid).collection("mis_actividades");
+        CollectionReference colRef = FirebaseFirestore.getInstance().collection("actividades");
 
-        colRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(Mis_actividades.this, "Vamos a recoger los ID de las actividades:",
-                            Toast.LENGTH_SHORT).show();
+        FirebaseFirestore.getInstance().collection("actividades")
+                .whereEqualTo("autor", uid)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                final ItemAdapter itemAdapter = new ItemAdapter();
+                                itemAdapter.setText(document.getData().get("titulo").toString());
 
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        Toast.makeText(Mis_actividades.this, document.getId(),
-                               Toast.LENGTH_SHORT).show();
-                        misactividades.add(document.getId());
+                                imagen_url = document.getData().get("imagen").toString();
+                                itemAdapter.setImage(imagen_url);
 
-                        /*
-                        DocumentReference docRef = FirebaseFirestore.getInstance().collection("actividades").document(document.getId());
-                        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<DocumentSnapshot> task2) {
-                                if (task2.isSuccessful()) {
+                                itemAdapter.setUid(document.getId());
 
-                                    DocumentSnapshot document2 = task2.getResult();
-                                    if (document2.exists()) {
-                                        Log.d(TAG, "DocumentSnapshot data: " + document2.getData());
-                                        Toast.makeText(Mis_actividades.this, document2.getData().get("titulo").toString(),
-                                                Toast.LENGTH_SHORT).show();
-                                        final ItemAdapter itemAdapter = new ItemAdapter();
-                                        itemAdapter.setText(document2.getData().get("titulo").toString());
-                                        imagen_url = document2.getData().get("imagen").toString();
-                                        itemAdapter.setImage(imagen_url);
-                                        itemAdapter.setUid(document2.getId());
-                                        data.add(itemAdapter);
-                                        mAdapter = new MyAdapter(data, context);
-                                        recyclerView.setAdapter(mAdapter);
-                                    } else {
-                                        Log.d(TAG, "No such document");
-                                    }
-                                } else {
-                                    Log.d(TAG, "get failed with ", task2.getException());
-                                }
+                                data.add(itemAdapter);
                             }
-                        });
-                         */
-                    }//[for]
-                    Toast.makeText(Mis_actividades.this, misactividades.toString(),
-                            Toast.LENGTH_SHORT).show();
-                } else {
-                    Log.d("aa", "No existe el usuario");
-                }
-            }
-        });
-
+                            mAdapter = new MyAdapter(data, context);
+                            recyclerView.setAdapter(mAdapter);
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
     }//OnCreate
 
     public void volver(android.view.View V){
