@@ -94,28 +94,21 @@ public class Lista_actividades extends AppCompatActivity {
                         Log.d("aa", document.getId() + " => " + document.getData());
 
                         final ItemAdapter itemAdapter = new ItemAdapter();
-                        itemAdapter.setText(document.getData().get("titulo").toString());
+                        if(document.getData().get("titulo") != null){
+                            itemAdapter.setText(document.getData().get("titulo").toString());
+                        }
 
-                        imagen_url = document.getData().get("imagen").toString();
-                        itemAdapter.setImage(imagen_url);
+                        if(document.getData().get("imagen") != null){
+                            imagen_url = document.getData().get("imagen").toString();
+                            itemAdapter.setImage(imagen_url);
+                        }
 
                         itemAdapter.setUid(document.getId());
-
                         data.add(itemAdapter);
                     }
                     mAdapter = new MyAdapter(data, context);
                     recyclerView.setAdapter(mAdapter);
 
-                    /*
-                    titulo = document.getData().get("titulo").toString();
-                    descripcion = document.getData().get("descripcion").toString();
-                    imagen = document.getData().get("imagen").toString();
-                    fecha = document.getData().get("fecha").toString();
-                    hora = document.getData().get("hora").toString();
-                    plazas_socios = document.getData().get("plazas_socios").toString();
-                    plazas_voluntarios = document.getData().get("plazas_voluntarios").toString();
-                    requiere_autorizacion = document.getData().get("requiere_autorizacion").toString();
-                    */
                 } else {
                     Log.d("aa", "No existe el usuario");
                 }
