@@ -27,6 +27,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -160,6 +161,7 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
     }
 
     private int agregarCampos(){
+        map.put("autor", FirebaseAuth.getInstance().getCurrentUser().getUid().toString());
         map.put("titulo", titulo);
         map.put("descripcion", descripcion);
 
@@ -215,11 +217,15 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
     }
 
     private void subirActividad(){
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("actividades").add(map).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
-                Log.d("aa", "DocumentSnapshot written with ID: " + documentReference.getId());
+
+                Map<String, Object> map1= new HashMap<>();
+
+                db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("mis_actividades").document(documentReference.getId()).set(map1);
+
                 Toast.makeText(context, "La actividad ha sido enviada.", Toast.LENGTH_SHORT).show();
                 finish();
             }
@@ -227,10 +233,11 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
         .addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.w("aa", "Error adding document", e);
-                Toast.makeText(context, "La actividad ha sido enviada.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Error.", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
+
+
     }
 }
