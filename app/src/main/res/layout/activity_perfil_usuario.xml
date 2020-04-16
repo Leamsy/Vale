@@ -127,9 +127,10 @@
         <Button
             android:id="@+id/cerrar_sesion"
             android:layout_width="match_parent"
-            android:layout_height="75dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/estiloboton"
             android:backgroundTint="#3F51B5"
-            android:onClick="cerrar_sesion"
+            android:onClick="onClick"
             android:text="Cerrar sesión"
             android:textAlignment="center"
             android:textColor="#FFFFFF"

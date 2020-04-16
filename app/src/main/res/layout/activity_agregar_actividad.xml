@@ -126,13 +126,14 @@
 
                         <Button
                             android:id="@+id/imagen"
-                            android:layout_width="320dp"
-                            android:layout_height="80dp"
-                            android:text="Elegir imagen"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/estiloboton"
+                            android:backgroundTint="#3F51B5"
                             android:onClick="pickFromGallery"
+                            android:text="Elegir imagen"
                             android:textColor="#FFFFFF"
-                            android:textSize="36sp"
-                            android:backgroundTint="#3F51B5"/>
+                            android:textSize="36sp" />
                     </FrameLayout>
 
                 </LinearLayout>
@@ -152,7 +153,8 @@
                 <Button
                     android:id="@+id/button3"
                     android:layout_width="match_parent"
-                    android:layout_height="75dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/estiloboton"
                     android:backgroundTint="#3F51B5"
                     android:onClick="siguiente"
                     android:text="Siguiente"
