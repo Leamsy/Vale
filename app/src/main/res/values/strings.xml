@@ -49,5 +49,10 @@
     <string name="reservar">Reservar</string>
     <string name="elegirimg">Elegir imagen</string>
     <string name="Siguiente">Siguiente</string>
+    <string name="elegirfecha">Elegir fecha</string>
+    <string name="Plazas">Plazas</string>
+    <string name="Enviar">Enviar</string>
+    <string name="numsocios">Socios</string>
+    <string name="numvoluntarios">Voluntarios</string>
 
 </resources>
