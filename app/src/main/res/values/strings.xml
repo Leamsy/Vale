@@ -54,5 +54,6 @@
     <string name="Enviar">Enviar</string>
     <string name="numsocios">Socios</string>
     <string name="numvoluntarios">Voluntarios</string>
+    <string name="autorizacion">¿Requiere autorización?</string>
 
 </resources>
