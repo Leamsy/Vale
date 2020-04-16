@@ -156,7 +156,6 @@
                 android:id="@+id/textView12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:background="@drawable/estilocampos"
                 android:text="@string/Plazas"
                 android:textAlignment="center"
@@ -305,7 +304,7 @@
                 android:id="@+id/requiere_autorizacion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="¿Requiere autorización?"
+                android:text="@string/autorizacion"
                 android:textAlignment="center"
                 android:textSize="30sp" />
 
