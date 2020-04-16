@@ -111,7 +111,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/calendarioimagen"
                     android:layout_width="75dp"
                     android:layout_height="75dp"
                     app:srcCompat="@drawable/calendario" />
@@ -141,7 +141,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/imageView5"
+                    android:id="@+id/relojimagen"
                     android:layout_width="75dp"
                     android:layout_height="75dp"
                     app:srcCompat="@drawable/hora" />
@@ -173,7 +173,7 @@
                 android:gravity="center">
 
                 <ImageView
-                    android:id="@+id/imageView33"
+                    android:id="@+id/dineroimagen"
                     android:layout_width="75dp"
                     android:layout_height="75dp"
                     app:srcCompat="@drawable/dinero"
