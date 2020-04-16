@@ -20,8 +20,6 @@
     <string name="listaautorizaciones">LISTA DE AUTORIZACIONES</string>
     <string name="Agregar_peticiones">AÑADIR PETICION</string>
     <string name="ListaPeticiones">LISTA DE PETICIONES</string>
-    <string name="contactodeemergencia">CONTACTO DE EMERGENCIA</string>
-    <string name="preferencias">PREFERENCIAS DEL USUARIO</string>
     <string name="jugador">Jugador del Granada</string>
     <string name="juegomesa">Familia jugando juegos de mesa</string>
     <string name="playa">Personas en una playa</string>
@@ -55,5 +53,9 @@
     <string name="numsocios">Socios</string>
     <string name="numvoluntarios">Voluntarios</string>
     <string name="autorizacion">¿Requiere autorización?</string>
+    <string name="nombre">Nombre</string>
+    <string name="preferencias">Preferencias y gustos</string>
+    <string name="adicionales">Datos adicionales</string>
+    <string name="contactoemergencia">Contacto de emergencia</string>
 
 </resources>
