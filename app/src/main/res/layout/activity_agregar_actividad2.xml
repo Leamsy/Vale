@@ -9,311 +9,328 @@
     android:screenOrientation="portrait">
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:id="@+id/linearLayout7"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="4dp"
-        android:gravity="center|top"
-        android:orientation="vertical"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="100dp"
+            android:layout_height="75dp"
+            android:contentDescription="@string/volver"
+            android:onClick="volver"
+            app:srcCompat="@drawable/atras" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
+
         <LinearLayout
+            android:id="@+id/lineartotal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="100dp"
-                android:layout_height="75dp"
-                android:contentDescription="@string/volver"
-                android:onClick="volver"
-                app:srcCompat="@drawable/atras" />
-
-        </LinearLayout>
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/linearfecha"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/imageView23"
-                    android:layout_width="wrap_content"
-                    android:layout_height="23dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/blackline" />
+                    android:id="@+id/imageView11"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:onClick="openDate"
+                    app:srcCompat="@drawable/calendario" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/imageView11"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:onClick="openDate"
-                        app:srcCompat="@drawable/calendario" />
-
-                    <Button
-                        android:id="@+id/fecha"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/estiloboton"
-                        android:backgroundTint="#3F51B5"
-                        android:onClick="openDate"
-                        android:text="Elegir fecha"
-                        android:textColor="#FFFFFF"
-                        android:textSize="36sp" />
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/imageView21"
-                    android:layout_width="wrap_content"
-                    android:layout_height="23dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/blackline" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/imageView12"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:onClick="openTime"
-                        app:srcCompat="@drawable/hora"
-                        tools:layout_editor_absoluteX="173dp"
-                        tools:layout_editor_absoluteY="640dp" />
-
-                    <Button
-                        android:id="@+id/hora"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/estiloboton"
-                        android:backgroundTint="#3F51B5"
-                        android:onClick="openTime"
-                        android:text="Hora"
-                        android:textColor="#FFFFFF"
-                        android:textSize="36sp" />
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/imageView20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="23dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/blackline" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/imageView14"
-                        android:layout_width="62dp"
-                        android:layout_height="match_parent"
-                        app:srcCompat="@drawable/dinero"
-                        tools:layout_editor_absoluteX="173dp"
-                        tools:layout_editor_absoluteY="640dp" />
-
-                    <EditText
-                        android:id="@+id/precio"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:background="#ffffff"
-                        android:ems="10"
-                        android:hint="Precio..."
-                        android:inputType="numberDecimal"
-                        android:textAlignment="center"
-                        android:textSize="24sp" />
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/imageView17"
-                    android:layout_width="wrap_content"
-                    android:layout_height="23dp"
-                    app:srcCompat="@drawable/blackline" />
-
-                <TextView
-                    android:id="@+id/textView12"
-                    android:layout_width="match_parent"
-                    android:layout_height="37dp"
-                    android:layout_weight="1"
-                    android:text="PLAZAS"
-                    android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:textSize="24sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="95dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/textView3"
-                            android:layout_width="match_parent"
-                            android:layout_height="9dp"
-                            android:layout_weight="1"
-                            android:text="Socios"
-                            android:textAlignment="center"
-                            android:textColor="#000000"
-                            android:textSize="18sp" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="88dp"
-                            android:layout_weight="1"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:id="@+id/imageView28"
-                                android:layout_width="56dp"
-                                android:layout_height="52dp"
-                                android:layout_weight="1"
-                                android:onClick="menos_s"
-                                app:srcCompat="@drawable/menos" />
-
-                            <EditText
-                                android:id="@+id/edit_socios"
-                                android:layout_width="72dp"
-                                android:layout_height="55dp"
-                                android:layout_weight="1"
-                                android:background="#FFFFFF"
-                                android:ems="10"
-                                android:inputType="number"
-                                android:text="1"
-                                android:textAlignment="center"
-                                android:textSize="30sp" />
-
-                            <ImageView
-                                android:id="@+id/imageView27"
-                                android:layout_width="58dp"
-                                android:layout_height="53dp"
-                                android:layout_weight="1"
-                                android:onClick="mas_s"
-                                app:srcCompat="@drawable/mas" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <ImageView
-                        android:id="@+id/imageView24"
-                        android:layout_width="217dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/blackline_vertical" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/textView9"
-                            android:layout_width="match_parent"
-                            android:layout_height="9dp"
-                            android:layout_weight="1"
-                            android:text="Voluntarios"
-                            android:textAlignment="center"
-                            android:textColor="#000000"
-                            android:textSize="18sp" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="88dp"
-                            android:layout_weight="1"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:id="@+id/imageView25"
-                                android:layout_width="56dp"
-                                android:layout_height="52dp"
-                                android:layout_weight="1"
-                                android:onClick="menos_v"
-                                app:srcCompat="@drawable/menos" />
-
-                            <EditText
-                                android:id="@+id/edit_voluntarios"
-                                android:layout_width="72dp"
-                                android:layout_height="55dp"
-                                android:layout_weight="1"
-                                android:background="#FFFFFF"
-                                android:ems="10"
-                                android:inputType="number"
-                                android:text="1"
-                                android:textAlignment="center"
-                                android:textSize="30sp" />
-
-                            <ImageView
-                                android:id="@+id/imageView26"
-                                android:layout_width="58dp"
-                                android:layout_height="53dp"
-                                android:layout_weight="1"
-                                android:onClick="mas_v"
-                                app:srcCompat="@drawable/mas" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/imageView10"
-                    android:layout_width="match_parent"
-                    android:layout_height="23dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/blackline" />
-
-                <CheckBox
-                    android:id="@+id/requiere_autorizacion"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="¿Requiere autorización?"
-                    android:textAlignment="center"
-                    android:textSize="24sp" />
-
-                <ImageView
-                    android:id="@+id/imageView31"
-                    android:layout_width="match_parent"
-                    android:layout_height="23dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/blackline" />
+                <Space
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content" />
 
                 <Button
-                    android:id="@+id/button3"
+                    android:id="@+id/fecha"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/estiloboton"
                     android:backgroundTint="#3F51B5"
-                    android:onClick="enviar"
-                    android:text="Enviar"
-                    android:textAlignment="center"
+                    android:onClick="openDate"
+                    android:text="@string/elegirfecha"
                     android:textColor="#FFFFFF"
-                    android:textSize="14pt" />
+                    android:textSize="30sp" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <LinearLayout
+                android:id="@+id/linearhora"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView12"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:onClick="openTime"
+                    app:srcCompat="@drawable/hora"
+                    tools:layout_editor_absoluteX="173dp"
+                    tools:layout_editor_absoluteY="640dp" />
+
+                <Space
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/hora"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/estiloboton"
+                    android:backgroundTint="#3F51B5"
+                    android:onClick="openTime"
+                    android:text="@string/hora"
+                    android:textColor="#FFFFFF"
+                    android:textSize="30sp" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <LinearLayout
+                android:id="@+id/linearprecio"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView14"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    app:srcCompat="@drawable/dinero"
+                    tools:layout_editor_absoluteX="173dp"
+                    tools:layout_editor_absoluteY="640dp" />
+
+                <Space
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/precio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/estilocampos"
+                    android:ems="10"
+                    android:hint="@string/Precio"
+                    android:inputType="numberDecimal"
+                    android:textAlignment="center"
+                    android:textSize="30sp" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/estilocampos"
+                android:text="@string/Plazas"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="30sp" />
+
+            <LinearLayout
+                android:id="@+id/linearplazas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/linearsocios"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/numsocios"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="30sp" />
+
+                    <LinearLayout
+                        android:id="@+id/linearsocios2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/imageView28"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:onClick="menos_s"
+                            app:srcCompat="@drawable/menos" />
+
+                        <Space
+                            android:layout_width="5dp"
+                            android:layout_height="wrap_content" />
+
+                        <EditText
+                            android:id="@+id/edit_socios"
+                            android:layout_width="70dp"
+                            android:layout_height="50dp"
+                            android:background="@drawable/estilocampos"
+                            android:ems="10"
+                            android:inputType="number"
+                            android:text="1"
+                            android:textAlignment="center"
+                            android:textSize="30sp" />
+
+                        <Space
+                            android:layout_width="5dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <ImageView
+                            android:id="@+id/imageView27"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:onClick="mas_s"
+                            app:srcCompat="@drawable/mas" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:id="@+id/linearvoluntarios"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/numvoluntarios"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="30sp" />
+
+                    <LinearLayout
+                        android:id="@+id/linearvoluntarios2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/imageView25"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:onClick="menos_v"
+                            app:srcCompat="@drawable/menos" />
+
+                        <Space
+                            android:layout_width="5dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <EditText
+                            android:id="@+id/edit_voluntarios"
+                            android:layout_width="70dp"
+                            android:layout_height="50dp"
+                            android:background="@drawable/estilocampos"
+                            android:ems="10"
+                            android:inputType="number"
+                            android:text="1"
+                            android:textAlignment="center"
+                            android:textSize="30sp" />
+
+                        <Space
+                            android:layout_width="5dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <ImageView
+                            android:id="@+id/imageView26"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:onClick="mas_v"
+                            app:srcCompat="@drawable/mas" />
+                    </LinearLayout>
+                </LinearLayout>
 
             </LinearLayout>
 
-        </ScrollView>
 
-    </LinearLayout>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <CheckBox
+                android:id="@+id/requiere_autorizacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="¿Requiere autorización?"
+                android:textAlignment="center"
+                android:textSize="30sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/estiloboton"
+                android:backgroundTint="#3F51B5"
+                android:onClick="enviar"
+                android:text="@string/Enviar"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="14pt" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
