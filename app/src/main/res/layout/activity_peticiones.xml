@@ -16,7 +16,6 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="4dp"
-        android:gravity="center|top"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,52 +28,46 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageView13"
+                android:id="@+id/imageView"
                 android:layout_width="100dp"
                 android:layout_height="75dp"
-                android:layout_weight="0"
-                android:contentDescription="@string/volver"
                 android:onClick="volver"
                 app:srcCompat="@drawable/atras" />
         </LinearLayout>
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/estiloboton"
             android:backgroundTint="#3F51B5"
             android:onClick="aniadirPeticion"
-            android:text="@string/Agregar_peticiones"
+            android:text="AÑADIR PETICION"
             android:textColor="#FFFFFF"
             android:textSize="24sp" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="20dp" />
+            android:layout_height="16dp" />
 
-        <TextView
-            android:id="@+id/textView7"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/ListaPeticiones"
-            android:textAlignment="center"
-            android:textColor="#3F51B5"
-            android:textSize="24sp" />
+            android:layout_height="match_parent">
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/listaSuge"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/listaSuge"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="vertical"
+                    android:textAlignment="center" />
+            </LinearLayout>
+        </ScrollView>
+
 
     </LinearLayout>
 
