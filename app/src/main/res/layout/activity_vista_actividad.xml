@@ -9,33 +9,24 @@
     tools:context=".VistaActividad">
 
     <LinearLayout
-        android:id="@+id/linearLayout6"
-        android:layout_width="0dp"
+        android:id="@+id/linearatras"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="4dp"
-        android:gravity="center|top"
-        android:orientation="vertical"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imageView9"
-                android:layout_width="100dp"
-                android:layout_height="75dp"
-                android:contentDescription="@string/volver"
-                android:onClick="volver"
-                app:srcCompat="@drawable/atras" />
-
-        </LinearLayout>
-
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="100dp"
+            android:layout_height="75dp"
+            android:contentDescription="@string/volver"
+            android:onClick="volver"
+            app:srcCompat="@drawable/atras" />
 
     </LinearLayout>
 
@@ -47,10 +38,12 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/reservar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+        app:layout_constraintTop_toBottomOf="@+id/linearatras"
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -71,17 +64,19 @@
                     app:civ_border_color="@color/colorPrimary"
                     app:civ_border_width="5dp" />
 
+                <Space
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content" />
+
                 <TextView
                     android:id="@+id/titulo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:background="@drawable/estilocampos"
-                    android:backgroundTint="#FFFFFF"
                     android:hint="@string/titulo"
                     android:textAlignment="center"
                     android:textColor="#000000"
-                    android:textSize="30sp" />
+                    android:textSize="24sp" />
             </LinearLayout>
 
             <Space
@@ -94,11 +89,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/estilocampos"
-                android:backgroundTint="#FFFFFF"
                 android:hint="@string/descripcion"
                 android:textAlignment="center"
                 android:textColor="#000000"
-                android:textSize="30sp" />
+                android:textSize="24sp" />
 
             <Space
                 android:layout_width="match_parent"
@@ -108,6 +102,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -116,18 +111,20 @@
                     android:layout_height="75dp"
                     app:srcCompat="@drawable/calendario" />
 
+                <Space
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content" />
+
                 <TextView
                     android:id="@+id/fecha"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="1"
                     android:background="@drawable/estilocampos"
-                    android:backgroundTint="#FFFFFF"
                     android:hint="@string/Fecha"
                     android:textAlignment="center"
                     android:textColor="#000000"
-                    android:textSize="30sp" />
+                    android:textSize="24sp" />
 
             </LinearLayout>
 
@@ -138,6 +135,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -146,18 +144,20 @@
                     android:layout_height="75dp"
                     app:srcCompat="@drawable/hora" />
 
+                <Space
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content" />
+
                 <TextView
                     android:id="@+id/hora"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="1"
                     android:background="@drawable/estilocampos"
-                    android:backgroundTint="#FFFFFF"
                     android:hint="@string/hora"
                     android:textAlignment="center"
                     android:textColor="#000000"
-                    android:textSize="30sp" />
+                    android:textSize="24sp" />
 
             </LinearLayout>
 
@@ -180,37 +180,38 @@
                     tools:layout_editor_absoluteX="173dp"
                     tools:layout_editor_absoluteY="640dp" />
 
+                <Space
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content" />
+
                 <TextView
                     android:id="@+id/precio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:background="@drawable/estilocampos"
-                    android:backgroundTint="#FFFFFF"
                     android:hint="@string/Precio"
                     android:textAlignment="center"
                     android:textColor="#000000"
-                    android:textSize="30sp" />
+                    android:textSize="24sp" />
             </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <Button
+                android:id="@+id/reservar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/estiloboton"
+                android:backgroundTint="#3F51B5"
+                android:text="@string/reservar"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp" />
 
         </LinearLayout>
     </ScrollView>
-
-    <Button
-        android:id="@+id/reservar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/estiloboton"
-        android:backgroundTint="#3F51B5"
-        android:text="Reservar"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="14pt"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
