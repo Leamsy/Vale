@@ -1,66 +1,83 @@
 package com.bluedot.bluedot_vale;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import static android.content.res.Configuration.ORIENTATION_PORTRAIT;
+import static android.view.View.INVISIBLE;
 
 public class Peticiones extends AppCompatActivity {
 
-    private String url = "https://vale-web.000webhostapp.com/wp-json/vale/v1/peticiones/1";
-
-    private String[] lista;
+    private List<ItemAdapter> data = new ArrayList<>();
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter mAdapter;
+    String uid;
+    Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_peticiones);
-/*
-        recyclerView = (RecyclerView) findViewById( R.id.listaSuge );
 
-        layoutManager = new LinearLayoutManager( this );
-        recyclerView.setLayoutManager( layoutManager );
+        recyclerView = (RecyclerView) findViewById(R.id.listaSuge);
 
-        RequestQueue requestQueue = Volley.newRequestQueue( this );
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), ORIENTATION_PORTRAIT);
+        recyclerView.addItemDecoration(dividerItemDecoration);
 
-        JsonArrayRequest objectRequest = new JsonArrayRequest( Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+
+        uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        CollectionReference colRef = FirebaseFirestore.getInstance().collection("peticiones");
+
+        colRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onResponse( JSONArray response ) {
-                findViewById(R.id.gif).setVisibility(INVISIBLE);
-                lista = new String[response.length()];
-                for( int i = 0; i < response.length(); i++ ) {
-                    try {
-                        JSONObject sugerencia = response.getJSONObject(i);
-                        lista[i] = sugerencia.getString( "titulo" );
-                    } catch( JSONException e ) {
-                        e.printStackTrace();
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+
+                    findViewById(R.id.gif).setVisibility(INVISIBLE);
+
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+
+                        final ItemAdapter itemAdapter = new ItemAdapter();
+                        if(document.getData().get("titulo") != null){
+                            itemAdapter.setText(document.getData().get("titulo").toString());
+                        }
+
+                        itemAdapter.setUid(document.getId());
+                        data.add(itemAdapter);
                     }
+                    mAdapter = new MyAdapter_Peticiones(data, context);
+                    recyclerView.setAdapter(mAdapter);
+
+                } else {
+                    Log.d("aa", "No existe el usuario");
                 }
+            }
+        });
 
-                mAdapter = new MyAdapter( lista );
-                recyclerView.setAdapter( mAdapter );
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse( VolleyError error ) {
-                Log.i( "asdf", "No funca" );
-            }
-        }) {
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<>();
-                String credentials = Global.user + ":" + Global.pass;
-                String auth = "Basic " + Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
-                headers.put("Content-Type", "application/json");
-                headers.put("Authorization", auth);
-                return headers;
-            }
-        };
-
-        requestQueue.add( objectRequest );*/
     }
 
     public void volver(android.view.View V){

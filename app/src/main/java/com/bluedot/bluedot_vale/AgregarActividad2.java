@@ -161,7 +161,7 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
     }
 
     private int agregarCampos(){
-        map.put("autor", FirebaseAuth.getInstance().getCurrentUser().getUid().toString());
+        map.put("autor", FirebaseAuth.getInstance().getCurrentUser().getUid());
         map.put("titulo", titulo);
         map.put("descripcion", descripcion);
 
@@ -237,7 +237,6 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
                 finish();
             }
         });
-
 
     }
 }
