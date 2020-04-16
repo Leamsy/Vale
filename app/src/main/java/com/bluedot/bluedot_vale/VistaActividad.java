@@ -3,6 +3,8 @@ package com.bluedot.bluedot_vale;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -46,15 +48,20 @@ public class VistaActividad extends AppCompatActivity {
         uid_act = intent.getStringExtra("uid");
 
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        Log.d("ante", uid_act);
+
         DocumentReference docRef = FirebaseFirestore.getInstance().collection("actividades").document(uid_act);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
-                    //Si el documento existe
+
                     if (document.exists()) {
+                        
+                        if(uid.equals(document.getData().get("autor").toString())){
+                            Button reservar = findViewById(R.id.reservar);
+                            reservar.setVisibility(View.INVISIBLE);
+                        }
 
                         titulo = document.getData().get("titulo").toString();
                         descripcion = document.getData().get("descripcion").toString();
@@ -86,10 +93,8 @@ public class VistaActividad extends AppCompatActivity {
                         //requiere_autorizacion_view.setText(requiere_autorizacion);
 
                     } else {
-                        Log.d("aa", "No existe el usuario");
                     }
                 } else {
-                    Log.d("aa", "Fallo en la conexión ", task.getException());
                 }
             }
         });
