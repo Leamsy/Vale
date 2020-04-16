@@ -1,19 +1,37 @@
 package com.bluedot.bluedot_vale;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.squareup.picasso.Picasso;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 
 public class AgregarPeticion extends AppCompatActivity {
 
-
-    public static final MediaType MEDIA_TYPE_MARKDOWN
-            = MediaType.parse("text/x-markdown; charset=utf-8");
-
-    private final OkHttpClient client = new OkHttpClient();
+    Map<String, Object> map= new HashMap<>();
+    Context context = this;
+    String uid;
+    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,66 +45,48 @@ public class AgregarPeticion extends AppCompatActivity {
 
     public void enviar(android.view.View V){
 
-        Toast.makeText(this, "La sugerencia ha sido enviada.", Toast.LENGTH_SHORT).show();
+        map.put("autor", FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-        /*
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        String url = "https://vale-web.000webhostapp.com/wp-json/vale/v1/peticion/nueva";
+        TextView titulo = findViewById(R.id.titulo);
+        map.put("titulo", titulo.getText().toString());
 
-        JSONObject jsonBody = new JSONObject();
+        TextView descripcion = findViewById(R.id.descripcion);
+        map.put("descripcion", descripcion.getText().toString());
 
-        try {
-            jsonBody.put("titulo", "Peti");
-            jsonBody.put("descripcion", "Cion");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DocumentReference docRef = FirebaseFirestore.getInstance().collection("users").document(uid);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
 
-        final String requestBody = jsonBody.toString();
-        Log.i("asdf",requestBody);
-        StringRequest objectRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.i("asdf",":)");
-                Log.i("asdf",response);
-            }}, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.i("asdf","mal");
-                Log.i("asdf",error.getMessage());
-            }}){
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<>();
-                String credentials = Global.user + ":" + Global.pass;
-                String auth = "Basic " + Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
-                headers.put("Content-Type", "multipart/form-data");
-                headers.put("Authorization", auth);
-                Log.i("asdf", headers.toString());
-                return headers;
-            }
-            @Override
-            public byte[] getBody() throws AuthFailureError {
-                try {
-                    return requestBody == null ? null : requestBody.getBytes("utf-8");
-                } catch (UnsupportedEncodingException uee) {
-                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
-                    return null;
+                        map.put("autor_nombre", document.getData().get("nombre").toString());
+
+                        final FirebaseFirestore db = FirebaseFirestore.getInstance();
+                        db.collection("peticiones").add(map).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+
+                                Toast.makeText(context, "La petición ha sido enviada.", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(context, "Error.", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+                        });
+
+                    } else {
+                    }
+                } else {
                 }
             }
-            @Override
-            protected Response<String> parseNetworkResponse(NetworkResponse response) {
-                String responseString = "";
-                if (response != null) {
-                    responseString = String.valueOf(response.statusCode);
-                    // can get more details such as response.headers
-                }
-                return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
-            }
-        };
+        });
 
-        requestQueue.add(objectRequest);*/
-
-        finish();
     }
 }

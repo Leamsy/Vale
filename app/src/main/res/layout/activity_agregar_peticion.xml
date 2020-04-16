@@ -59,8 +59,8 @@
             android:layout_width="match_parent"
             android:layout_height="20dp" />
 
-        <TextView
-            android:id="@+id/editText9"
+        <EditText
+            android:id="@+id/titulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"
@@ -77,7 +77,7 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/editText6"
+                android:id="@+id/descripcion"
                 android:layout_width="match_parent"
                 android:layout_height="243dp"
                 android:background="#ffffff"
