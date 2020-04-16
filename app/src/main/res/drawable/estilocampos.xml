@@ -4,24 +4,23 @@
 
         <size
             android:width="300dp"
-            android:height="50dp"
+            android:height="15dp"
             >
 
         </size>
 
         <corners
-            android:radius="25dp">
+            android:radius="15dp">
         </corners>
+
+        <solid
+            android:color="#FFFFFF">
+
+        </solid>
 
         <stroke
             android:width="2dp"
             android:color="@color/colorPrimary">
         </stroke>
-
-        <solid
-            android:color="@color/colorBackground"
-            >
-
-        </solid>
 
     </shape>
