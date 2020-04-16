@@ -47,4 +47,7 @@
     <string name="Fecha">Fecha</string>
     <string name="Precio">Precio</string>
     <string name="reservar">Reservar</string>
+    <string name="elegirimg">Elegir imagen</string>
+    <string name="Siguiente">Siguiente</string>
+
 </resources>
