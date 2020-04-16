@@ -19,6 +19,7 @@
         <activity android:name=".Autorizacion" />
         <activity android:name=".ListaAutorizaciones" />
         <activity android:name=".AgregarPeticion" />
+        <activity android:name=".VistaPeticion" />
         <activity
             android:name=".Peticiones"
             android:label="@string/title_activity_peticiones"
