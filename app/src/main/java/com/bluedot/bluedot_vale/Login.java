@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -14,6 +16,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +31,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     Boolean flamenco=false;
     Boolean paseo=false;
     Boolean corriendo=false;
+    String uid;
 
     private EditText useremail;
     private String pass = "";
@@ -66,9 +70,33 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                                 Toast.makeText(Login.this, "Bienvenido",
                                         Toast.LENGTH_SHORT).show();
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                updateUI(user);
-                                startActivity(new Intent(Login.this, Principal.class));
-                                finish();
+
+                                uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                                DocumentReference docRef = FirebaseFirestore.getInstance().collection("users").document(uid);
+                                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                        if (task.isSuccessful()) {
+                                            DocumentSnapshot document = task.getResult();
+                                            if (document.exists()) {
+
+                                                if(document.getData().get("rol").toString().equals("tutor")){
+                                                    startActivity(new Intent(Login.this, Menu_tutor.class));
+                                                    finish();
+                                                }
+                                                else{
+                                                    startActivity(new Intent(Login.this, Principal.class));
+                                                    finish();
+                                                }
+
+                                            } else {
+                                            }
+                                        } else {
+                                        }
+                                    }
+                                });
+
                             } else{
                                 /*if (task.getException() instanceof FirebaseAuthUserCollisionException){
                                     Toast.makeText(RegisterActivity.this, "El usuario ya existe",
@@ -153,21 +181,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         pass="";
     }
 
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
-    }
-
-    private void updateUI(FirebaseUser user) {
-        if (user != null) {
-            Intent intent = new Intent(Login.this, Principal.class);
-            startActivity(intent);
-        }
-    }
 
     @Override
     public void onClick(View v) {

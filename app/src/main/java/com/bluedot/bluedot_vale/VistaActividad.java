@@ -55,9 +55,13 @@ public class VistaActividad extends AppCompatActivity {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
-
                     if (document.exists()) {
                         
+                        if(uid.equals(document.getData().get("autor").toString())){
+                            Button reservar = findViewById(R.id.reservar);
+                            reservar.setVisibility(View.INVISIBLE);
+                        }
+
                         if(uid.equals(document.getData().get("autor").toString())){
                             Button reservar = findViewById(R.id.reservar);
                             reservar.setVisibility(View.INVISIBLE);
@@ -98,12 +102,6 @@ public class VistaActividad extends AppCompatActivity {
                 }
             }
         });
-
-
-
-
-
-
 
 
     }
