@@ -28,6 +28,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     Boolean flamenco=false;
     Boolean paseo=false;
     Boolean corriendo=false;
+    String uid;
 
     private EditText useremail;
     private String pass = "";
@@ -63,12 +64,43 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG, "createUserWithEmail:success");
-                                Toast.makeText(Login.this, "Bienvenido",
-                                        Toast.LENGTH_SHORT).show();
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                updateUI(user);
-                                startActivity(new Intent(Login.this, Principal.class));
-                                finish();
+
+                                uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                                DocumentReference docRef = FirebaseFirestore.getInstance().collection("users").document(uid);
+                                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                        if (task.isSuccessful()) {
+                                            DocumentSnapshot document = task.getResult();
+                                            if (document.exists()) {
+
+                                                if(document.getData().get("rol").toString().equals("tutor")){
+                                                    Toast.makeText(Login.this, "Bienvenido",
+                                                            Toast.LENGTH_SHORT).show();
+                                                    startActivity(new Intent(Login.this, Menu_tutor.class));
+                                                    finish();
+                                                }
+                                                else if (document.getData().get("activo").toString().equals("false")){
+                                                    mAuth.signOut();
+                                                    Toast.makeText(Login.this, "No eres un usuario autorizado",
+                                                            Toast.LENGTH_SHORT).show();
+                                                }
+                                                else{
+                                                    Toast.makeText(Login.this, "Bienvenido",
+                                                            Toast.LENGTH_SHORT).show();
+                                                    startActivity(new Intent(Login.this, Principal.class));
+                                                    finish();
+                                                }
+
+                                            } else {
+                                            }
+                                        } else {
+                                        }
+                                    }
+                                });
+
                             } else{
                                 /*if (task.getException() instanceof FirebaseAuthUserCollisionException){
                                     Toast.makeText(RegisterActivity.this, "El usuario ya existe",
@@ -76,7 +108,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                                 } else {*/
                                 // If sign in fails, display a message to the user.
                                 Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                Toast.makeText(Login.this, "Login incorrecto",
+                                Toast.makeText(Login.this, "Login incorrecto o fallo de red",
                                         Toast.LENGTH_SHORT).show();
                                 //}
                             }
@@ -89,6 +121,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         }
 
     }//Fin clicklogin
+
 
     public void clickjugador(){
         if(!jugador){
@@ -153,23 +186,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         pass="";
     }
 
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
-    }
-
-
-
-    private void updateUI(FirebaseUser user) {
-        if (user != null) {
-            Intent intent = new Intent(Login.this, Principal.class);
-            startActivity(intent);
-        }
-    }
 
     @Override
     public void onClick(View v) {
