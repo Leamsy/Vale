@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".chat"></activity>
+        <activity android:name=".ChatActividades"></activity>
         <activity android:name=".AgregarActividad2" />
         <activity android:name=".Menu_tutor" />
         <activity android:name=".Autorizacion" />

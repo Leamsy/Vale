@@ -57,5 +57,6 @@
     <string name="preferencias">Preferencias y gustos</string>
     <string name="adicionales">Datos adicionales</string>
     <string name="contactoemergencia">Contacto de emergencia</string>
+    <string name="mensaje">Mensaje</string>
 
 </resources>
