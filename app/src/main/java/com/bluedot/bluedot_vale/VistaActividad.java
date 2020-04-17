@@ -113,8 +113,11 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
     }
 
     public void chatear(){
-
+        Intent intent = new Intent(VistaActividad.this, ChatActividades.class);
+        intent.putExtra("uid", uid_act);
+        startActivity(intent);
     }
+
     public void volver(){
         finish();
     }
