@@ -19,4 +19,8 @@
         android:color="@color/colorPrimary">
     </stroke>
 
+    <solid android:color="#FFFFFF">
+
+    </solid>
+
 </shape>
