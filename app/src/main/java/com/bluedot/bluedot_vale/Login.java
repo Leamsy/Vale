@@ -162,8 +162,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         updateUI(currentUser);
     }
 
-
-
     private void updateUI(FirebaseUser user) {
         if (user != null) {
             Intent intent = new Intent(Login.this, Principal.class);
