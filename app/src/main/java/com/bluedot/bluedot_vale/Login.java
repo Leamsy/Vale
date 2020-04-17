@@ -67,8 +67,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG, "createUserWithEmail:success");
-                                Toast.makeText(Login.this, "Bienvenido",
-                                        Toast.LENGTH_SHORT).show();
                                 FirebaseUser user = mAuth.getCurrentUser();
 
                                 uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -82,10 +80,19 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                                             if (document.exists()) {
 
                                                 if(document.getData().get("rol").toString().equals("tutor")){
+                                                    Toast.makeText(Login.this, "Bienvenido",
+                                                            Toast.LENGTH_SHORT).show();
                                                     startActivity(new Intent(Login.this, Menu_tutor.class));
                                                     finish();
                                                 }
+                                                else if (document.getData().get("activo").toString().equals("false")){
+                                                    mAuth.signOut();
+                                                    Toast.makeText(Login.this, "No eres un usuario autorizado",
+                                                            Toast.LENGTH_SHORT).show();
+                                                }
                                                 else{
+                                                    Toast.makeText(Login.this, "Bienvenido",
+                                                            Toast.LENGTH_SHORT).show();
                                                     startActivity(new Intent(Login.this, Principal.class));
                                                     finish();
                                                 }
@@ -117,6 +124,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         }
 
     }//Fin clicklogin
+
 
     public void clickjugador(){
         if(!jugador){
