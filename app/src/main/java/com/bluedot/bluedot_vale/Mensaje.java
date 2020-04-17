@@ -1,10 +1,10 @@
 package com.bluedot.bluedot_vale;
 
-public class mensaje {
+public class Mensaje {
     private String mensaje;
     private String nombre;
 
-    public mensaje(String mensaje, String nombre) {
+    public Mensaje(String mensaje, String nombre) {
         this.mensaje = mensaje;
         this.nombre = nombre;
     }
