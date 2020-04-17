@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView9"
+            android:id="@+id/btnatras"
             android:layout_width="100dp"
             android:layout_height="75dp"
             android:contentDescription="@string/volver"
@@ -207,6 +207,17 @@
                 android:background="@drawable/estiloboton"
                 android:backgroundTint="#3F51B5"
                 android:text="@string/reservar"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/chatear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/estiloboton"
+                android:backgroundTint="#3F51B5"
+                android:text="Abrir Chat"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp" />

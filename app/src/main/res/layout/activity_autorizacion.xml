@@ -26,7 +26,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageView9"
+                android:id="@+id/btnatras"
                 android:layout_width="100dp"
                 android:layout_height="75dp"
                 android:contentDescription="@string/volver"
