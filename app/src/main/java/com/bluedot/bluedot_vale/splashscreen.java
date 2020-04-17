@@ -25,7 +25,6 @@ public class splashscreen extends AppCompatActivity {
     private final int DURACION_SPLASH = 1000;
     private FirebaseAuth mAuth;
     String uid;
-    String activo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
