@@ -2,29 +2,22 @@ package com.bluedot.bluedot_vale;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import static android.view.View.INVISIBLE;
-
-public class VistaActividad extends AppCompatActivity {
+public class VistaActividad extends AppCompatActivity  implements View.OnClickListener{
 
     String uid;
     String uid_act;
@@ -37,12 +30,26 @@ public class VistaActividad extends AppCompatActivity {
     String plazas_socios;
     String plazas_voluntarios;
     String requiere_autorizacion;
+    String sala_chat;
+
+    private ImageView atras;
+    private Button reservar;
+    private Button chatear;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vista_actividad);
+
+        atras = findViewById(R.id.btnatras);
+        reservar = findViewById(R.id.reservar);
+        chatear = findViewById(R.id.chatear);
+
+        atras.setOnClickListener(this);
+        reservar.setOnClickListener(this);
+        chatear.setOnClickListener(this);
 
         Intent intent = getIntent();
         uid_act = intent.getStringExtra("uid");
@@ -61,11 +68,8 @@ public class VistaActividad extends AppCompatActivity {
                             Button reservar = findViewById(R.id.reservar);
                             reservar.setVisibility(View.INVISIBLE);
                         }
-
-                        if(uid.equals(document.getData().get("autor").toString())){
-                            Button reservar = findViewById(R.id.reservar);
-                            reservar.setVisibility(View.INVISIBLE);
-                        }
+                        //Falta hacer:
+                        // Si para el tipo de usuario que eres no quedan plazas que el boton de reservar no se muestre
 
                         titulo = document.getData().get("titulo").toString();
                         descripcion = document.getData().get("descripcion").toString();
@@ -76,6 +80,7 @@ public class VistaActividad extends AppCompatActivity {
                         plazas_socios = document.getData().get("plazas_socios").toString();
                         plazas_voluntarios = document.getData().get("plazas_voluntarios").toString();
                         requiere_autorizacion = document.getData().get("requiere_autorizacion").toString();
+                        sala_chat = document.getData().get("salachat").toString();
 
                         ImageView imagen_view = findViewById(R.id.imagen);
                         Picasso.get().load(imagen).into(imagen_view);
@@ -89,13 +94,6 @@ public class VistaActividad extends AppCompatActivity {
                         hora_view.setText(hora);
                         TextView precio_view = findViewById(R.id.precio);
                         precio_view.setText(precio);
-                        //TextView plazas_socios_view = findViewById(R.id.plazas_socios);
-                        //plazas_socios_view.setText(plazas_socios);
-                        //TextView plazas_voluntarios_view = findViewById(R.id.plazas_voluntarios);
-                        //plazas_voluntarios_view.setText(plazas_voluntarios);
-                        //TextView requiere_autorizacion_view = findViewById(R.id.requiere_autorizacion);
-                        //requiere_autorizacion_view.setText(requiere_autorizacion);
-
                     } else {
                     }
                 } else {
@@ -106,7 +104,39 @@ public class VistaActividad extends AppCompatActivity {
 
     }
 
-    public void volver(android.view.View V){
+    public void apuntarse(){
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("users").document(uid).collection("mis_actividades").document(uid_act).set("");
+        db.collection("actividades").document(uid_act).collection("apuntados").document(uid).set("");
+
+        //Recoger el dato del tipo usuario que esta reservando
+        //Recoger datos de el numero de plazas
+        //Restar 1 al tipo de usuario correspondiente y actualizar el dato en la actividad
+    }
+
+    public void chatear(){
+        Intent intent = new Intent(VistaActividad.this, ChatActividades.class);
+        intent.putExtra("uid", uid_act);
+        intent.putExtra("salachat", sala_chat);
+        startActivity(intent);
+    }
+
+    public void volver(){
         finish();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnatras:
+                volver();
+                break;
+            case R.id.reservar:
+                apuntarse();
+                break;
+            case R.id.chatear:
+                chatear();
+                break;
+        }
     }
 }
