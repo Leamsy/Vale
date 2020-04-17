@@ -25,7 +25,7 @@ public class splashscreen extends AppCompatActivity {
     private final int DURACION_SPLASH = 1000;
     private FirebaseAuth mAuth;
     String uid;
-    String acti;
+    String activo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +66,10 @@ public class splashscreen extends AppCompatActivity {
                                         };
                                     }, DURACION_SPLASH);
                                 }
+                                else if (document.getData().get("activo").toString().equals("false")){
+                                    Toast.makeText(splashscreen.this, "No eres un usuario autorizado",
+                                            Toast.LENGTH_SHORT).show();
+                                }
                                 else{
                                     new Handler().postDelayed(new Runnable() {
                                         @Override
@@ -96,7 +100,7 @@ public class splashscreen extends AppCompatActivity {
             }
         }
         else{
-            Toast.makeText(this, "ERROR DE CONEXIÓN", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Revise su conexión a Internet", Toast.LENGTH_LONG).show();
         }
 
     }
