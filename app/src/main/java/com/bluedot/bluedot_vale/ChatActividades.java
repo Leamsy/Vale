@@ -37,7 +37,8 @@ public class ChatActividades extends AppCompatActivity {
         todosmensajes.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         todosmensajes.setAdapter(myAdapter_chat);
         todosmensajes.setHasFixedSize(true);
-        
+
+        //FirebaseFirestore.getInstance().collection("chat").
     }
 
 
