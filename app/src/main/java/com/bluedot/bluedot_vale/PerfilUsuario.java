@@ -62,7 +62,6 @@ public class PerfilUsuario extends AppCompatActivity implements View.OnClickList
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
-                    //Si el documento existe
                     if (document.exists()) {
 
                         foto_perfil = document.getData().get("foto_perfil").toString();
@@ -91,10 +90,8 @@ public class PerfilUsuario extends AppCompatActivity implements View.OnClickList
                         contacto_emergencia_view.setText(contacto_emergencia);
 
                     } else {
-                        Log.d("aa", "No existe el usuario");
                     }
                 } else {
-                    Log.d("aa", "Fallo en la conexión ", task.getException());
                 }
             }
         });
