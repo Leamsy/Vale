@@ -67,6 +67,7 @@ public class splashscreen extends AppCompatActivity {
                                     }, DURACION_SPLASH);
                                 }
                                 else if (document.getData().get("activo").toString().equals("false")){
+                                    mAuth.signOut();
                                     Toast.makeText(splashscreen.this, "No eres un usuario autorizado",
                                             Toast.LENGTH_SHORT).show();
                                 }
