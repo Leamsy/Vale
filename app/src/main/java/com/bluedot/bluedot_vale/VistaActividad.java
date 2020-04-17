@@ -30,6 +30,7 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
     String plazas_socios;
     String plazas_voluntarios;
     String requiere_autorizacion;
+    String sala_chat;
 
     private ImageView atras;
     private Button reservar;
@@ -79,6 +80,7 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                         plazas_socios = document.getData().get("plazas_socios").toString();
                         plazas_voluntarios = document.getData().get("plazas_voluntarios").toString();
                         requiere_autorizacion = document.getData().get("requiere_autorizacion").toString();
+                        sala_chat = document.getData().get("salachat").toString();
 
                         ImageView imagen_view = findViewById(R.id.imagen);
                         Picasso.get().load(imagen).into(imagen_view);
@@ -115,6 +117,7 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
     public void chatear(){
         Intent intent = new Intent(VistaActividad.this, ChatActividades.class);
         intent.putExtra("uid", uid_act);
+        intent.putExtra("salachat", sala_chat);
         startActivity(intent);
     }
 
