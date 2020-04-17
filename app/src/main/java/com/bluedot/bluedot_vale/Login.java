@@ -104,7 +104,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                                 } else {*/
                                 // If sign in fails, display a message to the user.
                                 Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                Toast.makeText(Login.this, "Login incorrecto",
+                                Toast.makeText(Login.this, "Login incorrecto o fallo de red",
                                         Toast.LENGTH_SHORT).show();
                                 //}
                             }
