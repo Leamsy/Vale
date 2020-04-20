@@ -26,6 +26,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.core.OrderBy;
 
 import org.w3c.dom.Text;
 
@@ -114,7 +115,7 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
         });
 
 
-        FirebaseFirestore.getInstance().collection("chat").document(idchat).collection("mensajes")
+        FirebaseFirestore.getInstance().collection("chat").document(idchat).collection("mensajes").orderBy("fecha")
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
@@ -134,6 +135,7 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
                 if(mensaje.length() == 0)
                     return;
                 Mensaje sms = new Mensaje();
+                sms.getFecha();
                 sms.setMensaje(mensaje.getText().toString());
                 sms.setNombre(nombre);
                 FirebaseFirestore.getInstance().collection("chat").document(idchat).collection("mensajes").add(sms);
