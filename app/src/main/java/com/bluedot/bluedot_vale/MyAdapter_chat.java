@@ -28,6 +28,7 @@ public class MyAdapter_chat extends RecyclerView.Adapter<MyAdapter_chat.MensajeH
     @Override
     public void onBindViewHolder(@NonNull MensajeHolder holder, int position) {
         holder.tvmensaje.setText(listmensajes.get(position).getMensaje());
+        holder.tvname.setText(listmensajes.get(position).getNombre());
 
     }
 
@@ -37,12 +38,12 @@ public class MyAdapter_chat extends RecyclerView.Adapter<MyAdapter_chat.MensajeH
     }
 
     class MensajeHolder extends RecyclerView.ViewHolder{
-        //private TextView tvname;
+        private TextView tvname;
         private TextView tvmensaje;
 
         public MensajeHolder(@NonNull View itemView) {
             super(itemView);
-            //tvname = itemView.findViewById(R.id.nombreusuariochat);
+            tvname = itemView.findViewById(R.id.nombreusuariochat);
             tvmensaje = itemView.findViewById(R.id.mensajedeluserchat);
         }
     }
