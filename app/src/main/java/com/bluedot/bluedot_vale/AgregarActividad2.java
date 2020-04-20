@@ -165,6 +165,15 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
         map.put("titulo", titulo);
         map.put("descripcion", descripcion);
 
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Map<String, Object> map1= new HashMap<>();
+        db.collection("chat").add(map1).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                map.put("salachat", documentReference.getId());
+            }
+        });
+
         TextView fecha = findViewById(R.id.fecha);
         if(fecha.getText().toString().equals("Elegir fecha")){
             Toast.makeText(context, "Introducir fecha.", Toast.LENGTH_SHORT).show();
