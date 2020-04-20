@@ -41,7 +41,7 @@ public class Mis_actividades extends AppCompatActivity {
 
     Context context = this;
     String uid;
-
+    Boolean apuntado;
     String imagen_url;
 
     @Override
@@ -62,31 +62,54 @@ public class Mis_actividades extends AppCompatActivity {
         CollectionReference colRef = FirebaseFirestore.getInstance().collection("actividades");
 
         FirebaseFirestore.getInstance().collection("actividades")
-                .whereEqualTo("autor", uid)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                final ItemAdapter itemAdapter = new ItemAdapter();
-                                itemAdapter.setText(document.getData().get("titulo").toString());
+                            for (final QueryDocumentSnapshot document : task.getResult()) {
 
-                                imagen_url = document.getData().get("imagen").toString();
-                                itemAdapter.setImage(imagen_url);
+                                FirebaseFirestore.getInstance().collection("actividades").document(document.getId()).collection("apuntados").get()
+                                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                apuntado = false;
+                                                if (task.isSuccessful()) {
+                                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                                        if(document.getId().equals(uid)){
+                                                            Log.d("aa", "a");
+                                                            apuntado = true;
+                                                        }
+                                                    }
+                                                }
+                                                Log.d("aa", "b");
+                                                if(apuntado){
+                                                    final ItemAdapter itemAdapter = new ItemAdapter();
+                                                    itemAdapter.setText(document.getData().get("titulo").toString());
 
-                                itemAdapter.setUid(document.getId());
+                                                    imagen_url = document.getData().get("imagen").toString();
+                                                    itemAdapter.setImage(imagen_url);
 
-                                data.add(itemAdapter);
+                                                    itemAdapter.setUid(document.getId());
+
+                                                    data.add(itemAdapter);Log.d("aa", "c");
+                                                }
+                                                Log.d("aa", data.toString());
+                                                mAdapter = new MyAdapter(data, context);
+                                                recyclerView.setAdapter(mAdapter);
+                                            }
+                                        });
                             }
-                            mAdapter = new MyAdapter(data, context);
-                            recyclerView.setAdapter(mAdapter);
+
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
                     }
                 });
-    }//OnCreate
+
+
+
+    }
 
     public void volver(android.view.View V){
         finish();
