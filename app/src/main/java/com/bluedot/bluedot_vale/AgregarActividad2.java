@@ -224,6 +224,7 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
 
                 Map<String, Object> map1= new HashMap<>();
 
+                db.collection("actividades").document(documentReference.getId()).collection("apuntados").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).set(map1);
                 db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("mis_actividades").document(documentReference.getId()).set(map1);
 
                 Toast.makeText(context, "La actividad ha sido enviada.", Toast.LENGTH_SHORT).show();
