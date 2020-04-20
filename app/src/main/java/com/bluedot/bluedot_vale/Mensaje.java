@@ -4,11 +4,6 @@ public class Mensaje {
     private String mensaje;
     private String nombre;
 
-    public Mensaje(String mensaje, String nombre) {
-        this.mensaje = mensaje;
-        this.nombre = nombre;
-    }
-
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
     }
