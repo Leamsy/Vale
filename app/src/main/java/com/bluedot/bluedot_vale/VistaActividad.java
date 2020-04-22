@@ -1,11 +1,16 @@
 package com.bluedot.bluedot_vale;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -20,6 +25,10 @@ import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import static android.view.View.GONE;
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
 
 public class VistaActividad extends AppCompatActivity  implements View.OnClickListener{
 
@@ -39,6 +48,9 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
     private ImageView atras;
     private Button reservar;
     private Button chatear;
+    Context context;
+    private String rol_usuario;
+    private Boolean es_autor;
 
 
 
@@ -46,6 +58,8 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vista_actividad);
+
+        loading();
 
         atras = findViewById(R.id.btnatras);
 
@@ -64,6 +78,12 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                     final DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
 
+                        if(document.getData().get("autor").toString().equals(uid)){
+                            es_autor = true;
+                        }
+                        else{
+                            es_autor = false;
+                        }
                         final DocumentReference docRef_user = FirebaseFirestore.getInstance().collection("actividades").document(uid_act).collection("apuntados").document(uid);
                         docRef_user.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                             @Override
@@ -71,6 +91,7 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                                 if (task.isSuccessful()) {
                                     DocumentSnapshot document2 = task.getResult();
                                     if (document2.exists()) {
+                                        findViewById(R.id.plazas).setVisibility(GONE);
                                         Button boton = findViewById(R.id.boton);
                                         boton.setText("CHAT");
                                         boton.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +99,7 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                                                 chatear();
                                             }
                                         });
+                                        ready();
                                     } else {
                                         Button boton = findViewById(R.id.boton);
                                         boton.setText("APUNTARSE");
@@ -86,10 +108,52 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                                                 apuntarse();
                                             }
                                         });
+
+
+                                        final DocumentReference docRef_usu = FirebaseFirestore.getInstance().collection("users").document(uid);
+                                        docRef_usu.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                if (task.isSuccessful()) {
+                                                    DocumentSnapshot document3 = task.getResult();
+                                                    if (document3.exists()) {
+
+                                                        Button button = findViewById(R.id.boton);
+                                                        TextView plazas = findViewById(R.id.plazas);
+                                                        Log.d("aa", document3.getData().get("rol").toString());
+                                                        rol_usuario = document3.getData().get("rol").toString();
+                                                        if(document3.getData().get("rol").toString().equals("socio")){
+
+                                                            plazas.setText("PLAZAS DISPONIBLES: " + document.getData().get("plazas_socios").toString());
+                                                            if(document.getData().get("plazas_socios").toString().equals("0")){
+                                                                button.setText("PLAZAS OCUPADAS");
+                                                                button.setAlpha((float)0.4);
+                                                                button.setOnClickListener(new View.OnClickListener() {
+                                                                    public void onClick(View v) {
+                                                                    }
+                                                                });
+                                                            }
+                                                        }
+                                                        else if(document3.getData().get("rol").toString().equals("voluntario")){
+
+                                                            plazas.setText("PLAZAS DISPONIBLES: " + document.getData().get("plazas_voluntarios").toString());
+                                                            if(document.getData().get("plazas_voluntarios").toString().equals("0")){
+                                                                button.setText("PLAZAS OCUPADAS");
+                                                                button.setAlpha((float)0.4);
+                                                                button.setOnClickListener(new View.OnClickListener() {
+                                                                    public void onClick(View v) {
+                                                                    }
+                                                                });
+                                                            }
+                                                        }
+                                                        ready();
+                                                    }
+                                                }
+                                            }
+                                        });
+
                                     }
 
-                                    //Falta hacer:
-                                    // Si para el tipo de usuario que eres no quedan plazas que el boton de reservar no se muestre
 
                                     titulo = document.getData().get("titulo").toString();
                                     descripcion = document.getData().get("descripcion").toString();
@@ -114,6 +178,8 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                                     hora_view.setText(hora);
                                     TextView precio_view = findViewById(R.id.precio);
                                     precio_view.setText(precio);
+
+
                                 }
                             }
                         });
@@ -126,8 +192,6 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                 }
             }
         });
-
-
     }
 
     public void apuntarse(){
@@ -140,6 +204,16 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
         //Recoger el dato del tipo usuario que esta reservando
         //Recoger datos de el numero de plazas
         //Restar 1 al tipo de usuario correspondiente y actualizar el dato en la actividad
+
+        DocumentReference docRef = FirebaseFirestore.getInstance().collection("actividades").document(uid_act);
+
+        if(rol_usuario.equals("socio")){
+            db.collection("actividades").document(uid_act).update("plazas_socios", (Integer.parseInt(plazas_socios) - 1));
+        }
+        else if(rol_usuario.equals("voluntario")){
+            db.collection("actividades").document(uid_act).update("plazas_voluntarios", (Integer.parseInt(plazas_voluntarios) - 1));
+        }
+        finish();
     }
 
     public void chatear(){
@@ -164,4 +238,30 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                 break;
         }
     }
+
+    private void loading(){
+        findViewById(R.id.linearatras).setVisibility(INVISIBLE);
+        findViewById(R.id.scrollmiactividad).setVisibility(INVISIBLE);
+        findViewById(R.id.plazas).setVisibility(INVISIBLE);
+        findViewById(R.id.boton).setVisibility(INVISIBLE);
+        findViewById(R.id.modificar).setVisibility(INVISIBLE);
+    }
+
+    private void ready(){
+        findViewById(R.id.linearatras).setVisibility(VISIBLE);
+        findViewById(R.id.scrollmiactividad).setVisibility(VISIBLE);
+        findViewById(R.id.plazas).setVisibility(VISIBLE);
+        findViewById(R.id.boton).setVisibility(VISIBLE);
+        findViewById(R.id.gif).setVisibility(INVISIBLE);
+        if(es_autor){
+            findViewById(R.id.modificar).setVisibility(VISIBLE);
+        }
+    }
+
+    private void modificar(){
+        Intent intent = new Intent(this, ModificarActividad.class);
+        intent.putExtra("uid", uid_act);
+        startActivity(intent);
+    }
+
 }
