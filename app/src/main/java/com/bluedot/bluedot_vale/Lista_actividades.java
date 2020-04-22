@@ -51,6 +51,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import static android.content.res.Configuration.ORIENTATION_PORTRAIT;
+import static android.view.View.GONE;
 import static android.view.View.INVISIBLE;
 
 public class Lista_actividades extends AppCompatActivity {
@@ -81,39 +82,57 @@ public class Lista_actividades extends AppCompatActivity {
 
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        CollectionReference colRef = FirebaseFirestore.getInstance().collection("actividades");
-
-        colRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        final DocumentReference docRef_user = FirebaseFirestore.getInstance().collection("users").document(uid);
+        docRef_user.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
+                    DocumentSnapshot document3 = task.getResult();
+                    if (document3.exists()) {
 
-                    findViewById(R.id.gif).setVisibility(INVISIBLE);
-
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        Log.d("aa", document.getId() + " => " + document.getData());
-
-                        final ItemAdapter itemAdapter = new ItemAdapter();
-                        if(document.getData().get("titulo") != null){
-                            itemAdapter.setText(document.getData().get("titulo").toString());
+                        if(document3.getData().get("rol").toString().equals("socio")){
+                            findViewById(R.id.button).setVisibility(GONE);
                         }
 
-                        if(document.getData().get("imagen") != null){
-                            imagen_url = document.getData().get("imagen").toString();
-                            itemAdapter.setImage(imagen_url);
-                        }
+                        CollectionReference colRef = FirebaseFirestore.getInstance().collection("actividades");
 
-                        itemAdapter.setUid(document.getId());
-                        data.add(itemAdapter);
+                        colRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+
+                                    findViewById(R.id.gif).setVisibility(INVISIBLE);
+
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        Log.d("aa", document.getId() + " => " + document.getData());
+
+                                        final ItemAdapter itemAdapter = new ItemAdapter();
+                                        if(document.getData().get("titulo") != null){
+                                            itemAdapter.setText(document.getData().get("titulo").toString());
+                                        }
+
+                                        if(document.getData().get("imagen") != null){
+                                            imagen_url = document.getData().get("imagen").toString();
+                                            itemAdapter.setImage(imagen_url);
+                                        }
+
+                                        itemAdapter.setUid(document.getId());
+                                        data.add(itemAdapter);
+                                    }
+                                    mAdapter = new MyAdapter(data, context);
+                                    recyclerView.setAdapter(mAdapter);
+
+                                } else {
+                                    Log.d("aa", "No existe el usuario");
+                                }
+                            }
+                        });
                     }
-                    mAdapter = new MyAdapter(data, context);
-                    recyclerView.setAdapter(mAdapter);
-
-                } else {
-                    Log.d("aa", "No existe el usuario");
                 }
             }
         });
+
+
     }
 
     public void volver(android.view.View V){
