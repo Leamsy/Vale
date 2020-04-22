@@ -32,13 +32,13 @@
 
     <ScrollView
         android:id="@+id/scrollmiactividad"
-        android:layout_width="401dp"
-        android:layout_height="554dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/boton"
+        app:layout_constraintBottom_toTopOf="@+id/linearbotonesactividad"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -203,50 +203,59 @@
         </LinearLayout>
     </ScrollView>
 
-    <TextView
-        android:id="@+id/plazas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="PLAZAS"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/boton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/modificar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/estiloboton"
-        android:backgroundTint="#3F51B5"
-        android:onClick="onClick"
-        android:text="MODIFICAR ACTIVIDAD"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintTop_toTopOf="@+id/plazas"
-        tools:layout_editor_absoluteX="5dp" />
-
-    <Button
-        android:id="@+id/boton"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/linearbotonesactividad"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/estiloboton"
-        android:backgroundTint="#3F51B5"
-        android:onClick="onClick"
-        android:text="Apuntarse"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/plazas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Plazas"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/boton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/estiloboton"
+            android:backgroundTint="#3F51B5"
+            android:onClick="onClick"
+            android:text="Apuntarse"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/modificar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/estiloboton"
+            android:backgroundTint="#3F51B5"
+            android:onClick="onClick"
+            android:text="MODIFICAR ACTIVIDAD"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp" />
+    </LinearLayout>
 
     <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -256,6 +265,7 @@
             android:layout_height="match_parent"
             android:src="@drawable/loader2"
             android:visibility="visible" />
+
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

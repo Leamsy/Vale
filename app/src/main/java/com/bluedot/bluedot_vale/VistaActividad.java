@@ -26,6 +26,8 @@ import java.util.Map;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.w3c.dom.Text;
+
 import static android.view.View.GONE;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
@@ -124,9 +126,10 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                                                         rol_usuario = document3.getData().get("rol").toString();
                                                         if(document3.getData().get("rol").toString().equals("socio")){
 
-                                                            plazas.setText("PLAZAS DISPONIBLES: " + document.getData().get("plazas_socios").toString());
+                                                            plazas.setText("Plazas disponibles para socios: " + document.getData().get("plazas_socios").toString());
                                                             if(document.getData().get("plazas_socios").toString().equals("0")){
-                                                                button.setText("PLAZAS OCUPADAS");
+                                                                button.setText("No quedan plazas para esta actividad");
+                                                                //button.setVisibility(GONE);
                                                                 button.setAlpha((float)0.4);
                                                                 button.setOnClickListener(new View.OnClickListener() {
                                                                     public void onClick(View v) {
@@ -136,9 +139,10 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                                                         }
                                                         else if(document3.getData().get("rol").toString().equals("voluntario")){
 
-                                                            plazas.setText("PLAZAS DISPONIBLES: " + document.getData().get("plazas_voluntarios").toString());
+                                                            plazas.setText("Plazas disponibles para voluntarios: " + document.getData().get("plazas_voluntarios").toString());
                                                             if(document.getData().get("plazas_voluntarios").toString().equals("0")){
-                                                                button.setText("PLAZAS OCUPADAS");
+                                                                button.setText("No quedan plazas para esta actividad");
+                                                                //button.setVisibility(GONE);
                                                                 button.setAlpha((float)0.4);
                                                                 button.setOnClickListener(new View.OnClickListener() {
                                                                     public void onClick(View v) {
