@@ -16,6 +16,7 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".ListaRechazadosActividad"></activity>
         <activity android:name=".ListaApuntadosActividad" />
+        <activity android:name=".ModificarActividad"></activity>
         <activity android:name=".ChatActividades" />
         <activity android:name=".AgregarActividad2" />
         <activity android:name=".Menu_tutor" />
