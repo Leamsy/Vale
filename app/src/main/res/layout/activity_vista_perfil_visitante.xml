@@ -4,10 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PerfilUsuario"
-    android:background="@color/colorBackground"
-    android:screenOrientation="portrait">
-
+    tools:context=".Vista_perfil_visitante">
 
     <LinearLayout
         android:id="@+id/linearatrasperfil"
@@ -24,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/atrasperfil"
+            android:id="@+id/atrasperfilvisitante"
             android:layout_width="100dp"
             android:layout_height="75dp"
             android:background="#00FFFFFF"
@@ -43,8 +40,9 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/cerrar_sesion"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearatrasperfil">
 
@@ -149,23 +147,4 @@
 
         </LinearLayout>
     </ScrollView>
-
-    <Button
-        android:id="@+id/cerrar_sesion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/estiloboton"
-        android:backgroundTint="#3F51B5"
-        android:onClick="onClick"
-        android:text="Cerrar sesión"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="14pt"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
