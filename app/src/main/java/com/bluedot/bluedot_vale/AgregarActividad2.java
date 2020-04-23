@@ -1,9 +1,11 @@
 package com.bluedot.bluedot_vale;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -248,5 +250,18 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
             }
         });
 
+    }
+
+    public void mensaje(android.view.View V){
+        AlertDialog.Builder dialog=new AlertDialog.Builder(this);
+        dialog.setMessage("Se requerirá autorización por parte del tutor cuando...");
+        dialog.setTitle("Requisitos de autorización");
+        dialog.setPositiveButton("Ok",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+        AlertDialog alertDialog=dialog.create();
+        alertDialog.show();
     }
 }
