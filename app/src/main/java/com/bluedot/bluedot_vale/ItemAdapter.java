@@ -10,12 +10,16 @@ public class ItemAdapter extends AppCompatActivity {
     private String image;
     private String text;
     private String uid;
+    private String uid_visitante;
 
     public String getImage() {
         return image;
     }
     public String getText() {
         return text;
+    }
+    public String getUidvisitante() {
+        return uid_visitante;
     }
 
     public String getUid(){ return uid; }
@@ -32,6 +36,7 @@ public class ItemAdapter extends AppCompatActivity {
         this.uid = uid;
     }
 
-
-
+    public void setUidvisitante(String uid_visitante) {
+        this.uid_visitante = uid_visitante;
+    }
 }
