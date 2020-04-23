@@ -40,8 +40,9 @@ public class ListaApuntadosActividad extends AppCompatActivity implements View.O
     private RecyclerView.Adapter mAdapter;
     private String actividad;
     private String TAG = "Lista de apuntados";
+    private List<String> listaapuntados = new ArrayList<>();
     Context context = this;
-    private boolean apuntado;
+    private boolean apuntado = false;
 
     String idvistausuario;
     String imagen_url;
@@ -64,10 +65,53 @@ public class ListaApuntadosActividad extends AppCompatActivity implements View.O
         recyclerView.setLayoutManager(layoutManager);
 
         //Obtener todos los documentos de la colección apuntados
+        CollectionReference colRef = FirebaseFirestore.getInstance().collection("users");
+
+        FirebaseFirestore.getInstance().collection("users")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (final QueryDocumentSnapshot documentusers : task.getResult()) {
+                                FirebaseFirestore.getInstance().collection("actividades").document(actividad).collection("apuntados").get()
+                                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                apuntado = false;
+                                                if (task.isSuccessful()) {
+                                                    for (QueryDocumentSnapshot documentapuntados : task.getResult()) {
+                                                        if(documentapuntados.getId().equals(documentusers.getId())){
+                                                            apuntado = true;
+                                                        }
+                                                    }
+                                                }
+                                                Log.d("aa", "b");
+                                                if(apuntado){
+                                                    final ItemAdapter itemAdapter = new ItemAdapter();
+                                                    itemAdapter.setText(documentusers.getData().get("nombre").toString());
+
+                                                    imagen_url = documentusers.getData().get("foto_perfil").toString();
+                                                    itemAdapter.setImage(imagen_url);
+
+                                                    itemAdapter.setUidvisitante(documentusers.getId());
+
+                                                    data.add(itemAdapter);
+                                                }
+                                                Log.d("aa", data.toString());
+                                                mAdapter = new MyAdapterApuntados(data, context);
+                                                recyclerView.setAdapter(mAdapter);
+                                            }
+                                        });
+                            }
+
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
 
 
-        CollectionReference colRef = FirebaseFirestore.getInstance().collection("actividades").document(actividad).collection("apuntados");
-        //Esto es para developer
     }//OnCreate
 
     public void volver(){
