@@ -93,7 +93,8 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                                 if (task.isSuccessful()) {
                                     DocumentSnapshot document2 = task.getResult();
                                     if (document2.exists()) {
-                                        findViewById(R.id.plazas).setVisibility(GONE);
+                                        TextView plazas = findViewById(R.id.plazas);
+                                        plazas.setText("");
                                         Button boton = findViewById(R.id.boton);
                                         boton.setText("CHAT");
                                         boton.setOnClickListener(new View.OnClickListener() {
@@ -204,10 +205,6 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
         Map<String, Object> map1= new HashMap<>();
         db.collection("users").document(uid).collection("mis_actividades").document(uid_act).set(map1);
         db.collection("actividades").document(uid_act).collection("apuntados").document(uid).set(map1);
-
-        //Recoger el dato del tipo usuario que esta reservando
-        //Recoger datos de el numero de plazas
-        //Restar 1 al tipo de usuario correspondiente y actualizar el dato en la actividad
 
         DocumentReference docRef = FirebaseFirestore.getInstance().collection("actividades").document(uid_act);
 
