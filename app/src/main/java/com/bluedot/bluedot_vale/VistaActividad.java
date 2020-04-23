@@ -237,6 +237,12 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
             case R.id.boton:
                 apuntarse();
                 break;
+            case R.id.modificar:
+                modificar();
+                break;
+            case R.id.verapuntados:
+                verapuntados();
+                break;
         }
     }
 
@@ -265,4 +271,10 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
         startActivity(intent);
     }
 
+    private void verapuntados(){
+        Intent intent = new Intent(VistaActividad.this, ListaApuntadosActividad.class);
+        intent.putExtra("uid", uid_act);
+        startActivity(intent);
+    }
+    
 }
