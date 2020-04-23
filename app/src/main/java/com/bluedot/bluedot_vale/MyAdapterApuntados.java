@@ -37,8 +37,8 @@ public class MyAdapterApuntados extends RecyclerView.Adapter<RecyclerView.ViewHo
         ((ViewHolder) viewHolder).mTv_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(((ViewHolder) viewHolder).context, VistaActividad.class);
-                intent.putExtra("uid", itemAdapter.getUid());
+                Intent intent = new Intent(((ViewHolder) viewHolder).context, Vista_perfil_visitante.class);
+                intent.putExtra("uid", itemAdapter.getUidvisitante());
                 ((ViewHolder) viewHolder).context.startActivity(intent);
             }
         });
@@ -50,8 +50,8 @@ public class MyAdapterApuntados extends RecyclerView.Adapter<RecyclerView.ViewHo
         ((ViewHolder) viewHolder).mImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(((ViewHolder) viewHolder).context, ListaApuntadosActividad.class);
-                intent.putExtra("uid", itemAdapter.getUid());
+                Intent intent = new Intent(((ViewHolder) viewHolder).context, Vista_perfil_visitante.class);
+                intent.putExtra("uid", itemAdapter.getUidvisitante());
                 ((ViewHolder) viewHolder).context.startActivity(intent);
             }
         });
