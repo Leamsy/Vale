@@ -47,28 +47,4 @@ public class Principal extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
-
-    /*
-    public boolean openApp(Context context, String packageName) {
-        PackageManager manager = context.getPackageManager();
-        try {
-            Intent i = manager.getLaunchIntentForPackage(packageName);
-            if (i == null) {
-                throw new ActivityNotFoundException();
-            }
-            i.addCategory(Intent.CATEGORY_LAUNCHER);
-            context.startActivity(i);
-            return true;
-        } catch (ActivityNotFoundException e) {
-            Toast.makeText(context, "Debes instalar la aplicación Whatsapp.", Toast.LENGTH_LONG).show();
-            return false;
-        }
-    }
-    */
-
-    /*public void salir(android.view.View V){
-        moveTaskToBack(true);
-        android.os.Process.killProcess(android.os.Process.myPid());
-        System.exit(1);
-    }*/
 }

@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import static android.content.res.Configuration.ORIENTATION_PORTRAIT;
 import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
 
 public class Peticiones extends AppCompatActivity {
 
@@ -38,6 +39,8 @@ public class Peticiones extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_peticiones);
+
+        loading();
 
         recyclerView = (RecyclerView) findViewById(R.id.listaSuge);
 
@@ -57,7 +60,7 @@ public class Peticiones extends AppCompatActivity {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
 
-                    findViewById(R.id.gif).setVisibility(INVISIBLE);
+
 
                     for (QueryDocumentSnapshot document : task.getResult()) {
 
@@ -71,6 +74,8 @@ public class Peticiones extends AppCompatActivity {
                     }
                     mAdapter = new MyAdapter_Peticiones(data, context);
                     recyclerView.setAdapter(mAdapter);
+
+                    ready();
 
                 } else {
                     Log.d("aa", "No existe el usuario");
@@ -87,6 +92,16 @@ public class Peticiones extends AppCompatActivity {
     public void aniadirPeticion(android.view.View V){
         Intent intent = new Intent(this, AgregarPeticion.class);
         startActivity(intent);
+    }
+
+    private void loading(){
+        findViewById(R.id.linear).setVisibility(INVISIBLE);
+        findViewById(R.id.gif).setVisibility(VISIBLE);
+    }
+
+    private void ready(){
+        findViewById(R.id.linear).setVisibility(VISIBLE);
+        findViewById(R.id.gif).setVisibility(INVISIBLE);
     }
 
 }

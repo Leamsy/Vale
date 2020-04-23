@@ -23,6 +23,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
+
 public class PerfilUsuario extends AppCompatActivity implements View.OnClickListener{
 
     Context context = this;
@@ -53,6 +56,8 @@ public class PerfilUsuario extends AppCompatActivity implements View.OnClickList
         mBtnLogout.setOnClickListener(this);
         mBtnAtras.setOnClickListener(this);
 
+        loading();
+
 
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -74,6 +79,7 @@ public class PerfilUsuario extends AppCompatActivity implements View.OnClickList
                         ImageView foto_perfil_view = (ImageView) findViewById(R.id.foto_perfil);
                         try {
                             Picasso.get().load(foto_perfil).into(foto_perfil_view);
+
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -88,6 +94,8 @@ public class PerfilUsuario extends AppCompatActivity implements View.OnClickList
                         datos_adicionales_view.setText(datos_adicionales);
                         TextView contacto_emergencia_view = findViewById(R.id.contacto_emergencia);
                         contacto_emergencia_view.setText(contacto_emergencia);
+
+                        ready();
 
                     } else {
                     }
@@ -118,7 +126,7 @@ public class PerfilUsuario extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    public void volver(){
+    public void volver(View v){
         finish();
     }
 
@@ -128,10 +136,21 @@ public class PerfilUsuario extends AppCompatActivity implements View.OnClickList
             case R.id.cerrar_sesion:
                 signOut();
                 break;
-            case R.id.atrasperfil:
-                volver();
-                break;
         }
+    }
+
+    private void loading(){
+        findViewById(R.id.linearatrasperfil).setVisibility(INVISIBLE);
+        findViewById(R.id.scrollView2).setVisibility(INVISIBLE);
+        findViewById(R.id.cerrar_sesion).setVisibility(INVISIBLE);
+        findViewById(R.id.gif).setVisibility(VISIBLE);
+    }
+
+    private void ready(){
+        findViewById(R.id.linearatrasperfil).setVisibility(VISIBLE);
+        findViewById(R.id.scrollView2).setVisibility(VISIBLE);
+        findViewById(R.id.cerrar_sesion).setVisibility(VISIBLE);
+        findViewById(R.id.gif).setVisibility(INVISIBLE);
     }
 
 }
