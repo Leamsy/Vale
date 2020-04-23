@@ -25,29 +25,29 @@
             android:layout_width="100dp"
             android:layout_height="75dp"
             android:contentDescription="@string/volver"
-            android:onClick="volver"
+            android:onClick="onClick"
             app:srcCompat="@drawable/atras" />
 
     </LinearLayout>
 
     <ScrollView
         android:id="@+id/scrollmiactividad"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/boton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearatras"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toBottomOf="@+id/linearatras">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="vertical">
 
             <LinearLayout
@@ -200,29 +200,62 @@
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
 
+            <TextView
+                android:id="@+id/plazas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Plazas"
+                android:textSize="18sp" />
+
             <Button
-                android:id="@+id/reservar"
+                android:id="@+id/modificar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/estiloboton"
                 android:backgroundTint="#3F51B5"
-                android:text="@string/reservar"
+                android:onClick="modificar"
+                android:text="MODIFICAR ACTIVIDAD"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp" />
 
-            <Button
-                android:id="@+id/chatear"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/estiloboton"
-                android:backgroundTint="#3F51B5"
-                android:text="Abrir Chat"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp" />
 
         </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/boton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/estiloboton"
+        android:backgroundTint="#3F51B5"
+        android:onClick="onClick"
+        android:text="Apuntarse"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/gif"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/loader2"
+            android:visibility="visible" />
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

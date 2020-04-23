@@ -165,6 +165,15 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
         map.put("titulo", titulo);
         map.put("descripcion", descripcion);
 
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Map<String, Object> map1= new HashMap<>();
+        db.collection("chat").add(map1).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                map.put("salachat", documentReference.getId());
+            }
+        });
+
         TextView fecha = findViewById(R.id.fecha);
         if(fecha.getText().toString().equals("Elegir fecha")){
             Toast.makeText(context, "Introducir fecha.", Toast.LENGTH_SHORT).show();
@@ -224,6 +233,7 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
 
                 Map<String, Object> map1= new HashMap<>();
 
+                db.collection("actividades").document(documentReference.getId()).collection("apuntados").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).set(map1);
                 db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("mis_actividades").document(documentReference.getId()).set(map1);
 
                 Toast.makeText(context, "La actividad ha sido enviada.", Toast.LENGTH_SHORT).show();
