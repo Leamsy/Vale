@@ -67,7 +67,7 @@ public class ListaApuntadosActividad extends AppCompatActivity implements View.O
 
 
         CollectionReference colRef = FirebaseFirestore.getInstance().collection("actividades").document(actividad).collection("apuntados");
-
+        //Esto es para developer
     }//OnCreate
 
     public void volver(){
