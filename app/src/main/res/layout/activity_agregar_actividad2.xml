@@ -300,13 +300,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
 
-            <CheckBox
-                android:id="@+id/requiere_autorizacion"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/autorizacion"
-                android:textAlignment="center"
-                android:textSize="30sp" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/requiere_autorizacion"
+                    android:layout_width="343dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/autorizacion"
+                    android:textAlignment="center"
+                    android:textSize="28sp" />
+
+                <Space
+                    android:layout_width="2dp"
+                    android:layout_height="2dp" />
+
+                <Button
+                    android:id="@+id/info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.6"
+                    android:background="@drawable/estiloboton"
+                    android:backgroundTint="#808080"
+                    android:onClick="mensaje"
+                    android:text="?"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14pt" />
+
+            </LinearLayout>
+
+
 
             <Space
                 android:layout_width="match_parent"
