@@ -6,4 +6,145 @@
     android:layout_height="match_parent"
     tools:context=".Vista_perfil_visitante">
 
+    <LinearLayout
+        android:id="@+id/linearatrasperfil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:backgroundTint="#00FFFFFF"
+        android:onClick="onClick"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/atrasperfilvisitante"
+            android:layout_width="100dp"
+            android:layout_height="75dp"
+            android:background="#00FFFFFF"
+            android:onClick="onClick"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/atras" />
+
+
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearatrasperfil">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center|top"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/foto_perfil"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                app:civ_border_color="@color/colorPrimary"
+                app:civ_border_width="3dp" />
+
+            <!--
+            <ImageView
+                android:id="@+id/foto_perfil"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_weight="1" />
+            -->
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:id="@+id/rol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="VOLUNTARIO"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:textStyle="normal|bold" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:id="@+id/nombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/estilocampos"
+                android:ems="10"
+                android:hint="@string/nombre"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="24sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:id="@+id/preferencias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/estilocampos"
+                android:ems="10"
+                android:hint="@string/preferencias"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="24sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:id="@+id/datos_adicionales"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/estilocampos"
+                android:ems="10"
+                android:hint="@string/adicionales"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="24sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:id="@+id/contacto_emergencia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/estilocampos"
+                android:ems="10"
+                android:hint="@string/contactoemergencia"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="24sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
