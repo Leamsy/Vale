@@ -237,6 +237,9 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
             case R.id.boton:
                 apuntarse();
                 break;
+            case R.id.modificar:
+                modificar();
+                break;
         }
     }
 

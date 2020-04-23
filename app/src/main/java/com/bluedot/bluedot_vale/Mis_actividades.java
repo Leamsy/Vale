@@ -28,6 +28,7 @@ import java.util.List;
 
 import static android.content.res.Configuration.ORIENTATION_PORTRAIT;
 import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
 
 public class Mis_actividades extends AppCompatActivity {
     private List<ItemAdapter> data = new ArrayList<>();
@@ -48,6 +49,8 @@ public class Mis_actividades extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mis_actividades);
+
+        loading();
 
         recyclerView = (RecyclerView) findViewById(R.id.reciclermisactividades);
 
@@ -99,6 +102,7 @@ public class Mis_actividades extends AppCompatActivity {
                                                 recyclerView.setAdapter(mAdapter);
                                             }
                                         });
+                                ready();
                             }
 
                         } else {
@@ -113,5 +117,15 @@ public class Mis_actividades extends AppCompatActivity {
 
     public void volver(android.view.View V){
         finish();
+    }
+
+    private void loading(){
+        findViewById(R.id.linear).setVisibility(INVISIBLE);
+        findViewById(R.id.gif).setVisibility(VISIBLE);
+    }
+
+    private void ready(){
+        findViewById(R.id.linear).setVisibility(VISIBLE);
+        findViewById(R.id.gif).setVisibility(INVISIBLE);
     }
 }

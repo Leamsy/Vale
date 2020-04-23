@@ -157,7 +157,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/estilocampos"
-                android:text="@string/Plazas"
+                android:text="Plazas disponibles"
                 android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="30sp" />
@@ -300,14 +300,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
 
-            <CheckBox
-                android:id="@+id/requiere_autorizacion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/autorizacion"
-                android:textAlignment="center"
-                android:textSize="30sp" />
-
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
@@ -318,8 +310,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/estiloboton"
                 android:backgroundTint="#3F51B5"
-                android:onClick="enviar"
-                android:text="@string/Enviar"
+                android:onClick="modificar"
+                android:text="MODIFICAR"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="14pt" />
