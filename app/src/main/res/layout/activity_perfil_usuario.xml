@@ -28,7 +28,7 @@
             android:layout_width="100dp"
             android:layout_height="75dp"
             android:background="#00FFFFFF"
-            android:onClick="volver"
+            android:onClick="onClick"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/atras" />
 
