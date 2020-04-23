@@ -110,9 +110,6 @@ public class Mis_actividades extends AppCompatActivity {
                         }
                     }
                 });
-
-
-
     }
 
     public void volver(android.view.View V){
@@ -120,12 +117,12 @@ public class Mis_actividades extends AppCompatActivity {
     }
 
     private void loading(){
-        findViewById(R.id.linear).setVisibility(INVISIBLE);
+        findViewById(R.id.reciclermisactividades).setVisibility(INVISIBLE);
         findViewById(R.id.gif).setVisibility(VISIBLE);
     }
 
     private void ready(){
-        findViewById(R.id.linear).setVisibility(VISIBLE);
+        findViewById(R.id.reciclermisactividades).setVisibility(VISIBLE);
         findViewById(R.id.gif).setVisibility(INVISIBLE);
     }
 }
