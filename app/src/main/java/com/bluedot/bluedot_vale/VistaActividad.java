@@ -249,9 +249,10 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
     private void loading(){
         findViewById(R.id.linearatras).setVisibility(INVISIBLE);
         findViewById(R.id.scrollmiactividad).setVisibility(INVISIBLE);
-        findViewById(R.id.plazas).setVisibility(INVISIBLE);
+        findViewById(R.id.plazas).setVisibility(GONE);
         findViewById(R.id.boton).setVisibility(INVISIBLE);
-        findViewById(R.id.modificar).setVisibility(INVISIBLE);
+        findViewById(R.id.modificar).setVisibility(GONE);
+        findViewById(R.id.verapuntados).setVisibility(GONE);
     }
 
     private void ready(){
@@ -262,6 +263,7 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
         findViewById(R.id.gif).setVisibility(INVISIBLE);
         if(es_autor){
             findViewById(R.id.modificar).setVisibility(VISIBLE);
+            findViewById(R.id.verapuntados).setVisibility(VISIBLE);
         }
     }
 
@@ -272,9 +274,9 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
     }
 
     private void verapuntados(){
-        Intent intent = new Intent(VistaActividad.this, ListaApuntadosActividad.class);
+        Intent intent = new Intent(this, ListaApuntadosActividad.class);
         intent.putExtra("uid", uid_act);
         startActivity(intent);
     }
-    
+
 }

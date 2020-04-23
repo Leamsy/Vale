@@ -14,9 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".ListaRechazadosActividad"></activity>
+        <activity android:name=".Vista_perfil_visitante"></activity>
+        <activity android:name=".ListaRechazadosActividad" />
         <activity android:name=".ListaApuntadosActividad" />
-        <activity android:name=".ModificarActividad"></activity>
+        <activity android:name=".ModificarActividad" />
         <activity android:name=".ChatActividades" />
         <activity android:name=".AgregarActividad2" />
         <activity android:name=".Menu_tutor" />
