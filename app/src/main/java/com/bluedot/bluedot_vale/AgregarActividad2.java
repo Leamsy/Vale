@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.icu.util.Calendar;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
@@ -94,7 +95,7 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         TextView textView = (TextView) findViewById(R.id.hora);
-        textView.setText(hourOfDay + " : " + minute);
+        textView.setText(String.format("%02d",hourOfDay) + " : " + String.format("%02d",minute));
     }
 
     public void mas_s(android.view.View V){

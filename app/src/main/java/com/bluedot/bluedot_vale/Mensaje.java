@@ -8,6 +8,7 @@ public class Mensaje {
     private String mensaje;
     private String nombre;
     private Timestamp fecha;
+    private String tipo = null;
 
 
     public Mensaje(){
@@ -26,8 +27,16 @@ public class Mensaje {
         return nombre;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public Timestamp getFecha(){ return fecha;}
