@@ -8,7 +8,7 @@ public class Mensaje {
     private String mensaje;
     private String nombre;
     private Timestamp fecha;
-    private String tipo = null;
+    private String tipo = "";
 
 
     public Mensaje(){
