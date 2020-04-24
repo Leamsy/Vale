@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +44,8 @@ public class ListaApuntadosActividad extends AppCompatActivity implements View.O
     private List<String> listaapuntados = new ArrayList<>();
     Context context = this;
     private boolean apuntado = false;
+    private Button btnvereliminados;
+    private String esautor = "false";
 
     String idvistausuario;
     String imagen_url;
@@ -55,6 +58,14 @@ public class ListaApuntadosActividad extends AppCompatActivity implements View.O
         //Recuperar el id de la actividad
         Intent intent = getIntent();
         actividad = intent.getStringExtra("uid");
+        esautor = intent.getStringExtra("esautor");
+
+        if(!esautor.equals("true"))
+            findViewById(R.id.btnrechazados).setVisibility(View.GONE);
+
+        btnvereliminados = findViewById(R.id.btnrechazados);
+
+        btnvereliminados.setOnClickListener(this);
 
         recyclerView = (RecyclerView) findViewById(R.id.listaapuntados);
 
@@ -118,11 +129,21 @@ public class ListaApuntadosActividad extends AppCompatActivity implements View.O
         finish();
     }
 
+    public void verRechazados(){
+        Intent intent = new Intent(ListaApuntadosActividad.this, ListaRechazadosActividad.class);
+        intent.putExtra("uid", actividad);
+        startActivity(intent);
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnatrasapuntados:
                 volver();
+                break;
+
+            case R.id.btnrechazados:
+                verRechazados();
                 break;
         }
     }
