@@ -85,7 +85,7 @@ public class ModificarActividad extends AppCompatActivity implements TimePickerD
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         TextView textView = (TextView) findViewById(R.id.hora);
-        textView.setText(hourOfDay + " : " + minute);
+        textView.setText(String.format("%02d",hourOfDay) + " : " + String.format("%02d",minute));
     }
 
     public void mas_s(android.view.View V){
