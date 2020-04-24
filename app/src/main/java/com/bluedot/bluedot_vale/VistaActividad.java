@@ -1,6 +1,8 @@
 package com.bluedot.bluedot_vale;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,12 +14,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
@@ -50,7 +56,7 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
     private ImageView atras;
     private Button reservar;
     private Button chatear;
-    Context context;
+    Context context = this;
     private String rol_usuario;
     private Boolean es_autor;
 
@@ -243,14 +249,18 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
             case R.id.verapuntados:
                 verapuntados();
                 break;
+            case R.id.eliminar:
+                eliminarActividad();
+                break;
         }
     }
 
     private void loading(){
         findViewById(R.id.linearatras).setVisibility(INVISIBLE);
         findViewById(R.id.scrollmiactividad).setVisibility(INVISIBLE);
-        findViewById(R.id.plazas).setVisibility(GONE);
+        findViewById(R.id.plazas).setVisibility(INVISIBLE);
         findViewById(R.id.boton).setVisibility(INVISIBLE);
+        findViewById(R.id.eliminar).setVisibility(GONE);
         findViewById(R.id.modificar).setVisibility(GONE);
         findViewById(R.id.verapuntados).setVisibility(GONE);
     }
@@ -264,6 +274,8 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
         findViewById(R.id.verapuntados).setVisibility(VISIBLE);
         if(es_autor){
             findViewById(R.id.modificar).setVisibility(VISIBLE);
+            findViewById(R.id.verapuntados).setVisibility(VISIBLE);
+            findViewById(R.id.eliminar).setVisibility(VISIBLE);
         }
     }
 
@@ -280,4 +292,63 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
         startActivity(intent);
     }
 
+    private void eliminarActividad(){
+        AlertDialog.Builder dialog=new AlertDialog.Builder(this);
+        dialog.setMessage("¿Estás seguro de que deseas eliminar la actividad?");
+        dialog.setTitle("ELIMINAR ACTIVIDAD");
+        dialog.setPositiveButton("SÍ",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        moveFirestoreDocument();
+
+                        Toast.makeText(context, "Actividad eliminada.", Toast.LENGTH_SHORT).show();
+
+                        finish();
+
+                    }
+                });
+        dialog.setNegativeButton("NO",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+        AlertDialog alertDialog=dialog.create();
+        alertDialog.show();
+    }
+
+    public void moveFirestoreDocument() {
+
+        final DocumentReference ini = FirebaseFirestore.getInstance().collection("actividades").document(uid_act);
+        final CollectionReference ini_u = FirebaseFirestore.getInstance().collection("actividades").document(uid_act).collection("apuntados");
+        final DocumentReference fin = FirebaseFirestore.getInstance().collection("actividades_terminadas").document(uid_act);
+
+        ini.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document != null) {
+                        fin.set(document.getData())
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        ini.delete();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+
+                                    }
+                                });
+                    } else {
+
+                    }
+                } else {
+
+                }
+            }
+        });
+    }
 }
