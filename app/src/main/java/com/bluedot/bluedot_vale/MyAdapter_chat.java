@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.util.List;
 
 import static android.view.View.GONE;
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
 
 public class MyAdapter_chat extends RecyclerView.Adapter<MyAdapter_chat.MensajeHolder>{
 
@@ -37,11 +39,12 @@ public class MyAdapter_chat extends RecyclerView.Adapter<MyAdapter_chat.MensajeH
         if(listmensajes.get(position).getTipo().equals("texto")){
             holder.tvmensaje.setText(listmensajes.get(position).getMensaje());
             holder.tvname.setText(listmensajes.get(position).getNombre());
-            holder.tvaudio.setVisibility(GONE);
+            holder.tvaudio.setVisibility(INVISIBLE);
         }
         else if(listmensajes.get(position).getTipo().equals("audio")){
-            holder.tvmensaje.setVisibility(GONE);
+            holder.tvmensaje.setText("AUDIO");
             holder.tvname.setText(listmensajes.get(position).getNombre());
+            holder.tvaudio.setVisibility(VISIBLE);
             holder.tvaudio.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
