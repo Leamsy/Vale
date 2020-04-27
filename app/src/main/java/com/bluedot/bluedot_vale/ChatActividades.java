@@ -51,6 +51,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.graphics.Color.GRAY;
+import static android.graphics.Color.RED;
+
 public class ChatActividades extends AppCompatActivity implements View.OnClickListener{
 
     private RecyclerView todosmensajes;
@@ -219,6 +222,10 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
     }
 
     private void startRecording() {
+
+        Button grabar = findViewById(R.id.record);
+        grabar.setBackgroundColor(RED);
+
         recorder = new MediaRecorder();
         recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         recorder.setOutputFormat(MediaRecorder.OutputFormat.AAC_ADTS);
@@ -234,6 +241,10 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
     }
 
     private void stopRecording() {
+
+        Button grabar = findViewById(R.id.record);
+        grabar.setBackgroundColor(GRAY);
+
         recorder.stop();
         recorder.release();
         recorder = null;
