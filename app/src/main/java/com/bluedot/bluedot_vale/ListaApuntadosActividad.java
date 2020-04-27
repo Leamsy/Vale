@@ -106,6 +106,8 @@ public class ListaApuntadosActividad extends AppCompatActivity implements View.O
                                                     itemAdapter.setImage(imagen_url);
 
                                                     itemAdapter.setUidvisitante(documentusers.getId());
+                                                    itemAdapter.setIdActividad(actividad);
+                                                    itemAdapter.setAutor(esautor);
 
                                                     data.add(itemAdapter);
                                                 }
