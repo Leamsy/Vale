@@ -120,7 +120,7 @@ public class MyAdapterApuntados extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
     }
 
-    public void borrarUsuarioDeApuntado(String idaborrar, final String idmiActividad){
+    public void borrarUsuarioDeApuntado(final String idaborrar, final String idmiActividad){
         //Borra el usuario de la lista de apuntados de la actividad
         FirebaseFirestore.getInstance().collection("actividades").document(idmiActividad).collection("apuntados").document(idaborrar)
                 .delete()
@@ -163,7 +163,7 @@ public class MyAdapterApuntados extends RecyclerView.Adapter<RecyclerView.ViewHo
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                         rolborrado = document.getData().get("rol").toString();
-                        aumentarplazas(idmiActividad);
+                        aumentarplazas(idmiActividad,idaborrar);
                     } else {
                         Log.d(TAG, "No such document");
                     }
@@ -172,18 +172,28 @@ public class MyAdapterApuntados extends RecyclerView.Adapter<RecyclerView.ViewHo
                 }
             }
         });
+
     }
 
-    public void aumentarplazas(String idmiActividad){
+    public void aumentarplazas(String idmiActividad, String idaborrar){
         if (rolborrado.equals("socio")){
             DocumentReference restarrol = FirebaseFirestore.getInstance().collection("actividades").document(idmiActividad);
 
             restarrol.update("plazas_socios", FieldValue.increment(1));
+
+            apuntarEnBorrados(idaborrar, idmiActividad);
         }else{
             DocumentReference restarrol = FirebaseFirestore.getInstance().collection("actividades").document(idmiActividad);
 
             restarrol.update("plazas_voluntarios", FieldValue.increment(1));
+
+            apuntarEnBorrados(idaborrar, idmiActividad);
         }
+    }
+
+    public void apuntarEnBorrados(String idaborrar, String idmiActividad) {
+        Map<String, Object> map1= new HashMap<>();
+        FirebaseFirestore.getInstance().collection("actividades").document(idmiActividad).collection("borrados").document(idaborrar).set(map1);
     }
 
 }
