@@ -59,6 +59,7 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
     Context context = this;
     private String rol_usuario;
     private Boolean es_autor;
+    private String idautor;
 
 
 
@@ -77,6 +78,7 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
         uid_act = intent.getStringExtra("uid");
 
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        idautor = uid;
 
         final DocumentReference docRef = FirebaseFirestore.getInstance().collection("actividades").document(uid_act);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -289,6 +291,7 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
         Intent intent = new Intent(this, ListaApuntadosActividad.class);
         intent.putExtra("uid", uid_act);
         intent.putExtra("esautor", es_autor.toString());
+        intent.putExtra("idautor", idautor);
         startActivity(intent);
     }
 
