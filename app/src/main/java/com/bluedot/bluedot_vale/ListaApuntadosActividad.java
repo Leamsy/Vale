@@ -46,6 +46,7 @@ public class ListaApuntadosActividad extends AppCompatActivity implements View.O
     private boolean apuntado = false;
     private Button btnvereliminados;
     private String esautor = "false";
+    private String idautor;
 
     String idvistausuario;
     String imagen_url;
@@ -59,6 +60,7 @@ public class ListaApuntadosActividad extends AppCompatActivity implements View.O
         Intent intent = getIntent();
         actividad = intent.getStringExtra("uid");
         esautor = intent.getStringExtra("esautor");
+        idautor = intent.getStringExtra("idautor");
 
         if(!esautor.equals("true"))
             findViewById(R.id.btnrechazados).setVisibility(View.GONE);
@@ -106,6 +108,9 @@ public class ListaApuntadosActividad extends AppCompatActivity implements View.O
                                                     itemAdapter.setImage(imagen_url);
 
                                                     itemAdapter.setUidvisitante(documentusers.getId());
+                                                    itemAdapter.setIdActividad(actividad);
+                                                    itemAdapter.setAutor(esautor);
+                                                    itemAdapter.setUid(idautor);
 
                                                     data.add(itemAdapter);
                                                 }
