@@ -60,6 +60,8 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
     private String rol_usuario;
     private Boolean es_autor;
     private String idautor;
+    private boolean rechazado;
+    private String TAG = "Vista Actividad";
 
 
 
@@ -79,6 +81,23 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
 
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         idautor = uid;
+        rechazado = false;
+
+        FirebaseFirestore.getInstance().collection("actividades").document(uid_act).collection("borrados")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                if(document.getId().equals(uid))
+                                    rechazado = true;
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
 
         final DocumentReference docRef = FirebaseFirestore.getInstance().collection("actividades").document(uid_act);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -261,7 +280,7 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
         findViewById(R.id.linearatras).setVisibility(INVISIBLE);
         findViewById(R.id.scrollmiactividad).setVisibility(INVISIBLE);
         findViewById(R.id.plazas).setVisibility(INVISIBLE);
-        findViewById(R.id.boton).setVisibility(INVISIBLE);
+        findViewById(R.id.boton).setVisibility(GONE);
         findViewById(R.id.eliminar).setVisibility(GONE);
         findViewById(R.id.modificar).setVisibility(GONE);
         findViewById(R.id.verapuntados).setVisibility(GONE);
@@ -271,7 +290,8 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
         findViewById(R.id.linearatras).setVisibility(VISIBLE);
         findViewById(R.id.scrollmiactividad).setVisibility(VISIBLE);
         findViewById(R.id.plazas).setVisibility(VISIBLE);
-        findViewById(R.id.boton).setVisibility(VISIBLE);
+        if(!rechazado)
+            findViewById(R.id.boton).setVisibility(VISIBLE);
         findViewById(R.id.gif).setVisibility(INVISIBLE);
         findViewById(R.id.verapuntados).setVisibility(VISIBLE);
         if(es_autor){
