@@ -10,8 +10,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
@@ -29,6 +34,8 @@ public class MyAdapterApuntados extends RecyclerView.Adapter<RecyclerView.ViewHo
     private String esAutor;
     private String idActividad;
     private String idPersona;
+    private String idautor;
+    private String rolborrado;
 
     public MyAdapterApuntados(List<ItemAdapter> list, Context context){
         super();
@@ -48,6 +55,9 @@ public class MyAdapterApuntados extends RecyclerView.Adapter<RecyclerView.ViewHo
         esAutor = itemAdapter.getAutor();
         idActividad = itemAdapter.getIdActividad();
         idPersona = itemAdapter.getUidvisitante();
+        idautor = itemAdapter.getUid();
+
+        ((ViewHolder) viewHolder).btnEliminar.setVisibility(View.VISIBLE);
 
         ((ViewHolder) viewHolder).mTv_name.setText(itemAdapter.getText());
         ((ViewHolder) viewHolder).mTv_name.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +71,9 @@ public class MyAdapterApuntados extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         if(esAutor.equals("false"))
         ((ViewHolder) viewHolder).btnEliminar.setVisibility(View.GONE);
+
+        if(idautor.equals(idPersona))
+            ((ViewHolder) viewHolder).btnEliminar.setVisibility(View.GONE);
 
         try {
             Picasso.get().load(itemAdapter.getImage()).into(((ViewHolder) viewHolder).mImg);
@@ -76,10 +89,13 @@ public class MyAdapterApuntados extends RecyclerView.Adapter<RecyclerView.ViewHo
             }
         });
 
+
         ((ViewHolder) viewHolder).btnEliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                borrarUsuarioDeApuntado();
+                borrarUsuarioDeApuntado(itemAdapter.getUidvisitante(), itemAdapter.getIdActividad());
+                Intent intent = new Intent(((ViewHolder) viewHolder).context, Mis_actividades.class);
+                ((ViewHolder) viewHolder).context.startActivity(intent);
             }
         });
 
@@ -104,11 +120,9 @@ public class MyAdapterApuntados extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
     }
 
-    public void borrarUsuarioDeApuntado(){
-
-        //Esto borra el usuario que le da la gana (ARREGLARLO)
-        
-        FirebaseFirestore.getInstance().collection("actividades").document(idActividad).collection("apuntados").document(idPersona)
+    public void borrarUsuarioDeApuntado(String idaborrar, final String idmiActividad){
+        //Borra el usuario de la lista de apuntados de la actividad
+        FirebaseFirestore.getInstance().collection("actividades").document(idmiActividad).collection("apuntados").document(idaborrar)
                 .delete()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -122,10 +136,54 @@ public class MyAdapterApuntados extends RecyclerView.Adapter<RecyclerView.ViewHo
                         Log.d(TAG, "Error deleting document", e);
                     }
                 });
+
+        //Le borra al usuario de su lista de mis actividades
+        FirebaseFirestore.getInstance().collection("users").document(idaborrar).collection("mis_actividades").document(idmiActividad)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(TAG, "Error deleting document", e);
+                    }
+                });
+
+        //Encontrar rol de la persona a la que se ha borrado
+        DocumentReference docRef = FirebaseFirestore.getInstance().collection("users").document(idaborrar);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                        rolborrado = document.getData().get("rol").toString();
+                        aumentarplazas(idmiActividad);
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
     }
 
+    public void aumentarplazas(String idmiActividad){
+        if (rolborrado.equals("socio")){
+            DocumentReference restarrol = FirebaseFirestore.getInstance().collection("actividades").document(idmiActividad);
 
+            restarrol.update("plazas_socios", FieldValue.increment(1));
+        }else{
+            DocumentReference restarrol = FirebaseFirestore.getInstance().collection("actividades").document(idmiActividad);
 
-
+            restarrol.update("plazas_voluntarios", FieldValue.increment(1));
+        }
+    }
 
 }
