@@ -20,6 +20,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -64,7 +65,7 @@ public class Mis_actividades extends AppCompatActivity {
 
         CollectionReference colRef = FirebaseFirestore.getInstance().collection("actividades");
 
-        FirebaseFirestore.getInstance().collection("actividades")
+        FirebaseFirestore.getInstance().collection("actividades").orderBy("fecha", Query.Direction.DESCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

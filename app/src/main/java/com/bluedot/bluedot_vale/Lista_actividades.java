@@ -27,6 +27,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
@@ -94,9 +95,9 @@ public class Lista_actividades extends AppCompatActivity {
                             findViewById(R.id.button).setVisibility(GONE);
                         }
 
-                        CollectionReference colRef = FirebaseFirestore.getInstance().collection("actividades");
+                        final CollectionReference colRef = FirebaseFirestore.getInstance().collection("actividades");
 
-                        colRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        colRef.orderBy("fecha", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
@@ -104,6 +105,7 @@ public class Lista_actividades extends AppCompatActivity {
                                     findViewById(R.id.gif).setVisibility(INVISIBLE);
 
                                     for (QueryDocumentSnapshot document : task.getResult()) {
+
                                         Log.d("aa", document.getId() + " => " + document.getData());
 
                                         final ItemAdapter itemAdapter = new ItemAdapter();
