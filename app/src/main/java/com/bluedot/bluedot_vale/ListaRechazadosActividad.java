@@ -90,6 +90,7 @@ public class ListaRechazadosActividad extends AppCompatActivity implements View.
                                                     itemAdapter.setImage(imagen_url);
 
                                                     itemAdapter.setUidvisitante(documentusers.getId());
+                                                    itemAdapter.setIdActividad(actividad);
 
                                                     data.add(itemAdapter);
                                                 }
