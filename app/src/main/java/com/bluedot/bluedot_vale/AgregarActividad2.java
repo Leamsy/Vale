@@ -240,7 +240,9 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
                 db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("mis_actividades").document(documentReference.getId()).set(map1);
 
                 Toast.makeText(context, "La actividad ha sido enviada.", Toast.LENGTH_SHORT).show();
-                finish();
+                //finish();
+                Intent intent = new Intent(AgregarActividad2.this, Mis_actividades.class);
+                startActivity(intent);
             }
         })
         .addOnFailureListener(new OnFailureListener() {

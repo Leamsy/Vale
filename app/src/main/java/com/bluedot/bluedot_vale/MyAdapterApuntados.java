@@ -193,7 +193,7 @@ public class MyAdapterApuntados extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     public void apuntarEnBorrados(String idaborrar, String idmiActividad) {
         Map<String, Object> map1= new HashMap<>();
-        FirebaseFirestore.getInstance().collection("actividades").document(idmiActividad).collection("borrados").document(idaborrar).set(map1);
+        FirebaseFirestore.getInstance().collection("actividades").document(idmiActividad).collection("rechazados").document(idaborrar).set(map1);
     }
 
 }
