@@ -83,7 +83,7 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
         idautor = uid;
         rechazado = false;
 
-        FirebaseFirestore.getInstance().collection("actividades").document(uid_act).collection("borrados")
+        FirebaseFirestore.getInstance().collection("actividades").document(uid_act).collection("rechazados")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
