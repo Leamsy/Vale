@@ -51,7 +51,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.graphics.Color.GRAY;
+import static android.graphics.Color.GREEN;
 import static android.graphics.Color.RED;
 
 public class ChatActividades extends AppCompatActivity implements View.OnClickListener{
@@ -63,6 +63,7 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
     private ImageView btnatras;
     private String titulosalachat;
     private String nombre;
+    private Button grabar;
 
     private MyAdapter_chat myAdapter_chat;
     String uid_act;
@@ -91,6 +92,8 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
         uid_act = intent.getStringExtra("uid");
         idchat = intent.getStringExtra("salachat");
         btnatras = findViewById(R.id.atrasperfilchat);
+        grabar = findViewById(R.id.record);
+        grabar.setBackgroundColor(RED);
 
         fileName = getExternalCacheDir().getAbsolutePath();
         fileName += "/audiorecordtest.aac";
@@ -100,6 +103,8 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
         iduser = FirebaseAuth.getInstance().getUid();
 
         btnatras.setOnClickListener(this);
+        grabar.setOnClickListener(this);
+
 
         todosmensajes = findViewById(R.id.reciclerchat);
         mensaje = findViewById(R.id.campomensajes);
@@ -223,8 +228,7 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
 
     private void startRecording() {
 
-        Button grabar = findViewById(R.id.record);
-        grabar.setBackgroundColor(RED);
+        grabar.setBackgroundColor(GREEN);
 
         recorder = new MediaRecorder();
         recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
@@ -243,7 +247,7 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
     private void stopRecording() {
 
         Button grabar = findViewById(R.id.record);
-        grabar.setBackgroundColor(GRAY);
+        grabar.setBackgroundColor(RED);
 
         recorder.stop();
         recorder.release();
