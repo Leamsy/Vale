@@ -2,11 +2,17 @@ package com.bluedot.bluedot_vale;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 import java.util.List;
 
@@ -16,7 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class MyAdapterRechazados extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<ItemAdapter> mList;
     private Context mContext;
-
+    private String TAG = "Borrar usuario de borrados";
 
     public MyAdapterRechazados(List<ItemAdapter> list, Context context) {
         super();
@@ -35,6 +41,7 @@ public class MyAdapterRechazados extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, int position) {
         final ItemAdapter itemAdapter = mList.get(position);
+
         ((ViewHolder) viewHolder).mTv_name.setText(itemAdapter.getText());
         ((ViewHolder) viewHolder).mTv_name.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +61,15 @@ public class MyAdapterRechazados extends RecyclerView.Adapter<RecyclerView.ViewH
             public void onClick(View v) {
                 Intent intent = new Intent(((ViewHolder) viewHolder).context, Vista_perfil_visitante.class);
                 intent.putExtra("uid", itemAdapter.getUidvisitante());
+                ((ViewHolder) viewHolder).context.startActivity(intent);
+            }
+        });
+
+        ((ViewHolder) viewHolder).btnEliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                borrarUsuarioDeRechazados(itemAdapter.getUidvisitante(), itemAdapter.getIdActividad());
+                Intent intent = new Intent(((ViewHolder) viewHolder).context, Mis_actividades.class);
                 ((ViewHolder) viewHolder).context.startActivity(intent);
             }
         });
@@ -79,6 +95,23 @@ public class MyAdapterRechazados extends RecyclerView.Adapter<RecyclerView.ViewH
             mImg = (ImageView) itemView.findViewById(R.id.imgusereliminado);
             btnEliminar = (ImageView) itemView.findViewById(R.id.btnBorrarUserdeEliminado);
         }
+    }
+
+    public void borrarUsuarioDeRechazados(String idmivisitante, String idmiactividad){
+        FirebaseFirestore.getInstance().collection("actividades").document(idmiactividad).collection("rechazados").document(idmivisitante)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(TAG, "Error deleting document", e);
+                    }
+                });
     }
 
 }
