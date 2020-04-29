@@ -37,12 +37,13 @@ public class MyAdapter_chat extends RecyclerView.Adapter<MyAdapter_chat.MensajeH
     @Override
     public void onBindViewHolder(@NonNull MensajeHolder holder, final int position) {
         if(listmensajes.get(position).getTipo().equals("texto")){
+            holder.tvaudio.setVisibility(GONE);
             holder.tvmensaje.setText(listmensajes.get(position).getMensaje());
+            holder.tvmensaje.setVisibility(VISIBLE);
             holder.tvname.setText(listmensajes.get(position).getNombre());
-            holder.tvaudio.setVisibility(INVISIBLE);
         }
         else if(listmensajes.get(position).getTipo().equals("audio")){
-            holder.tvmensaje.setText("AUDIO");
+            holder.tvmensaje.setVisibility(GONE);
             holder.tvname.setText(listmensajes.get(position).getNombre());
             holder.tvaudio.setVisibility(VISIBLE);
             holder.tvaudio.setOnClickListener(new View.OnClickListener() {
