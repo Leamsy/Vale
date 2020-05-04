@@ -36,6 +36,7 @@ public class MyAdapter_chat extends RecyclerView.Adapter<MyAdapter_chat.MensajeH
 
     @Override
     public void onBindViewHolder(@NonNull MensajeHolder holder, final int position) {
+
         if(listmensajes.get(position).getTipo().equals("texto")){
             holder.tvaudio.setVisibility(GONE);
             holder.tvmensaje.setText(listmensajes.get(position).getMensaje());
@@ -50,7 +51,7 @@ public class MyAdapter_chat extends RecyclerView.Adapter<MyAdapter_chat.MensajeH
                 @Override
                 public void onClick(View view) {
                     onPlay(mStartPlaying, listmensajes.get(position).getMensaje());
-                    mStartPlaying = !mStartPlaying;
+                    mStartPlaying = true /*!mStartPlaying*/;
                 }
             });
         }
@@ -78,7 +79,9 @@ public class MyAdapter_chat extends RecyclerView.Adapter<MyAdapter_chat.MensajeH
     private void onPlay(boolean start, String url) {
         if (start) {
             startPlaying(url);
-        } else {
+            //stopPlaying();
+        }
+        else {
             stopPlaying();
         }
     }
