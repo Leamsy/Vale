@@ -51,8 +51,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.graphics.Color.BLACK;
 import static android.graphics.Color.GREEN;
 import static android.graphics.Color.RED;
+import static android.graphics.Color.WHITE;
 
 public class ChatActividades extends AppCompatActivity implements View.OnClickListener{
 
@@ -229,6 +231,7 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
     private void startRecording() {
 
         grabar.setBackgroundColor(GREEN);
+        grabar.setTextColor(BLACK);
 
         recorder = new MediaRecorder();
         recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
@@ -248,6 +251,7 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
 
         Button grabar = findViewById(R.id.record);
         grabar.setBackgroundColor(RED);
+        grabar.setTextColor(WHITE);
 
         recorder.stop();
         recorder.release();
