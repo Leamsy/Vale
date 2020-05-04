@@ -166,7 +166,8 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
                             if (mDocumentChange.getType() == DocumentChange.Type.ADDED){
                                 listmensajes.add(mDocumentChange.getDocument().toObject(Mensaje.class));
                                 myAdapter_chat.notifyDataSetChanged();
-                                todosmensajes.smoothScrollToPosition(listmensajes.size());
+                                todosmensajes.getLayoutManager().scrollToPosition(listmensajes.size()-1);
+                                //todosmensajes.smoothScrollToPosition(listmensajes.size());
                             }
                         }
                     }
@@ -186,7 +187,6 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
                 mensaje.setText("");
             }
         });
-
     }
 
     public void volver(){
