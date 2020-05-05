@@ -11,7 +11,7 @@
     <ImageView
         android:id="@+id/LogoPrincipal"
         android:layout_width="0dp"
-        android:layout_height="150dp"
+        android:layout_height="60dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
@@ -70,7 +70,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -84,101 +84,176 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/LinearActividades"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center|top"
-                android:orientation="vertical">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="irSubmenu"
+                app:cardBackgroundColor="#009688"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="3dp">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imbactividades"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:backgroundTint="#3F51B5"
-                    android:contentDescription="ACTIVIDADES"
-                    android:onClick="irSubmenu"
-                    android:src="@drawable/actividades_y_fiestas"
-                    app:civ_border_color="@color/colorPrimary"
-                    app:civ_border_width="3dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/txtsugerencias"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:onClick="irSubmenu"
-                    android:text="@string/txtactividades"
-                    android:textAlignment="center"
-                    android:textColor="#3F51B5"
-                    android:textSize="24sp" />
-            </LinearLayout>
+                    <ImageView
+                        android:id="@+id/imbactividades"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#FFFFFF"
+                        android:onClick="irSubmenu"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/actividades_y_fiestas" />
+
+                    <!--<de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/imbactividades"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="#3F51B5"
+                            android:contentDescription="ACTIVIDADES"
+                            android:onClick="irSubmenu"
+                            android:src="@drawable/actividades_y_fiestas"
+                            app:civ_border_color="@color/colorPrimary"
+                            app:civ_border_width="3dp" />-->
+
+                    <TextView
+                        android:id="@+id/txtsugerencias"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed"
+                        android:maxLines="1"
+                        android:onClick="irSubmenu"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingBottom="5dp"
+                        android:text="@string/txtactividades"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
 
-            <LinearLayout
-                android:id="@+id/linearPerfil"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center|top|center_vertical"
-                android:orientation="vertical">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="cambiarPerfil"
+                app:cardBackgroundColor="#009688"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="3dp">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imbPerfil"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:backgroundTint="#3F51B5"
-                    android:onClick="cambiarPerfil"
-                    android:src="@drawable/perfil"
-                    app:civ_border_color="@color/colorPrimary"
-                    app:civ_border_width="3dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/txtPerfil"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    android:onClick="cambiarPerfil"
-                    android:text="@string/txtperfil"
-                    android:textAlignment="center"
-                    android:textColor="#3F51B5"
-                    android:textSize="24sp" />
+                    <ImageView
+                        android:id="@+id/imbPerfil"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#FFFFFF"
+                        android:onClick="cambiarPerfil"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/perfil" />
 
-            </LinearLayout>
+                    <!--<de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/imbPerfil"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:backgroundTint="#3F51B5"
+                            android:onClick="cambiarPerfil"
+                            android:src="@drawable/perfil"
+                            app:civ_border_color="@color/colorPrimary"
+                            app:civ_border_width="3dp" />-->
+
+                    <TextView
+                        android:id="@+id/txtPerfil"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-condensed"
+                        android:maxLines="1"
+                        android:onClick="cambiarPerfil"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingBottom="5dp"
+                        android:text="@string/txtperfil"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
 
-            <LinearLayout
-                android:id="@+id/linearsalir"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center|top"
-                android:orientation="vertical">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="cerrarApp"
+                app:cardBackgroundColor="#009688"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="3dp">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/aconosalir"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:backgroundTint="#3F51B5"
-                    android:onClick="cerrarApp"
-                    android:src="@drawable/salida"
-                    app:civ_border_color="@color/colorPrimary"
-                    app:civ_border_width="3dp" />
+                <LinearLayout
+                    android:id="@+id/linearsalir"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="cerrarApp"
-                    android:text="@string/titulosalir"
-                    android:textColor="#3F51B5"
-                    android:textSize="24sp" />
+                    <ImageView
+                        android:id="@+id/aconosalir"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:background="#FFFFFF"
+                        android:onClick="cerrarApp"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/salida" />
 
-            </LinearLayout>
+                    <!--<de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/aconosalir"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:backgroundTint="#3F51B5"
+                        android:onClick="cerrarApp"
+                        android:src="@drawable/salida"
+                        app:civ_border_color="@color/colorPrimary"
+                        app:civ_border_width="3dp" />-->
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:onClick="cerrarApp"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingBottom="5dp"
+                        android:text="@string/titulosalir"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:maxLines="1" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
 
         </LinearLayout>
     </ScrollView>
