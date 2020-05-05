@@ -1,6 +1,7 @@
 package com.bluedot.bluedot_vale;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
@@ -114,6 +115,8 @@ public class Mis_actividades extends AppCompatActivity {
     }
 
     public void volver(android.view.View V){
+        Intent intent = new Intent(this, Submenu_Actividades.class);
+        startActivity(intent);
         finish();
     }
 

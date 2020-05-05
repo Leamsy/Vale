@@ -12,9 +12,13 @@
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteX="4dp"
-        tools:layout_editor_absoluteY="4dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/imageView"
@@ -25,10 +29,10 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout11"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="5dp"
         android:orientation="vertical"
@@ -44,11 +48,16 @@
             android:background="@drawable/estiloboton"
             android:backgroundTint="#3F51B5"
             android:onClick="aniadir"
+            android:paddingStart="5dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="5dp"
             android:text="@string/agregarnueva"
             android:textColor="#FFFFFF"
             android:textSize="24sp" />
 
         <Space
+            android:id="@+id/espacioac"
             android:layout_width="match_parent"
             android:layout_height="16dp" />
 
@@ -74,8 +83,13 @@
     </LinearLayout>
 
     <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:id="@+id/frameLayout3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout11"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
         <pl.droidsonroids.gif.GifImageView
             android:id="@+id/gif"

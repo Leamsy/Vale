@@ -3,6 +3,7 @@ package com.bluedot.bluedot_vale;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,8 +18,10 @@ import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -66,6 +69,7 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
     private String titulosalachat;
     private String nombre;
     private Button grabar;
+    private CardView cardView;
 
     private MyAdapter_chat myAdapter_chat;
     String uid_act;
@@ -94,6 +98,7 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
         uid_act = intent.getStringExtra("uid");
         idchat = intent.getStringExtra("salachat");
         btnatras = findViewById(R.id.atrasperfilchat);
+        cardView = findViewById(R.id.cvhablar);
         grabar = findViewById(R.id.record);
         grabar.setBackgroundColor(RED);
 
@@ -111,6 +116,7 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
         todosmensajes = findViewById(R.id.reciclerchat);
         mensaje = findViewById(R.id.campomensajes);
         enviar = findViewById(R.id.enviarchat);
+        mensaje.setOnClickListener(this);
 
         listmensajes = new ArrayList<>();
         myAdapter_chat = new MyAdapter_chat(listmensajes);
@@ -130,7 +136,7 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
                     if (document.exists()) {
                         titulosalachat = document.getData().get("titulo").toString();
                         TextView titulochat = findViewById(R.id.titulochat);
-                        titulochat.setText(titulosalachat);
+                        titulochat.setText("Actividad: " + titulosalachat);
                     } else {
                         Log.d(TAG, "No such document");
                     }
@@ -205,6 +211,14 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
                 onRecord(mStartRecording);
                 mStartRecording = !mStartRecording;
                 break;
+            case R.id.cvhablar:
+                onRecord(mStartRecording);
+                mStartRecording = !mStartRecording;
+                break;
+            case R.id.micro:
+                onRecord(mStartRecording);
+                mStartRecording = !mStartRecording;
+                break;
         }
     }
 
@@ -232,6 +246,7 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
 
         grabar.setBackgroundColor(GREEN);
         grabar.setTextColor(BLACK);
+        cardView.setCardBackgroundColor(GREEN);
 
         recorder = new MediaRecorder();
         recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
@@ -251,6 +266,7 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
 
         Button grabar = findViewById(R.id.record);
         grabar.setBackgroundColor(RED);
+        cardView.setCardBackgroundColor(WHITE);
         grabar.setTextColor(WHITE);
 
         recorder.stop();
@@ -270,7 +286,6 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
 
