@@ -120,8 +120,7 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                                 if (task.isSuccessful()) {
                                     DocumentSnapshot document2 = task.getResult();
                                     if (document2.exists()) {
-                                        TextView plazas = findViewById(R.id.plazas);
-                                        plazas.setText("");
+                                        findViewById(R.id.cvplazas).setVisibility(GONE);
                                         Button boton = findViewById(R.id.boton);
                                         boton.setText("CHAT");
                                         boton.setOnClickListener(new View.OnClickListener() {
@@ -209,9 +208,7 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                                     TextView hora_view = findViewById(R.id.hora);
                                     hora_view.setText(hora);
                                     TextView precio_view = findViewById(R.id.precio);
-                                    precio_view.setText(precio);
-
-
+                                    precio_view.setText(precio + "€");
                                 }
                             }
                         });
@@ -277,27 +274,32 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
     }
 
     private void loading(){
-        findViewById(R.id.linearatras).setVisibility(INVISIBLE);
         findViewById(R.id.scrollmiactividad).setVisibility(INVISIBLE);
-        findViewById(R.id.plazas).setVisibility(INVISIBLE);
+        findViewById(R.id.plazas).setVisibility(GONE);
         findViewById(R.id.boton).setVisibility(GONE);
         findViewById(R.id.eliminar).setVisibility(GONE);
         findViewById(R.id.modificar).setVisibility(GONE);
         findViewById(R.id.verapuntados).setVisibility(GONE);
+        findViewById(R.id.espaciova2).setVisibility(GONE);
+        findViewById(R.id.espaciova3).setVisibility(GONE);
     }
 
     private void ready(){
-        findViewById(R.id.linearatras).setVisibility(VISIBLE);
         findViewById(R.id.scrollmiactividad).setVisibility(VISIBLE);
         findViewById(R.id.plazas).setVisibility(VISIBLE);
         if(!rechazado)
             findViewById(R.id.boton).setVisibility(VISIBLE);
+
         findViewById(R.id.gif).setVisibility(INVISIBLE);
         findViewById(R.id.verapuntados).setVisibility(VISIBLE);
+
         if(es_autor){
             findViewById(R.id.modificar).setVisibility(VISIBLE);
             findViewById(R.id.verapuntados).setVisibility(VISIBLE);
             findViewById(R.id.eliminar).setVisibility(VISIBLE);
+            findViewById(R.id.espaciova2).setVisibility(VISIBLE);
+            findViewById(R.id.espaciova3).setVisibility(VISIBLE);
+            findViewById(R.id.cvplazas).setVisibility(GONE);
         }
     }
 
@@ -342,36 +344,117 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
 
     public void moveFirestoreDocument() {
 
-        final DocumentReference ini = FirebaseFirestore.getInstance().collection("actividades").document(uid_act);
-        final CollectionReference ini_u = FirebaseFirestore.getInstance().collection("actividades").document(uid_act).collection("apuntados");
-        final DocumentReference fin = FirebaseFirestore.getInstance().collection("actividades_terminadas").document(uid_act);
-
-        ini.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document != null) {
-                        fin.set(document.getData())
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        ini.delete();
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-
-                                    }
-                                });
-                    } else {
-
+        //Borrar subcoleccion de apuntados
+        FirebaseFirestore.getInstance().collection("actividades").document(uid_act).collection("apuntados")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                //////////////////////////////////////////////////////////////////
+                                FirebaseFirestore.getInstance().collection("actividades").document(uid_act).collection("apuntados").document(document.getId())
+                                        .delete()
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Log.w(TAG, "Error deleting document", e);
+                                            }
+                                        });
+                                //////////////////////////////////////////////////////////////////
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
                     }
-                } else {
+                });
 
-                }
-            }
-        });
-    }
+        //Borrar subcoleccion de rechazados
+        FirebaseFirestore.getInstance().collection("actividades").document(uid_act).collection("rechazados")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                //////////////////////////////////////////////////////////////////
+                                FirebaseFirestore.getInstance().collection("actividades").document(uid_act).collection("rechazados").document(document.getId())
+                                        .delete()
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Log.w(TAG, "Error deleting document", e);
+                                            }
+                                        });
+                                //////////////////////////////////////////////////////////////////
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+        //Borrar subcoleccion de pendientes
+        FirebaseFirestore.getInstance().collection("actividades").document(uid_act).collection("pendientes")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                //////////////////////////////////////////////////////////////////
+                                FirebaseFirestore.getInstance().collection("actividades").document(uid_act).collection("pendientes").document(document.getId())
+                                        .delete()
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Log.w(TAG, "Error deleting document", e);
+                                            }
+                                        });
+                                //////////////////////////////////////////////////////////////////
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+        //Borrar la actividad
+        FirebaseFirestore.getInstance().collection("actividades").document(uid_act)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error deleting document", e);
+                    }
+                });
+
+    }//Fin funcion borrar
 }
