@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -80,6 +81,9 @@ public class Lista_actividades extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
+        findViewById(R.id.button).setVisibility(GONE);
+        findViewById(R.id.espacioac).setVisibility(GONE);
+
 
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -91,8 +95,9 @@ public class Lista_actividades extends AppCompatActivity {
                     DocumentSnapshot document3 = task.getResult();
                     if (document3.exists()) {
 
-                        if(document3.getData().get("rol").toString().equals("socio")){
-                            findViewById(R.id.button).setVisibility(GONE);
+                        if(!document3.getData().get("rol").toString().equals("socio")){
+                            findViewById(R.id.button).setVisibility(View.VISIBLE);
+                            findViewById(R.id.espacioac).setVisibility(View.VISIBLE);
                         }
 
                         final CollectionReference colRef = FirebaseFirestore.getInstance().collection("actividades");
@@ -138,6 +143,8 @@ public class Lista_actividades extends AppCompatActivity {
     }
 
     public void volver(android.view.View V){
+        Intent intent = new Intent(this, Submenu_Actividades.class);
+        startActivity(intent);
         finish();
     }
 

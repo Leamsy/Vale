@@ -59,6 +59,8 @@ public class Vista_perfil_visitante extends AppCompatActivity implements View.On
 
         findViewById(R.id.contacto_emergencia).setVisibility(View.GONE);
         findViewById(R.id.datos_adicionales).setVisibility(View.GONE);
+        findViewById(R.id.txtadicional).setVisibility(View.GONE);
+        findViewById(R.id.txtemergencia).setVisibility(View.GONE);
 
         //////////////////////////////////////////////
         DocumentReference docRef = FirebaseFirestore.getInstance().collection("users").document(uid);
@@ -119,6 +121,8 @@ public class Vista_perfil_visitante extends AppCompatActivity implements View.On
                         if (rolmiusuario.equals("voluntario")){
                             findViewById(R.id.datos_adicionales).setVisibility(View.VISIBLE);
                             findViewById(R.id.contacto_emergencia).setVisibility(View.VISIBLE);
+                            findViewById(R.id.txtadicional).setVisibility(View.VISIBLE);
+                            findViewById(R.id.txtemergencia).setVisibility(View.VISIBLE);
                         }
 
                     } else {

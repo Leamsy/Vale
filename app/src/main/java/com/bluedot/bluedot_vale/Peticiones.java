@@ -59,9 +59,7 @@ public class Peticiones extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
-
-
-
+                    ready();
                     for (QueryDocumentSnapshot document : task.getResult()) {
 
                         final ItemAdapter itemAdapter = new ItemAdapter();
@@ -75,8 +73,6 @@ public class Peticiones extends AppCompatActivity {
                     mAdapter = new MyAdapter_Peticiones(data, context);
                     recyclerView.setAdapter(mAdapter);
 
-                    ready();
-
                 } else {
                     Log.d("aa", "No existe el usuario");
                 }
@@ -86,6 +82,8 @@ public class Peticiones extends AppCompatActivity {
     }
 
     public void volver(android.view.View V){
+        Intent intent = new Intent(this, Submenu_Actividades.class);
+        startActivity(intent);
         finish();
     }
 
