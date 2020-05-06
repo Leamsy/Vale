@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Lista_actividades"
-    android:background="@color/colorBackground"
+    android:background="@color/blancoroto"
     android:screenOrientation="portrait">
 
     <LinearLayout

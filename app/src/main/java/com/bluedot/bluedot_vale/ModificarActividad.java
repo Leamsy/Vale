@@ -138,6 +138,8 @@ public class ModificarActividad extends AppCompatActivity implements TimePickerD
 
         Toast.makeText(this, "Actividad modificada.", Toast.LENGTH_SHORT).show();
 
+        Intent intent = new Intent(this, Mis_actividades.class);
+        startActivity(intent);
         finish();
     }
 
