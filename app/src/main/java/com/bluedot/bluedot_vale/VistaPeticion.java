@@ -3,6 +3,8 @@ package com.bluedot.bluedot_vale;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,19 +19,23 @@ import com.squareup.picasso.Picasso;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class VistaPeticion extends AppCompatActivity {
+public class VistaPeticion extends AppCompatActivity implements View.OnClickListener {
 
     String uid;
     String uid_act;
     String titulo;
     String descripcion;
     String autor_nombre;
+    private ImageView volver;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vista_peticion);
+
+        volver = findViewById(R.id.btnatrasvp);
+        volver.setOnClickListener(this);
 
         Intent intent = getIntent();
         uid_act = intent.getStringExtra("uid");
@@ -54,7 +60,7 @@ public class VistaPeticion extends AppCompatActivity {
                         TextView descripcion_view = findViewById(R.id.descripcion);
                         descripcion_view.setText(descripcion);
                         TextView autor_nombre_view = findViewById(R.id.autor_nombre);
-                        autor_nombre_view.setText("Autor: " + autor_nombre);
+                        autor_nombre_view.setText(autor_nombre);
 
                     } else {
                     }
@@ -63,16 +69,18 @@ public class VistaPeticion extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
-
-
     }
 
-    public void volver(android.view.View V){
+    public void volver(){
         finish();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnatrasvp:
+                volver();
+                break;
+        }
     }
 }

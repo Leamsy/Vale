@@ -120,8 +120,7 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                                 if (task.isSuccessful()) {
                                     DocumentSnapshot document2 = task.getResult();
                                     if (document2.exists()) {
-                                        TextView plazas = findViewById(R.id.plazas);
-                                        plazas.setText("");
+                                        findViewById(R.id.cvplazas).setVisibility(GONE);
                                         Button boton = findViewById(R.id.boton);
                                         boton.setText("CHAT");
                                         boton.setOnClickListener(new View.OnClickListener() {
@@ -209,9 +208,7 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                                     TextView hora_view = findViewById(R.id.hora);
                                     hora_view.setText(hora);
                                     TextView precio_view = findViewById(R.id.precio);
-                                    precio_view.setText(precio);
-
-
+                                    precio_view.setText(precio + "€");
                                 }
                             }
                         });
@@ -277,27 +274,32 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
     }
 
     private void loading(){
-        findViewById(R.id.linearatras).setVisibility(INVISIBLE);
         findViewById(R.id.scrollmiactividad).setVisibility(INVISIBLE);
-        findViewById(R.id.plazas).setVisibility(INVISIBLE);
+        findViewById(R.id.plazas).setVisibility(GONE);
         findViewById(R.id.boton).setVisibility(GONE);
         findViewById(R.id.eliminar).setVisibility(GONE);
         findViewById(R.id.modificar).setVisibility(GONE);
         findViewById(R.id.verapuntados).setVisibility(GONE);
+        findViewById(R.id.espaciova2).setVisibility(GONE);
+        findViewById(R.id.espaciova3).setVisibility(GONE);
     }
 
     private void ready(){
-        findViewById(R.id.linearatras).setVisibility(VISIBLE);
         findViewById(R.id.scrollmiactividad).setVisibility(VISIBLE);
         findViewById(R.id.plazas).setVisibility(VISIBLE);
         if(!rechazado)
             findViewById(R.id.boton).setVisibility(VISIBLE);
+
         findViewById(R.id.gif).setVisibility(INVISIBLE);
         findViewById(R.id.verapuntados).setVisibility(VISIBLE);
+
         if(es_autor){
             findViewById(R.id.modificar).setVisibility(VISIBLE);
             findViewById(R.id.verapuntados).setVisibility(VISIBLE);
             findViewById(R.id.eliminar).setVisibility(VISIBLE);
+            findViewById(R.id.espaciova2).setVisibility(VISIBLE);
+            findViewById(R.id.espaciova3).setVisibility(VISIBLE);
+            findViewById(R.id.cvplazas).setVisibility(GONE);
         }
     }
 

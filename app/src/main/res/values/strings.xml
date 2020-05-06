@@ -58,5 +58,6 @@
     <string name="adicionales">Datos adicionales</string>
     <string name="contactoemergencia">Contacto de emergencia</string>
     <string name="mensaje">Mensaje</string>
+    <string name="descripcionpeticion">Descripción de la petición</string>
 
 </resources>
