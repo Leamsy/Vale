@@ -219,6 +219,11 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
             return 1;
         }
         else{
+            int n = Integer.parseInt(plazas_voluntarios.getText().toString());
+            if(n>1){
+                n--;
+            }
+            plazas_voluntarios.setText(String.valueOf(n));
             map.put("plazas_voluntarios", plazas_voluntarios.getText().toString());
         }
 
@@ -257,8 +262,8 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
 
     public void mensaje(android.view.View V){
         AlertDialog.Builder dialog=new AlertDialog.Builder(this);
-        dialog.setMessage("Se requerirá autorización por parte del tutor cuando...");
-        dialog.setTitle("Requisitos de autorización");
+        dialog.setMessage("Si la actividad conlleva un riesgo, por mínimo que sea, para el usuario. Si tiene dudas de si la actividad debe requerir autorización, por favor, pongase en contacto con la asociación Vale");
+        dialog.setTitle("Se requerirá autorización por parte del tutor cuando...");
         dialog.setPositiveButton("Ok",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
