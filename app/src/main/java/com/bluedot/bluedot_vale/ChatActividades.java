@@ -55,6 +55,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.graphics.Color.BLACK;
+import static android.graphics.Color.BLUE;
 import static android.graphics.Color.GREEN;
 import static android.graphics.Color.RED;
 import static android.graphics.Color.WHITE;
@@ -94,6 +95,8 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_actividades);
 
+        iduser = FirebaseAuth.getInstance().getUid();
+
         Intent intent = getIntent();
         uid_act = intent.getStringExtra("uid");
         idchat = intent.getStringExtra("salachat");
@@ -106,8 +109,6 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
         fileName += "/audiorecordtest.aac";
 
         ActivityCompat.requestPermissions(this, permissions, 200);
-
-        iduser = FirebaseAuth.getInstance().getUid();
 
         btnatras.setOnClickListener(this);
         grabar.setOnClickListener(this);
@@ -136,7 +137,7 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
                     if (document.exists()) {
                         titulosalachat = document.getData().get("titulo").toString();
                         TextView titulochat = findViewById(R.id.titulochat);
-                        titulochat.setText("Actividad: " + titulosalachat);
+                        titulochat.setText(titulosalachat);
                     } else {
                         Log.d(TAG, "No such document");
                     }
@@ -191,6 +192,7 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
                 sms.setMensaje(mensaje.getText().toString());
                 sms.setNombre(nombre);
                 sms.setTipo("texto");
+                sms.setUid(iduser);
                 FirebaseFirestore.getInstance().collection("chat").document(idchat).collection("mensajes").add(sms);
                 mensaje.setText("");
             }
@@ -310,6 +312,7 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
                         sms.setMensaje(uri.toString());
                         sms.setNombre(nombre);
                         sms.setTipo("audio");
+                        sms.setUid(iduser);
                         FirebaseFirestore.getInstance().collection("chat").document(idchat).collection("mensajes").add(sms);
 
                     }
