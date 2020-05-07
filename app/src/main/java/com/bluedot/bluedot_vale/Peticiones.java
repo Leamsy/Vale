@@ -10,6 +10,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -53,15 +54,14 @@ public class Peticiones extends AppCompatActivity {
 
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        CollectionReference colRef = FirebaseFirestore.getInstance().collection("peticiones");
+        final CollectionReference colRef = FirebaseFirestore.getInstance().collection("peticiones");
 
-        colRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        colRef.orderBy("fecha", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
                 if (task.isSuccessful()) {
-
-
-
+                    ready();
                     for (QueryDocumentSnapshot document : task.getResult()) {
 
                         final ItemAdapter itemAdapter = new ItemAdapter();
@@ -75,8 +75,6 @@ public class Peticiones extends AppCompatActivity {
                     mAdapter = new MyAdapter_Peticiones(data, context);
                     recyclerView.setAdapter(mAdapter);
 
-                    ready();
-
                 } else {
                     Log.d("aa", "No existe el usuario");
                 }
@@ -86,6 +84,8 @@ public class Peticiones extends AppCompatActivity {
     }
 
     public void volver(android.view.View V){
+        Intent intent = new Intent(this, Submenu_Actividades.class);
+        startActivity(intent);
         finish();
     }
 

@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,8 +41,12 @@ public class ListaApuntadosActividad extends AppCompatActivity implements View.O
     private RecyclerView.Adapter mAdapter;
     private String actividad;
     private String TAG = "Lista de apuntados";
+    private List<String> listaapuntados = new ArrayList<>();
     Context context = this;
-    private boolean apuntado;
+    private boolean apuntado = false;
+    private Button btnvereliminados;
+    private String esautor = "false";
+    private String idautor;
 
     String idvistausuario;
     String imagen_url;
@@ -54,6 +59,15 @@ public class ListaApuntadosActividad extends AppCompatActivity implements View.O
         //Recuperar el id de la actividad
         Intent intent = getIntent();
         actividad = intent.getStringExtra("uid");
+        esautor = intent.getStringExtra("esautor");
+        idautor = intent.getStringExtra("idautor");
+
+        if(!esautor.equals("true"))
+            findViewById(R.id.btnrechazados).setVisibility(View.GONE);
+
+        btnvereliminados = findViewById(R.id.btnrechazados);
+
+        btnvereliminados.setOnClickListener(this);
 
         recyclerView = (RecyclerView) findViewById(R.id.listaapuntados);
 
@@ -64,9 +78,55 @@ public class ListaApuntadosActividad extends AppCompatActivity implements View.O
         recyclerView.setLayoutManager(layoutManager);
 
         //Obtener todos los documentos de la colección apuntados
+        CollectionReference colRef = FirebaseFirestore.getInstance().collection("users");
 
+        FirebaseFirestore.getInstance().collection("users")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (final QueryDocumentSnapshot documentusers : task.getResult()) {
+                                FirebaseFirestore.getInstance().collection("actividades").document(actividad).collection("apuntados").get()
+                                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                apuntado = false;
+                                                if (task.isSuccessful()) {
+                                                    for (QueryDocumentSnapshot documentapuntados : task.getResult()) {
+                                                        if(documentapuntados.getId().equals(documentusers.getId())){
+                                                            apuntado = true;
+                                                        }
+                                                    }
+                                                }
+                                                Log.d("aa", "b");
+                                                if(apuntado){
+                                                    final ItemAdapter itemAdapter = new ItemAdapter();
+                                                    itemAdapter.setText(documentusers.getData().get("nombre").toString());
 
-        CollectionReference colRef = FirebaseFirestore.getInstance().collection("actividades").document(actividad).collection("apuntados");
+                                                    imagen_url = documentusers.getData().get("foto_perfil").toString();
+                                                    itemAdapter.setImage(imagen_url);
+
+                                                    itemAdapter.setUidvisitante(documentusers.getId());
+                                                    itemAdapter.setIdActividad(actividad);
+                                                    itemAdapter.setAutor(esautor);
+                                                    itemAdapter.setUid(idautor);
+
+                                                    data.add(itemAdapter);
+                                                }
+                                                Log.d("aa", data.toString());
+                                                mAdapter = new MyAdapterApuntados(data, context);
+                                                recyclerView.setAdapter(mAdapter);
+                                            }
+                                        });
+                            }
+
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
 
     }//OnCreate
 
@@ -74,11 +134,21 @@ public class ListaApuntadosActividad extends AppCompatActivity implements View.O
         finish();
     }
 
+    public void verRechazados(){
+        Intent intent = new Intent(ListaApuntadosActividad.this, ListaRechazadosActividad.class);
+        intent.putExtra("uid", actividad);
+        startActivity(intent);
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnatrasapuntados:
                 volver();
+                break;
+
+            case R.id.btnrechazados:
+                verRechazados();
                 break;
         }
     }

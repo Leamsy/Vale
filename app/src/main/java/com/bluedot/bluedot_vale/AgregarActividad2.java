@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.icu.util.Calendar;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
@@ -94,7 +95,7 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         TextView textView = (TextView) findViewById(R.id.hora);
-        textView.setText(hourOfDay + " : " + minute);
+        textView.setText(String.format("%02d",hourOfDay) + " : " + String.format("%02d",minute));
     }
 
     public void mas_s(android.view.View V){
@@ -218,6 +219,11 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
             return 1;
         }
         else{
+            int n = Integer.parseInt(plazas_voluntarios.getText().toString());
+            if(n>1){
+                n--;
+            }
+            plazas_voluntarios.setText(String.valueOf(n));
             map.put("plazas_voluntarios", plazas_voluntarios.getText().toString());
         }
 
@@ -239,7 +245,9 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
                 db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).collection("mis_actividades").document(documentReference.getId()).set(map1);
 
                 Toast.makeText(context, "La actividad ha sido enviada.", Toast.LENGTH_SHORT).show();
-                finish();
+                //finish();
+                Intent intent = new Intent(AgregarActividad2.this, Mis_actividades.class);
+                startActivity(intent);
             }
         })
         .addOnFailureListener(new OnFailureListener() {
@@ -254,8 +262,8 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
 
     public void mensaje(android.view.View V){
         AlertDialog.Builder dialog=new AlertDialog.Builder(this);
-        dialog.setMessage("Se requerirá autorización por parte del tutor cuando...");
-        dialog.setTitle("Requisitos de autorización");
+        dialog.setMessage("Si la actividad conlleva un riesgo, por mínimo que sea, para el usuario. Si tiene dudas de si la actividad debe requerir autorización, por favor, pongase en contacto con la asociación Vale");
+        dialog.setTitle("Se requerirá autorización por parte del tutor cuando...");
         dialog.setPositiveButton("Ok",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
+    android:background="@color/blancoroto"
     tools:context=".AgregarActividad"
     android:screenOrientation="portrait">
 
@@ -33,7 +33,6 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,70 +44,108 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/editText"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/estilocampos"
-                android:ems="10"
-                android:hint="@string/titulo"
-                android:inputType="textMultiLine"
-                android:textAlignment="center"
-                android:textSize="24sp" />
+                app:cardCornerRadius="5dp"
+                app:cardElevation="3dp">
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="20dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal" />
-
-            <EditText
-                android:id="@+id/editText5"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@drawable/estilocampos"
-                android:ems="10"
-                android:hint="@string/descripcion"
-                android:inputType="textMultiLine"
-                android:textAlignment="center"
-                android:textSize="24sp" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="20dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/imageView13"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:onClick="pickFromGallery"
-                    app:srcCompat="@drawable/foto"
-                    tools:layout_editor_absoluteX="173dp"
-                    tools:layout_editor_absoluteY="640dp" />
-
-                <Space
-                    android:layout_width="10dp"
-                    android:layout_height="wrap_content" />
-
-                <FrameLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/prueba"
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#009688"
+                        android:text="@string/titulo"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/editText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/colorBackground"
-                        android:onClick="pickFromGallery" />
+                        android:background="#FFFFFF"
+                        android:ems="10"
+                        android:hint="@string/titulo"
+                        android:inputType="text"
+                        android:maxLength="40"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="5dp"
+                        android:textAlignment="center"
+                        android:textSize="24sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#009688"
+                        android:text="@string/descripcion"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/editText5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#FFFFFF"
+                        android:ems="10"
+                        android:hint="@string/descripcion"
+                        android:inputType="textMultiLine"
+                        android:maxLength="500"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="5dp"
+                        android:textAlignment="center"
+                        android:textSize="24sp" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="25dp"
+                app:cardElevation="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView13"
+                        android:layout_width="match_parent"
+                        android:layout_height="75dp"
+                        android:onClick="pickFromGallery"
+                        app:srcCompat="@drawable/foto"
+                        tools:layout_editor_absoluteX="173dp"
+                        tools:layout_editor_absoluteY="640dp" />
 
                     <Button
                         android:id="@+id/imagen"
@@ -117,14 +154,30 @@
                         android:background="@drawable/estiloboton"
                         android:backgroundTint="#3F51B5"
                         android:contentDescription="@string/elegirimg"
+                        android:maxHeight="200dp"
                         android:onClick="pickFromGallery"
                         android:text="@string/elegirimg"
                         android:textAlignment="center"
                         android:textColor="#FFFFFF"
                         android:textSize="24sp" />
-                </FrameLayout>
 
-            </LinearLayout>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="3dp">
+
+                        <ImageView
+                            android:id="@+id/prueba"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:onClick="pickFromGallery"
+                            android:scaleType="centerCrop" />
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
             <Space
                 android:layout_width="match_parent"

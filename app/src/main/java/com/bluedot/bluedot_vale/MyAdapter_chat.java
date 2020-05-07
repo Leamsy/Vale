@@ -1,18 +1,40 @@
 package com.bluedot.bluedot_vale;
 
+import android.media.MediaPlayer;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
+
+import static android.graphics.Color.BLACK;
+import static android.graphics.Color.BLUE;
+import static android.graphics.Color.RED;
+import static android.view.View.GONE;
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
 
 public class MyAdapter_chat extends RecyclerView.Adapter<MyAdapter_chat.MensajeHolder>{
 
     private List<Mensaje> listmensajes;
+    boolean mStartPlaying = true;
+    private MediaPlayer player = null;
 
     public MyAdapter_chat(List<Mensaje> listmensajes) {
         this.listmensajes = listmensajes;
@@ -26,10 +48,30 @@ public class MyAdapter_chat extends RecyclerView.Adapter<MyAdapter_chat.MensajeH
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MensajeHolder holder, int position) {
-        holder.tvmensaje.setText(listmensajes.get(position).getMensaje());
-        holder.tvname.setText(listmensajes.get(position).getNombre());
+    public void onBindViewHolder(@NonNull MensajeHolder holder, final int position) {
+            if(listmensajes.get(position).getTipo().equals("texto")){
+                holder.tvaudio.setVisibility(GONE);
+                holder.tvmensaje.setText(listmensajes.get(position).getMensaje());
+                holder.tvmensaje.setVisibility(VISIBLE);
+                holder.tvid.setText(listmensajes.get(position).getUid());
+                holder.tvid.setVisibility(GONE);
+                holder.tvname.setText(listmensajes.get(position).getNombre());
+            }
 
+            else if(listmensajes.get(position).getTipo().equals("audio")) {
+                holder.tvmensaje.setVisibility(GONE);
+                holder.tvname.setText(listmensajes.get(position).getNombre());
+                holder.tvid.setText(listmensajes.get(position).getUid());
+                holder.tvid.setVisibility(GONE);
+                holder.tvaudio.setVisibility(VISIBLE);
+                holder.tvaudio.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        onPlay(mStartPlaying, listmensajes.get(position).getMensaje());
+                        mStartPlaying = true /*!mStartPlaying*/;
+                    }
+                });
+            }
     }
 
     @Override
@@ -40,11 +82,40 @@ public class MyAdapter_chat extends RecyclerView.Adapter<MyAdapter_chat.MensajeH
     class MensajeHolder extends RecyclerView.ViewHolder{
         private TextView tvname;
         private TextView tvmensaje;
+        private TextView tvid;
+        private Button tvaudio;
 
         public MensajeHolder(@NonNull View itemView) {
             super(itemView);
             tvname = itemView.findViewById(R.id.nombreusuariochat);
             tvmensaje = itemView.findViewById(R.id.mensajedeluserchat);
+            tvaudio = itemView.findViewById(R.id.play);
+            tvid = itemView.findViewById(R.id.idusuario);
         }
+    }
+
+    private void onPlay(boolean start, String url) {
+        if (start) {
+            startPlaying(url);
+            //stopPlaying();
+        }
+        else {
+            stopPlaying();
+        }
+    }
+
+    private void startPlaying(String url) {
+        player = new MediaPlayer();
+        try {
+            player.setDataSource(url);
+            player.prepare();
+            player.start();
+        } catch (IOException e) {
+        }
+    }
+
+    private void stopPlaying() {
+        player.release();
+        player = null;
     }
 }
