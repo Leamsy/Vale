@@ -9,6 +9,7 @@ public class Mensaje {
     private String nombre;
     private Timestamp fecha;
     private String tipo = "";
+    private String uid;
 
 
     public Mensaje(){
@@ -41,4 +42,11 @@ public class Mensaje {
 
     public Timestamp getFecha(){ return fecha;}
 
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
 }
