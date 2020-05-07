@@ -1,6 +1,7 @@
 package com.bluedot.bluedot_vale;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
@@ -20,6 +21,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -64,7 +66,7 @@ public class Mis_actividades extends AppCompatActivity {
 
         CollectionReference colRef = FirebaseFirestore.getInstance().collection("actividades");
 
-        FirebaseFirestore.getInstance().collection("actividades")
+        FirebaseFirestore.getInstance().collection("actividades").orderBy("fecha", Query.Direction.DESCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -110,22 +112,21 @@ public class Mis_actividades extends AppCompatActivity {
                         }
                     }
                 });
-
-
-
     }
 
     public void volver(android.view.View V){
+        Intent intent = new Intent(this, Submenu_Actividades.class);
+        startActivity(intent);
         finish();
     }
 
     private void loading(){
-        findViewById(R.id.linear).setVisibility(INVISIBLE);
+        findViewById(R.id.reciclermisactividades).setVisibility(INVISIBLE);
         findViewById(R.id.gif).setVisibility(VISIBLE);
     }
 
     private void ready(){
-        findViewById(R.id.linear).setVisibility(VISIBLE);
+        findViewById(R.id.reciclermisactividades).setVisibility(VISIBLE);
         findViewById(R.id.gif).setVisibility(INVISIBLE);
     }
 }

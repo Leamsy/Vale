@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -48,6 +49,8 @@ public class AgregarActividad extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_actividad);
+
+        findViewById(R.id.prueba).setVisibility(View.GONE);
     }
 
     public int siguiente(android.view.View V) {
@@ -56,7 +59,7 @@ public class AgregarActividad extends AppCompatActivity {
         EditText titulo = findViewById(R.id.editText);
         Log.d("asd", "titulo: " + titulo.getText().toString());
         if(titulo.getText().toString().isEmpty()){
-            Toast.makeText(this, "Introducir titulo.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Introduce el título de la actividad", Toast.LENGTH_SHORT).show();
             return 1;
         }
         else{
@@ -65,7 +68,7 @@ public class AgregarActividad extends AppCompatActivity {
 
         EditText descripcion = findViewById(R.id.editText5);
         if(descripcion.getText().toString().isEmpty()){
-            Toast.makeText(this, "Introducir descripción.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Introducir la descripción de la actividad", Toast.LENGTH_SHORT).show();
             return 1;
         }
         else{
@@ -73,7 +76,7 @@ public class AgregarActividad extends AppCompatActivity {
         }
 
         if(img_bytes == null){
-            Toast.makeText(this, "Introducir imagen.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Introduce una imagen descriptiva de la actividad", Toast.LENGTH_SHORT).show();
             return 1;
         }
         else{
@@ -123,8 +126,10 @@ public class AgregarActividad extends AppCompatActivity {
                         InputStream inputStream = cr.openInputStream(img_uri);
                         Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 30, baos);
                         img_bytes = baos.toByteArray();
+                        findViewById(R.id.imagen).setVisibility(View.GONE);
+                        findViewById(R.id.prueba).setVisibility(View.VISIBLE);
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }

@@ -23,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
+import static android.view.View.GONE;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
@@ -136,6 +137,10 @@ public class PerfilUsuario extends AppCompatActivity implements View.OnClickList
             case R.id.cerrar_sesion:
                 signOut();
                 break;
+
+            case R.id.atrasperfil:
+                finish();
+                break;
         }
     }
 
@@ -150,7 +155,7 @@ public class PerfilUsuario extends AppCompatActivity implements View.OnClickList
         findViewById(R.id.linearatrasperfil).setVisibility(VISIBLE);
         findViewById(R.id.scrollView2).setVisibility(VISIBLE);
         findViewById(R.id.cerrar_sesion).setVisibility(VISIBLE);
-        findViewById(R.id.gif).setVisibility(INVISIBLE);
+        findViewById(R.id.gif).setVisibility(GONE);
     }
 
 }

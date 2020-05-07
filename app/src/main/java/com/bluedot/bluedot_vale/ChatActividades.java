@@ -3,20 +3,34 @@ package com.bluedot.bluedot_vale;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.icu.util.Calendar;
 import android.media.Image;
+import android.media.MediaPlayer;
+import android.media.MediaRecorder;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentChange;
@@ -27,11 +41,24 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.core.OrderBy;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import org.w3c.dom.Text;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.graphics.Color.BLACK;
+import static android.graphics.Color.BLUE;
+import static android.graphics.Color.GREEN;
+import static android.graphics.Color.RED;
+import static android.graphics.Color.WHITE;
 
 public class ChatActividades extends AppCompatActivity implements View.OnClickListener{
 
@@ -42,11 +69,25 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
     private ImageView btnatras;
     private String titulosalachat;
     private String nombre;
+    private Button grabar;
+    private CardView cardView;
 
     private MyAdapter_chat myAdapter_chat;
     String uid_act;
     String idchat;
     String iduser;
+
+    private static String fileName = null;
+
+    private MediaRecorder recorder = null;
+
+
+    // Requesting permission to RECORD_AUDIO
+    private boolean permissionToRecordAccepted = false;
+    private String [] permissions = {Manifest.permission.RECORD_AUDIO};
+
+    boolean mStartRecording = true;
+
 
 
     @Override
@@ -54,18 +95,29 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_actividades);
 
+        iduser = FirebaseAuth.getInstance().getUid();
+
         Intent intent = getIntent();
         uid_act = intent.getStringExtra("uid");
         idchat = intent.getStringExtra("salachat");
         btnatras = findViewById(R.id.atrasperfilchat);
+        cardView = findViewById(R.id.cvhablar);
+        grabar = findViewById(R.id.record);
+        grabar.setBackgroundColor(RED);
 
-        iduser = FirebaseAuth.getInstance().getUid();
+        fileName = getExternalCacheDir().getAbsolutePath();
+        fileName += "/audiorecordtest.aac";
+
+        ActivityCompat.requestPermissions(this, permissions, 200);
 
         btnatras.setOnClickListener(this);
+        grabar.setOnClickListener(this);
+
 
         todosmensajes = findViewById(R.id.reciclerchat);
         mensaje = findViewById(R.id.campomensajes);
         enviar = findViewById(R.id.enviarchat);
+        mensaje.setOnClickListener(this);
 
         listmensajes = new ArrayList<>();
         myAdapter_chat = new MyAdapter_chat(listmensajes);
@@ -123,7 +175,8 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
                             if (mDocumentChange.getType() == DocumentChange.Type.ADDED){
                                 listmensajes.add(mDocumentChange.getDocument().toObject(Mensaje.class));
                                 myAdapter_chat.notifyDataSetChanged();
-                                todosmensajes.smoothScrollToPosition(listmensajes.size());
+                                todosmensajes.getLayoutManager().scrollToPosition(listmensajes.size()-1);
+                                //todosmensajes.smoothScrollToPosition(listmensajes.size());
                             }
                         }
                     }
@@ -138,11 +191,12 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
                 sms.getFecha();
                 sms.setMensaje(mensaje.getText().toString());
                 sms.setNombre(nombre);
+                sms.setTipo("texto");
+                sms.setUid(iduser);
                 FirebaseFirestore.getInstance().collection("chat").document(idchat).collection("mensajes").add(sms);
                 mensaje.setText("");
             }
         });
-
     }
 
     public void volver(){
@@ -155,6 +209,131 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
             case R.id.atrasperfilchat:
                 volver();
                 break;
+            case R.id.record:
+                onRecord(mStartRecording);
+                mStartRecording = !mStartRecording;
+                break;
+            case R.id.cvhablar:
+                onRecord(mStartRecording);
+                mStartRecording = !mStartRecording;
+                break;
+            case R.id.micro:
+                onRecord(mStartRecording);
+                mStartRecording = !mStartRecording;
+                break;
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode){
+            case 200:
+                permissionToRecordAccepted  = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                break;
+        }
+        if (!permissionToRecordAccepted ) finish();
+
+    }
+
+    private void onRecord(boolean start) {
+        if (start) {
+            startRecording();
+        } else {
+            stopRecording();
+        }
+    }
+
+    private void startRecording() {
+
+        grabar.setBackgroundColor(GREEN);
+        grabar.setTextColor(BLACK);
+        cardView.setCardBackgroundColor(GREEN);
+
+        recorder = new MediaRecorder();
+        recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        recorder.setOutputFormat(MediaRecorder.OutputFormat.AAC_ADTS);
+        recorder.setOutputFile(fileName);
+        recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+
+        try {
+            recorder.prepare();
+        } catch (IOException e) {
+        }
+
+        recorder.start();
+    }
+
+    private void stopRecording() {
+
+        Button grabar = findViewById(R.id.record);
+        grabar.setBackgroundColor(RED);
+        cardView.setCardBackgroundColor(WHITE);
+        grabar.setTextColor(WHITE);
+
+        recorder.stop();
+        recorder.release();
+        recorder = null;
+
+        File file = new File(fileName);
+        byte[] bytesArray = new byte[(int) file.length()];
+
+        FileInputStream fis = null;
+        try {
+            fis = new FileInputStream(file);
+            fis.read(bytesArray); //read file into bytes[]
+            fis.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+
+        final StorageReference storageRef = storage.getReference();
+        final java.util.Calendar c = java.util.Calendar.getInstance();
+        final StorageReference ref = storageRef.child("audios_chat/" + idchat + "/" + c.getTimeInMillis() + ".aac");
+        final UploadTask uploadTask = ref.putBytes(bytesArray);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Log.d("qwa", "falla");
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                storageRef.child("audios_chat/" + idchat + "/" + c.getTimeInMillis() + ".aac").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+
+                        Mensaje sms = new Mensaje();
+                        sms.getFecha();
+                        sms.setMensaje(uri.toString());
+                        sms.setNombre(nombre);
+                        sms.setTipo("audio");
+                        sms.setUid(iduser);
+                        FirebaseFirestore.getInstance().collection("chat").document(idchat).collection("mensajes").add(sms);
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                    }
+                });
+            }
+        });
+
+
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (recorder != null) {
+            recorder.release();
+            recorder = null;
         }
     }
 }

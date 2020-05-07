@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,6 +28,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
@@ -79,6 +81,9 @@ public class Lista_actividades extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
+        findViewById(R.id.button).setVisibility(GONE);
+        findViewById(R.id.espacioac).setVisibility(GONE);
+
 
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -90,13 +95,14 @@ public class Lista_actividades extends AppCompatActivity {
                     DocumentSnapshot document3 = task.getResult();
                     if (document3.exists()) {
 
-                        if(document3.getData().get("rol").toString().equals("socio")){
-                            findViewById(R.id.button).setVisibility(GONE);
+                        if(!document3.getData().get("rol").toString().equals("socio")){
+                            findViewById(R.id.button).setVisibility(View.VISIBLE);
+                            findViewById(R.id.espacioac).setVisibility(View.VISIBLE);
                         }
 
-                        CollectionReference colRef = FirebaseFirestore.getInstance().collection("actividades");
+                        final CollectionReference colRef = FirebaseFirestore.getInstance().collection("actividades");
 
-                        colRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        colRef.orderBy("fecha", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
@@ -104,6 +110,7 @@ public class Lista_actividades extends AppCompatActivity {
                                     findViewById(R.id.gif).setVisibility(INVISIBLE);
 
                                     for (QueryDocumentSnapshot document : task.getResult()) {
+
                                         Log.d("aa", document.getId() + " => " + document.getData());
 
                                         final ItemAdapter itemAdapter = new ItemAdapter();
@@ -136,6 +143,8 @@ public class Lista_actividades extends AppCompatActivity {
     }
 
     public void volver(android.view.View V){
+        Intent intent = new Intent(this, Submenu_Actividades.class);
+        startActivity(intent);
         finish();
     }
 

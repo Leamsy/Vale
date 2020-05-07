@@ -19,7 +19,8 @@
         <activity android:name=".ListaRechazadosActividad" />
         <activity android:name=".ListaApuntadosActividad" />
         <activity android:name=".ModificarActividad" />
-        <activity android:name=".ChatActividades" />
+        <activity android:name=".ChatActividades"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".AgregarActividad2" />
         <activity android:name=".Menu_tutor" />
         <activity android:name=".Autorizacion" />

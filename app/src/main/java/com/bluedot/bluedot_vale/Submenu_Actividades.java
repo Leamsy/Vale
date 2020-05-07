@@ -13,6 +13,8 @@ public class Submenu_Actividades extends AppCompatActivity {
         setContentView(R.layout.activity_submenu__actividades);
     }
     public void volver(android.view.View V) {
+        Intent intent = new Intent(this, Principal.class);
+        startActivity(intent);
         finish();
     }
 
