@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.bluedot.bluedot_vale">
+    package="com.bluedot.vale_oficial">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -15,37 +15,37 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".Vista_perfil_visitante"></activity>
-        <activity android:name=".ListaRechazadosActividad" />
-        <activity android:name=".ListaApuntadosActividad" />
-        <activity android:name=".ModificarActividad" />
-        <activity android:name=".ChatActividades"
+        <activity android:name="com.bluedot.vale_oficial.Vista_perfil_visitante"></activity>
+        <activity android:name="com.bluedot.vale_oficial.ListaRechazadosActividad" />
+        <activity android:name="com.bluedot.vale_oficial.ListaApuntadosActividad" />
+        <activity android:name="com.bluedot.vale_oficial.ModificarActividad" />
+        <activity android:name="com.bluedot.vale_oficial.ChatActividades"
             android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".AgregarActividad2" />
-        <activity android:name=".Menu_tutor" />
-        <activity android:name=".Autorizacion" />
-        <activity android:name=".ListaAutorizaciones" />
-        <activity android:name=".AgregarPeticion" />
-        <activity android:name=".VistaPeticion" />
+        <activity android:name="com.bluedot.vale_oficial.AgregarActividad2" />
+        <activity android:name="com.bluedot.vale_oficial.Menu_tutor" />
+        <activity android:name="com.bluedot.vale_oficial.Autorizacion" />
+        <activity android:name="com.bluedot.vale_oficial.ListaAutorizaciones" />
+        <activity android:name="com.bluedot.vale_oficial.AgregarPeticion" />
+        <activity android:name="com.bluedot.vale_oficial.VistaPeticion" />
         <activity
-            android:name=".Peticiones"
+            android:name="com.bluedot.vale_oficial.Peticiones"
             android:label="@string/title_activity_peticiones"
             android:theme="@style/NoActionBar" />
-        <activity android:name=".VistaActividad" />
-        <activity android:name=".Login" />
-        <activity android:name=".Lista_actividades" />
-        <activity android:name=".Submenu_Actividades" />
-        <activity android:name=".Mis_actividades" />
-        <activity android:name=".Principal" />
-        <activity android:name=".splashscreen">
+        <activity android:name="com.bluedot.vale_oficial.VistaActividad" />
+        <activity android:name="com.bluedot.vale_oficial.Login" />
+        <activity android:name="com.bluedot.vale_oficial.Lista_actividades" />
+        <activity android:name="com.bluedot.vale_oficial.Submenu_Actividades" />
+        <activity android:name="com.bluedot.vale_oficial.Mis_actividades" />
+        <activity android:name="com.bluedot.vale_oficial.Principal" />
+        <activity android:name="com.bluedot.vale_oficial.splashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AgregarActividad" />
-        <activity android:name=".PerfilUsuario" />
+        <activity android:name="com.bluedot.vale_oficial.AgregarActividad" />
+        <activity android:name="com.bluedot.vale_oficial.PerfilUsuario" />
     </application>
 
 </manifest>
