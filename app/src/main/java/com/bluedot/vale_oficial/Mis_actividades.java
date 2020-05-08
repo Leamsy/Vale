@@ -69,6 +69,7 @@ public class Mis_actividades extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            ready();
                             for (final QueryDocumentSnapshot document : task.getResult()) {
 
                                 FirebaseFirestore.getInstance().collection("actividades").document(document.getId()).collection("apuntados").get()
@@ -101,7 +102,6 @@ public class Mis_actividades extends AppCompatActivity {
                                                 recyclerView.setAdapter(mAdapter);
                                             }
                                         });
-                                ready();
                             }
 
                         } else {
