@@ -325,8 +325,9 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
 
                         Toast.makeText(context, "Actividad eliminada.", Toast.LENGTH_SHORT).show();
 
+                        Intent intent = new Intent(VistaActividad.this, Mis_actividades.class);
+                        startActivity(intent);
                         finish();
-
                     }
                 });
         dialog.setNegativeButton("NO",

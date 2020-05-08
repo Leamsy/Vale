@@ -18,13 +18,17 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.google.type.Date;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -163,6 +167,9 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
         }
         else{
             map.put("fecha", fecha.getText().toString());
+            Timestamp timestamp = null;
+            timestamp.now();
+            map.put("subida", timestamp);
         }
 
         TextView hora = findViewById(R.id.hora);
@@ -199,7 +206,7 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
         }
         else{
             int n = Integer.parseInt(plazas_voluntarios.getText().toString());
-            if(n>1){
+            if(n>=1){
                 n--;
             }
             plazas_voluntarios.setText(String.valueOf(n));
