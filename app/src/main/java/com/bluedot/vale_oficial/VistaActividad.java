@@ -58,6 +58,7 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
     private String idautor;
     private boolean rechazado;
     private String TAG = "Vista Actividad";
+    private String necesita_aut;
 
 
 
@@ -147,6 +148,7 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                                                         TextView plazas = findViewById(R.id.plazas);
                                                         Log.d("aa", document3.getData().get("rol").toString());
                                                         rol_usuario = document3.getData().get("rol").toString();
+                                                        necesita_aut = document3.getData().get("siempre_autorizacion").toString();
                                                         if(document3.getData().get("rol").toString().equals("socio")){
 
                                                             plazas.setText("Plazas disponibles para socios: " + document.getData().get("plazas_socios").toString());
@@ -223,12 +225,23 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         Map<String, Object> map1= new HashMap<>();
-        db.collection("users").document(uid).collection("mis_actividades").document(uid_act).set(map1);
-        db.collection("actividades").document(uid_act).collection("apuntados").document(uid).set(map1);
+        //Si el socio siempre requiere de autorizacion
+        if(rol_usuario.equals("socio") && necesita_aut.equals("true")){
+            db.collection("actividades").document(uid_act).collection("pendientes").document(uid).set(map1);
+        }
+        //Si la actividad requiere de autorizacion para los socios
+        else if(rol_usuario.equals("socio") && requiere_autorizacion.equals("true")){
+            db.collection("actividades").document(uid_act).collection("pendientes").document(uid).set(map1);
+        }
+        //en otro caso los apunta a la actividad directamente
+        else {
+            db.collection("users").document(uid).collection("mis_actividades").document(uid_act).set(map1);
+            db.collection("actividades").document(uid_act).collection("apuntados").document(uid).set(map1);
+        }
 
         DocumentReference docRef = FirebaseFirestore.getInstance().collection("actividades").document(uid_act);
 
-        if(rol_usuario.equals("socio")){
+        if(rol_usuario.equals("socio") && necesita_aut.equals("false")){
             db.collection("actividades").document(uid_act).update("plazas_socios", (Integer.parseInt(plazas_socios) - 1));
         }
         else if(rol_usuario.equals("voluntario")){
