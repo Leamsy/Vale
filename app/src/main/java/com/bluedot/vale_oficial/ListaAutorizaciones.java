@@ -3,11 +3,14 @@ package com.bluedot.vale_oficial;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -68,23 +71,27 @@ public class ListaAutorizaciones extends AppCompatActivity {
                                                     for (QueryDocumentSnapshot documentpendientes : task.getResult()) {
                                                         Log.d(TAG, documentpendientes.getId() + " => " + documentpendientes.getData());
                                                         // Si el id del documento coincide con uno de mis tutorados, que muestre el elemento
-                                                        final String idpendiente = documentpendientes.toString();
+                                                        final String idpendiente = documentpendientes.getId();
                                                         FirebaseFirestore.getInstance().collection("users").document(uid).collection("tutelados")
                                                                 .get()
                                                                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                                                     @Override
                                                                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                                                         if (task.isSuccessful()) {
+                                                                            findViewById(R.id.gif).setVisibility(INVISIBLE);
                                                                             for (QueryDocumentSnapshot documenttutelados : task.getResult()) {
                                                                                 Log.d(TAG, documenttutelados.getId() + " => " + documenttutelados.getData());
                                                                                 if(idpendiente.equals(documenttutelados.getId())){
                                                                                     final ItemAdapter itemAdapter = new ItemAdapter();
-                                                                                    itemAdapter.setUid(document.getId());
+                                                                                    document.getData().get("titulo").toString();
+                                                                                    itemAdapter.setText(document.getData().get("titulo").toString());
+                                                                                    itemAdapter.setUid(documenttutelados.getId());
+                                                                                    itemAdapter.setIdActividad(document.getId());
                                                                                     data.add(itemAdapter);
-                                                                                    mAdapter = new MyAdapter_Autorizaciones(data, context);
-                                                                                    recyclerView.setAdapter(mAdapter);
                                                                                 }
                                                                             }
+                                                                            mAdapter = new MyAdapter_Autorizaciones(data, context);
+                                                                            recyclerView.setAdapter(mAdapter);
 
                                                                         } else {
                                                                             Log.d(TAG, "Error getting documents: ", task.getException());

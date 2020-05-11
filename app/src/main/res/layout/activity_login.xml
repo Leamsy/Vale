@@ -83,7 +83,7 @@
                         android:layout_weight="1"
                         android:contentDescription="@string/juegomesa"
                         android:onClick="onClick"
-                        android:src="@drawable/flamenco"
+                        android:src="@drawable/flamencoant"
                         app:civ_border_color="#009688"
                         app:civ_border_width="3dp" />
 
