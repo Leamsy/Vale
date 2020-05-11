@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -24,8 +25,11 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TimeZone;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,8 +45,7 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
     String titulo;
     String descripcion;
     String imagen;
-    String fecha;
-    String hora;
+    Timestamp fecha;
     String precio;
     String plazas_socios;
     String plazas_voluntarios;
@@ -187,8 +190,7 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                                     titulo = document.getData().get("titulo").toString();
                                     descripcion = document.getData().get("descripcion").toString();
                                     imagen = document.getData().get("imagen").toString();
-                                    fecha = document.getData().get("fecha").toString();
-                                    hora = document.getData().get("hora").toString();
+                                    fecha = (Timestamp)document.getData().get("fecha");
                                     precio = document.getData().get("precio").toString();
                                     plazas_socios = document.getData().get("plazas_socios").toString();
                                     plazas_voluntarios = document.getData().get("plazas_voluntarios").toString();
@@ -202,9 +204,18 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                                     TextView descripcion_view = findViewById(R.id.descripcion);
                                     descripcion_view.setText(descripcion);
                                     TextView fecha_view = findViewById(R.id.fecha);
-                                    fecha_view.setText(fecha);
+
+                                    Date date = new Date(fecha.getSeconds()*1000);
+                                    SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+                                    SimpleDateFormat dfh = new SimpleDateFormat("HH:mm");
+                                    df.setTimeZone(TimeZone.getTimeZone("UTC"));
+                                    dfh.setTimeZone(TimeZone.getTimeZone("UTC"));
+                                    String formattedDate = df.format(date);
+                                    String formattedDateH = dfh.format(date);
+
+                                    fecha_view.setText(formattedDate);
                                     TextView hora_view = findViewById(R.id.hora);
-                                    hora_view.setText(hora);
+                                    hora_view.setText(formattedDateH);
                                     TextView precio_view = findViewById(R.id.precio);
                                     precio_view.setText(precio + "€");
                                 }
