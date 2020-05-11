@@ -10,8 +10,11 @@
 
     <ImageView
         android:id="@+id/imtitular"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="120dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/valelogo" />
 
     <ScrollView
@@ -69,7 +72,7 @@
                         android:layout_weight="1"
                         android:contentDescription="@string/jugador"
                         android:onClick="onClick"
-                        android:src="@drawable/jugador"
+                        android:src="@drawable/futbol"
                         app:civ_border_color="#009688"
                         app:civ_border_width="3dp" />
 
@@ -80,7 +83,7 @@
                         android:layout_weight="1"
                         android:contentDescription="@string/juegomesa"
                         android:onClick="onClick"
-                        android:src="@drawable/juegomesa"
+                        android:src="@drawable/flamenco"
                         app:civ_border_color="#009688"
                         app:civ_border_width="3dp" />
 
@@ -91,7 +94,7 @@
                         android:layout_weight="1"
                         android:contentDescription="@string/playa"
                         android:onClick="onClick"
-                        android:src="@drawable/playa"
+                        android:src="@drawable/surf"
                         app:civ_border_color="#009688"
                         app:civ_border_width="3dp" />
                 </LinearLayout>
@@ -109,7 +112,7 @@
                         android:layout_weight="1"
                         android:contentDescription="@string/flamenco"
                         android:onClick="onClick"
-                        android:src="@drawable/flamenco"
+                        android:src="@drawable/ski"
                         app:civ_border_color="#009688"
                         app:civ_border_width="3dp" />
 
@@ -120,7 +123,7 @@
                         android:layout_weight="1"
                         android:contentDescription="@string/paseocaballo"
                         android:onClick="onClick"
-                        android:src="@drawable/paseo"
+                        android:src="@drawable/caballo"
                         app:civ_border_color="#009688"
                         app:civ_border_width="3dp" />
 
@@ -131,7 +134,7 @@
                         android:layout_weight="1"
                         android:contentDescription="@string/corriendo"
                         android:onClick="onClick"
-                        android:src="@drawable/corriendo"
+                        android:src="@drawable/cine"
                         app:civ_border_color="#009688"
                         app:civ_border_width="3dp" />
                 </LinearLayout>

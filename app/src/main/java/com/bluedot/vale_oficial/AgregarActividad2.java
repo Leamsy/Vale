@@ -25,12 +25,16 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.google.type.Date;
 
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TimeZone;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,6 +46,7 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
     byte[] imagen;
     Context context = this;
     Map<String, Object> map= new HashMap<>();
+    int dia, mes, año, hora, minutos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +73,10 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
     public void onDateSet(DatePicker view, int year, int month, int day) {
         TextView textView = (TextView) findViewById(R.id.fecha);
         textView.setText(day + "/" + (month+1) + "/" + year);
+
+        dia = day;
+        mes = month;
+        año = year;
     }
 
     public void openTime(android.view.View V){
@@ -79,6 +88,9 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         TextView textView = (TextView) findViewById(R.id.hora);
         textView.setText(String.format("%02d",hourOfDay) + " : " + String.format("%02d",minute));
+
+        hora = hourOfDay;
+        minutos = minute;
     }
 
     public void mas_s(android.view.View V){
@@ -166,10 +178,20 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
             return 1;
         }
         else{
-            map.put("fecha", fecha.getText().toString());
-            Timestamp timestamp = null;
-            timestamp.now();
-            map.put("subida", timestamp);
+
+            String dateString = año+"-"+(mes+1)+"-"+dia+" "+hora+":"+minutos;
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
+            df.setTimeZone(TimeZone.getTimeZone("UTC"));
+            Date date = null;
+            try {
+                date = df.parse(dateString);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            Timestamp t = new Timestamp(date);
+            map.put("fecha", t);
         }
 
         TextView hora = findViewById(R.id.hora);
@@ -178,7 +200,6 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
             return 1;
         }
         else{
-            map.put("hora", hora.getText().toString());
         }
 
         TextView precio = findViewById(R.id.precio);
