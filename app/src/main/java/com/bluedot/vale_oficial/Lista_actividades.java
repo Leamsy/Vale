@@ -75,42 +75,42 @@ public class Lista_actividades extends AppCompatActivity {
                             findViewById(R.id.button).setVisibility(View.VISIBLE);
                             findViewById(R.id.espacioac).setVisibility(View.VISIBLE);
                         }
-
-                        final CollectionReference colRef = FirebaseFirestore.getInstance().collection("actividades");
-
-                        colRef.orderBy("fecha", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()) {
-
-                                    findViewById(R.id.gif).setVisibility(INVISIBLE);
-
-                                    for (QueryDocumentSnapshot document : task.getResult()) {
-
-                                        Log.d("aa", document.getId() + " => " + document.getData());
-
-                                        final ItemAdapter itemAdapter = new ItemAdapter();
-                                        if(document.getData().get("titulo") != null){
-                                            itemAdapter.setText(document.getData().get("titulo").toString());
-                                        }
-
-                                        if(document.getData().get("imagen") != null){
-                                            imagen_url = document.getData().get("imagen").toString();
-                                            itemAdapter.setImage(imagen_url);
-                                        }
-
-                                        itemAdapter.setUid(document.getId());
-                                        data.add(itemAdapter);
-                                    }
-                                    mAdapter = new MyAdapter(data, context);
-                                    recyclerView.setAdapter(mAdapter);
-
-                                } else {
-                                    Log.d("aa", "No existe el usuario");
-                                }
-                            }
-                        });
                     }
+                }
+            }
+        });
+
+        final CollectionReference colRef = FirebaseFirestore.getInstance().collection("actividades");
+
+        colRef.orderBy("fecha", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+
+                    findViewById(R.id.gif).setVisibility(INVISIBLE);
+
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+
+                        Log.d("aa", document.getId() + " => " + document.getData());
+
+                        final ItemAdapter itemAdapter = new ItemAdapter();
+                        if(document.getData().get("titulo") != null){
+                            itemAdapter.setText(document.getData().get("titulo").toString());
+                        }
+
+                        if(document.getData().get("imagen") != null){
+                            imagen_url = document.getData().get("imagen").toString();
+                            itemAdapter.setImage(imagen_url);
+                        }
+
+                        itemAdapter.setUid(document.getId());
+                        data.add(itemAdapter);
+                    }
+                    mAdapter = new MyAdapter(data, context);
+                    recyclerView.setAdapter(mAdapter);
+
+                } else {
+                    Log.d("aa", "No existe el usuario");
                 }
             }
         });

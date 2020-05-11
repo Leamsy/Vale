@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -71,6 +72,8 @@ public class AgregarPeticion extends AppCompatActivity {
                                 public void onSuccess(DocumentReference documentReference) {
 
                                     Toast.makeText(context, "La petición ha sido enviada.", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(AgregarPeticion.this, Submenu_Actividades.class);
+                                    startActivity(intent);
                                     finish();
                                 }
                             })
@@ -78,7 +81,7 @@ public class AgregarPeticion extends AppCompatActivity {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
                                             Toast.makeText(context, "Error.", Toast.LENGTH_SHORT).show();
-                                            finish();
+
                                         }
                                     });
 
