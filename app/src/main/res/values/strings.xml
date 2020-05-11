@@ -20,12 +20,12 @@
     <string name="listaautorizaciones">LISTA DE AUTORIZACIONES</string>
     <string name="Agregar_peticiones">AÑADIR PETICION</string>
     <string name="ListaPeticiones">LISTA DE PETICIONES</string>
-    <string name="jugador">Jugador del Granada</string>
-    <string name="juegomesa">Familia jugando juegos de mesa</string>
-    <string name="playa">Personas en una playa</string>
-    <string name="flamenco">Mujer bailando flamenco</string>
+    <string name="jugador">Jugador de fútbol</string>
+    <string name="juegomesa">Mujer bailando flamenco</string>
+    <string name="playa">Persona surfeando</string>
+    <string name="flamenco">Hombre esquiando</string>
     <string name="paseocaballo">Paseo a caballo</string>
-    <string name="corriendo">Persona corriendo</string>
+    <string name="corriendo">Personas en un cine</string>
     <string name="borrar">BORRAR</string>
     <string name="datosadicionales">DATOS ADICIONALES</string>
     <string name="correo">CORREO ELECTRÓNICO</string>
