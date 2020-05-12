@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
+    android:background="@color/blancoroto"
     tools:context=".Autorizacion">
 
     <LinearLayout
@@ -21,11 +21,11 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/btnatras"
+            android:id="@+id/btnatrasaut"
             android:layout_width="100dp"
             android:layout_height="75dp"
             android:contentDescription="@string/volver"
-            android:onClick="volver"
+            android:onClick="onClick"
             app:srcCompat="@drawable/atras" />
     </LinearLayout>
 
@@ -57,6 +57,21 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/nombreUser"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#009688"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingBottom="5dp"
+                        android:text="@string/nombre"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
                         android:id="@+id/txtactividades3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -66,18 +81,19 @@
                         android:paddingTop="5dp"
                         android:paddingEnd="5dp"
                         android:paddingBottom="5dp"
-                        android:text="Su socio quiere participar en..."
+                        android:text="quiere participar en..."
                         android:textAlignment="center"
                         android:textColor="#FFFFFF"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/titulo"
+                        android:id="@+id/tituloaut"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#FFFFFF"
                         android:hint="Titulo de la actividad ejemplo"
+                        android:inputType="text"
                         android:paddingStart="5dp"
                         android:paddingTop="5dp"
                         android:paddingEnd="5dp"
@@ -88,25 +104,27 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/descripcion"
+                        android:id="@+id/descripcionaut"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#FFFFFF"
                         android:hint="Ejemplo de descripción de la actividad"
+                        android:inputType="textMultiLine"
                         android:paddingStart="5dp"
                         android:paddingTop="5dp"
                         android:paddingEnd="5dp"
                         android:paddingBottom="5dp"
+                        android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="24sp" />
 
                     <Button
-                        android:id="@+id/button2"
+                        android:id="@+id/btnmasinfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#009688"
                         android:backgroundTint="#009688"
-                        android:onClick="verActividad"
+                        android:onClick="onClick"
                         android:paddingStart="5dp"
                         android:paddingTop="5dp"
                         android:paddingEnd="5dp"
@@ -126,6 +144,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
+                android:onClick="onClick"
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
@@ -139,7 +158,7 @@
                     app:cardElevation="3dp">
 
                     <Button
-                        android:id="@+id/button7"
+                        android:id="@+id/btnapuntarse"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#4CAF50"
@@ -164,11 +183,12 @@
                     app:cardElevation="3dp">
 
                     <Button
-                        android:id="@+id/button9"
+                        android:id="@+id/btndenegar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#F44336"
                         android:backgroundTint="#F44336"
+                        android:onClick="onClick"
                         android:paddingStart="5dp"
                         android:paddingTop="5dp"
                         android:paddingEnd="5dp"
