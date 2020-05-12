@@ -2,6 +2,7 @@ package com.bluedot.vale_oficial;
 
 import android.content.Context;
 import android.content.Intent;
+import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -59,6 +61,7 @@ public class Lista_actividades extends AppCompatActivity {
 
         findViewById(R.id.button).setVisibility(GONE);
         findViewById(R.id.espacioac).setVisibility(GONE);
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -92,6 +95,9 @@ public class Lista_actividades extends AppCompatActivity {
                     for (QueryDocumentSnapshot document : task.getResult()) {
 
                         Log.d("aa", document.getId() + " => " + document.getData());
+
+                        Date c = new Date();
+                        db.collection("update").document("update").update("a", c.getTime());
 
                         final ItemAdapter itemAdapter = new ItemAdapter();
                         if(document.getData().get("titulo") != null){

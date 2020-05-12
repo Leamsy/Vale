@@ -230,8 +230,8 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
             if(n>=1){
                 n--;
             }
-            plazas_voluntarios.setText(String.valueOf(n));
-            map.put("plazas_voluntarios", plazas_voluntarios.getText().toString());
+
+            map.put("plazas_voluntarios", n);
         }
 
         CheckBox requiere_autorizacion = findViewById(R.id.requiere_autorizacion);
