@@ -62,7 +62,8 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
     private boolean rechazado;
     private String TAG = "Vista Actividad";
     private String necesita_aut;
-
+    private String elauth;
+    private boolean pend;
 
 
     @Override
@@ -70,7 +71,11 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vista_actividad);
 
+        findViewById(R.id.txtinfo).setVisibility(GONE);
+
         loading();
+
+        elauth = null;
 
         atras = findViewById(R.id.btnatras);
 
@@ -82,6 +87,8 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         idautor = uid;
         rechazado = false;
+        pend = false;
+        elauth = intent.getStringExtra("uid_auth");
 
         FirebaseFirestore.getInstance().collection("actividades").document(uid_act).collection("rechazados")
                 .get()
@@ -98,6 +105,24 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                         }
                     }
                 });
+
+        FirebaseFirestore.getInstance().collection("actividades").document(uid_act).collection("pendientes")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                if(document.getId().equals(uid))
+                                    pend = true;
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+
 
         final DocumentReference docRef = FirebaseFirestore.getInstance().collection("actividades").document(uid_act);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -121,6 +146,10 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                                     DocumentSnapshot document2 = task.getResult();
                                     if (document2.exists()) {
                                         findViewById(R.id.cvplazas).setVisibility(GONE);
+                                        findViewById(R.id.txtinfo).setVisibility(VISIBLE);
+                                        TextView txt = findViewById(R.id.txtinfo);
+                                        txt.setText("Estas apuntado a esta actividad");
+
                                         Button boton = findViewById(R.id.boton);
                                         boton.setText("CHAT");
                                         boton.setOnClickListener(new View.OnClickListener() {
@@ -131,6 +160,9 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                                         ready();
                                     } else {
                                         Button boton = findViewById(R.id.boton);
+                                        findViewById(R.id.txtinfo).setVisibility(VISIBLE);
+                                        TextView txt = findViewById(R.id.txtinfo);
+                                        txt.setText("No estás apuntado a esta actividad aún");
                                         boton.setText("APUNTARSE");
                                         boton.setOnClickListener(new View.OnClickListener() {
                                             public void onClick(View v) {
@@ -309,6 +341,12 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
         findViewById(R.id.plazas).setVisibility(VISIBLE);
         if(!rechazado)
             findViewById(R.id.boton).setVisibility(VISIBLE);
+
+        if(rechazado)
+            findViewById(R.id.txtinfo).setVisibility(GONE);
+
+        if(pend)
+            findViewById(R.id.boton).setVisibility(GONE);
 
         findViewById(R.id.gif).setVisibility(INVISIBLE);
         findViewById(R.id.verapuntados).setVisibility(VISIBLE);

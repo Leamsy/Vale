@@ -42,7 +42,7 @@ public class ListaAutorizaciones extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_autorizaciones);
 
-        recyclerView = (RecyclerView) findViewById(R.id.listaSuge);
+        recyclerView = (RecyclerView) findViewById(R.id.listaautorizaciones);
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), ORIENTATION_PORTRAIT);
         recyclerView.addItemDecoration(dividerItemDecoration);
@@ -59,6 +59,7 @@ public class ListaAutorizaciones extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            findViewById(R.id.gif).setVisibility(INVISIBLE);
                             for (final QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 //Ahora de cada documentos miro la subcolección de pendientes
@@ -78,14 +79,16 @@ public class ListaAutorizaciones extends AppCompatActivity {
                                                                     @Override
                                                                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                                                         if (task.isSuccessful()) {
-                                                                            findViewById(R.id.gif).setVisibility(INVISIBLE);
                                                                             for (QueryDocumentSnapshot documenttutelados : task.getResult()) {
                                                                                 Log.d(TAG, documenttutelados.getId() + " => " + documenttutelados.getData());
                                                                                 if(idpendiente.equals(documenttutelados.getId())){
                                                                                     final ItemAdapter itemAdapter = new ItemAdapter();
                                                                                     document.getData().get("titulo").toString();
+                                                                                    //Meter título de la actividad
                                                                                     itemAdapter.setText(document.getData().get("titulo").toString());
+                                                                                    //Meter id de la persona a la que queremos autorizar
                                                                                     itemAdapter.setUid(documenttutelados.getId());
+                                                                                    //Id de la actividad
                                                                                     itemAdapter.setIdActividad(document.getId());
                                                                                     data.add(itemAdapter);
                                                                                 }
