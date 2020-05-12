@@ -94,8 +94,6 @@ public class Lista_actividades extends AppCompatActivity {
 
                     for (QueryDocumentSnapshot document : task.getResult()) {
 
-                        Log.d("aa", document.getId() + " => " + document.getData());
-
                         Date c = new Date();
                         db.collection("update").document("update").update("a", c.getTime());
 
