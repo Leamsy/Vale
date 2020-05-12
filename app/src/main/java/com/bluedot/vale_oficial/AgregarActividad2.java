@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -128,6 +129,7 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
     public void enviar(android.view.View V) {
 
         if(agregarCampos() == 0){
+            findViewById(R.id.button3).setVisibility(View.GONE);
             FirebaseStorage storage = FirebaseStorage.getInstance();
 
             final StorageReference storageRef = storage.getReference();
