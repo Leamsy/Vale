@@ -5,103 +5,225 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class Autorizacion extends AppCompatActivity {
+import java.util.HashMap;
+import java.util.Map;
 
-    String uid;
-    String uid_auth;
-    String acti_uid;
+public class Autorizacion extends AppCompatActivity implements View.OnClickListener{
+
+    private String uid;
+    private String uid_auth;
+    private String acti_uid;
+    private String uid_act;
+    private String titulo_act;
+    private String TAG="Autorización";
+    private Button masinfo;
+    private Button apuntarse;
+    private boolean hayplazas = false;
+    private Button rechazarlo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_autorizacion);
 
+        masinfo = findViewById(R.id.btnmasinfo);
+        masinfo.setOnClickListener(this);
+
+        apuntarse = findViewById(R.id.btnapuntarse);
+        apuntarse.setOnClickListener(this);
+
+        rechazarlo = findViewById(R.id.btndenegar);
+        rechazarlo.setOnClickListener(this);
+
+
+
         Intent intent = getIntent();
 
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         uid_auth = intent.getStringExtra("uid");
+        uid_act = intent.getStringExtra("uid_act");
+        titulo_act = intent.getStringExtra("act_nombre");
 
-        DocumentReference docRef = FirebaseFirestore.getInstance().collection("autorizaciones").document(uid_auth);
+        TextView eltitulodelact = findViewById(R.id.tituloaut);
+        eltitulodelact.setText(titulo_act);
+
+        DocumentReference userRef = FirebaseFirestore.getInstance().collection("users").document(uid_auth);
+        userRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                        String nombresocio = document.getData().get("nombre").toString();;
+                        TextView elnombre = findViewById(R.id.nombreUser);
+                        //Toast.makeText(Autorizacion.this, document.getData().get("nombre").toString(), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(Autorizacion.this, nombresocio, Toast.LENGTH_SHORT).show();
+                        elnombre.setText(nombresocio);
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+
+        DocumentReference docRef = FirebaseFirestore.getInstance().collection("actividades").document(uid_act);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-
-                        acti_uid = document.getData().get("actividad").toString();
-
-
-                        DocumentReference docRef = FirebaseFirestore.getInstance().collection("users").document(document.getData().get("socio").toString());
-                        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    DocumentSnapshot document = task.getResult();
-                                    if (document.exists()) {
-
-                                        TextView text = findViewById(R.id.txtactividades3);
-                                        text.setText("Su socio " + document.getData().get("nombre").toString() + " quiere participar en...");
-
-                                    } else {
-                                    }
-                                } else {
-                                }
-                            }
-                        });
-
-                        DocumentReference docRef1 = FirebaseFirestore.getInstance().collection("actividades").document(document.getData().get("actividad").toString());
-                        docRef1.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    DocumentSnapshot document = task.getResult();
-                                    if (document.exists()) {
-
-                                        TextView titulo_view = findViewById(R.id.titulo);
-                                        titulo_view.setText(document.getData().get("titulo").toString());
-
-                                        TextView descripcion_view = findViewById(R.id.descripcion);
-                                        descripcion_view.setText(document.getData().get("descripcion").toString());
-
-
-                                    } else {
-                                    }
-                                } else {
-                                }
-                            }
-                        });
-
-
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                        String desc = document.getData().get("descripcion").toString();
+                        TextView campodes = findViewById(R.id.descripcionaut);
+                        campodes.setText(desc);
                     } else {
+                        Log.d(TAG, "No such document");
                     }
                 } else {
+                    Log.d(TAG, "get failed with ", task.getException());
                 }
             }
         });
 
 
-
-
     }
 
-    public void volver(android.view.View V){
+    public void volver(){
         finish();
     }
 
-    public void verActividad(android.view.View V){
-        Intent intent = new Intent(this, VistaActividad.class);
-        intent.putExtra("uid", acti_uid);
+    public void verActividad(){
+        Intent intent = new Intent(Autorizacion.this, VistaActividad.class);
+        intent.putExtra("uid", uid_act);
+        intent.putExtra("uid_user", uid_auth);
         startActivity(intent);
+    }
 
+    public void permitir(){
+        hayplazas = false;
+        DocumentReference docRef = FirebaseFirestore.getInstance().collection("actividades").document(uid_act);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                        Integer plazas = 0;
+                        String plzstring = document.getData().get("plazas_socios").toString();
+                        plazas = Integer.parseInt(plzstring);
+                        if(plazas > 0) {
+                            hayplazas = true;
+                            findViewById(R.id.btnapuntarse).setVisibility(View.GONE);
+                            findViewById(R.id.btndenegar).setVisibility(View.GONE);
+                            siapuntar();
+                        }else{
+                            Toast.makeText(Autorizacion.this, "Lo sentimos, ya no quedan plazas para esta actividad, inténtelo más tarde por si quedara alguna libre", Toast.LENGTH_LONG).show();
+                        }
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+    }
+
+    public void rechazar(){
+        findViewById(R.id.btnapuntarse).setVisibility(View.GONE);
+        findViewById(R.id.btndenegar).setVisibility(View.GONE);
+        Map<String, Object> mapa = new HashMap<>();
+        FirebaseFirestore.getInstance().collection("actividades").document(uid_act).collection("rechazados").document(uid_auth).set(mapa);
+        FirebaseFirestore.getInstance().collection("actividades").document(uid_act).collection("pendientes").document(uid_auth)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error deleting document", e);
+                    }
+                });
+
+        Toast.makeText(Autorizacion.this, "No ha autorizado al usuario a la actividad, no podrá volver a apuntarse a esta actividad", Toast.LENGTH_LONG).show();
+
+        Intent intent = new Intent(Autorizacion.this, Menu_tutor.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void siapuntar(){
+        Map<String, Object> mapa = new HashMap<>();
+        FirebaseFirestore.getInstance().collection("actividades").document(uid_act).collection("apuntados").document(uid_auth).set(mapa);
+        FirebaseFirestore.getInstance().collection("actividades").document(uid_act).collection("pendientes").document(uid_auth)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error deleting document", e);
+                    }
+                });
+        DocumentReference actualizarRef = FirebaseFirestore.getInstance().collection("actividades").document(uid_act);
+        actualizarRef.update("plazas_socios", FieldValue.increment(-1));
+
+        Toast.makeText(Autorizacion.this, "Se ha autorizado a la actividad correctamente", Toast.LENGTH_LONG).show();
+
+        Intent intent = new Intent(Autorizacion.this, Menu_tutor.class);
+        startActivity(intent);
+        finish();
+    }
+
+
+@Override
+public void onClick(View v) {
+        switch (v.getId()) {
+
+        case R.id.btnatrasaut:
+            volver();
+        break;
+
+        case R.id.btnmasinfo:
+            verActividad();
+            break;
+
+            case R.id.btnapuntarse:
+                permitir();
+                break;
+
+            case R.id.btndenegar:
+                rechazar();
+                break;
+        }
     }
 }
