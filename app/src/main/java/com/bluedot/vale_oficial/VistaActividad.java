@@ -266,6 +266,7 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
 
     public void apuntarse(){
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
+        findViewById(R.id.boton).setVisibility(GONE);
 
         Map<String, Object> map1= new HashMap<>();
         //Si el socio siempre requiere de autorizacion
@@ -284,7 +285,7 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
 
         DocumentReference docRef = FirebaseFirestore.getInstance().collection("actividades").document(uid_act);
 
-        if(rol_usuario.equals("socio") && necesita_aut.equals("false")){
+        if(rol_usuario.equals("socio") && necesita_aut.equals("false") && requiere_autorizacion.equals("false")){
             db.collection("actividades").document(uid_act).update("plazas_socios", (Integer.parseInt(plazas_socios) - 1));
         }
         else if(rol_usuario.equals("voluntario")){
