@@ -80,6 +80,18 @@ public class Menu_tutor extends AppCompatActivity implements View.OnClickListene
             case R.id.salir:
                 cerrarApp();
                 break;
+            case R.id.listaaut:
+                cambiarAutorizaciones();
+                break;
+            case R.id.txtsalir:
+                cerrarApp();
+                break;
+            case R.id.cvaut:
+                cambiarAutorizaciones();
+                break;
+            case R.id.cvsalir:
+                cerrarApp();
+                break;
         }
     }
 
