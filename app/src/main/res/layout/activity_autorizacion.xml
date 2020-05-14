@@ -40,14 +40,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp"
             android:gravity="center|top"
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="3dp">
 
@@ -93,7 +95,7 @@
                         android:layout_height="wrap_content"
                         android:background="#FFFFFF"
                         android:hint="Titulo de la actividad ejemplo"
-                        android:inputType="text"
+                        android:inputType="textMultiLine|text"
                         android:paddingStart="5dp"
                         android:paddingTop="5dp"
                         android:paddingEnd="5dp"
@@ -118,20 +120,65 @@
                         android:textColor="#000000"
                         android:textSize="24sp" />
 
-                    <Button
-                        android:id="@+id/btnmasinfo"
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/fechahora"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#009688"
-                        android:backgroundTint="#009688"
-                        android:onClick="onClick"
                         android:paddingStart="5dp"
                         android:paddingTop="5dp"
                         android:paddingEnd="5dp"
                         android:paddingBottom="5dp"
-                        android:text="MÁS INFORMACIÓN"
+                        android:text="Fecha y Hora"
+                        android:textAlignment="center"
                         android:textColor="#FFFFFF"
-                        android:textSize="18sp"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/fechatutor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingBottom="5dp"
+                        android:text="@string/Fecha"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/horatutor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingBottom="5dp"
+                        android:text="@string/hora"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="24sp"
                         android:textStyle="bold" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
