@@ -59,6 +59,7 @@
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cvaut"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="5dp"
@@ -87,7 +88,7 @@
                         app:srcCompat="@drawable/autorizacion" />
 
                     <TextView
-                        android:id="@+id/textView4"
+                        android:id="@+id/listaaut"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#009688"
@@ -106,6 +107,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cvsalir"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="5dp"
@@ -134,7 +136,7 @@
                         app:srcCompat="@drawable/salida" />
 
                     <TextView
-                        android:id="@+id/textView6"
+                        android:id="@+id/txtsalir"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#009688"
