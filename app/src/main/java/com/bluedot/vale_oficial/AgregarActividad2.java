@@ -133,7 +133,7 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
             FirebaseStorage storage = FirebaseStorage.getInstance();
 
             final StorageReference storageRef = storage.getReference();
-            final StorageReference ref = storageRef.child("images/" + titulo + ".jpg");
+            final StorageReference ref = storageRef.child("fotos_actividades/" + titulo + ".jpg");
             final UploadTask uploadTask = ref.putBytes(imagen);
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -143,7 +143,7 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
             }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    storageRef.child("images/" + titulo + ".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    storageRef.child("fotos_actividades/" + titulo + ".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
                             map.put("imagen", uri.toString());
@@ -255,7 +255,7 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
 
                 Toast.makeText(context, "La actividad ha sido enviada.", Toast.LENGTH_SHORT).show();
                 //finish();
-                Intent intent = new Intent(AgregarActividad2.this, Mis_actividades.class);
+                Intent intent = new Intent(AgregarActividad2.this, Submenu_Actividades.class);
                 startActivity(intent);
             }
         })
