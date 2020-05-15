@@ -85,7 +85,7 @@ public class Lista_actividades extends AppCompatActivity {
 
         final CollectionReference colRef = FirebaseFirestore.getInstance().collection("actividades");
 
-        colRef.orderBy("fecha", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        colRef.orderBy("fecha", Query.Direction.ASCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {

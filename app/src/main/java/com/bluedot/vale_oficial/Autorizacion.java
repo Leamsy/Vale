@@ -15,14 +15,18 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TimeZone;
 
 public class Autorizacion extends AppCompatActivity implements View.OnClickListener{
 
@@ -41,9 +45,6 @@ public class Autorizacion extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_autorizacion);
-
-        masinfo = findViewById(R.id.btnmasinfo);
-        masinfo.setOnClickListener(this);
 
         apuntarse = findViewById(R.id.btnapuntarse);
         apuntarse.setOnClickListener(this);
@@ -96,6 +97,25 @@ public class Autorizacion extends AppCompatActivity implements View.OnClickListe
                         String desc = document.getData().get("descripcion").toString();
                         TextView campodes = findViewById(R.id.descripcionaut);
                         campodes.setText(desc);
+
+                        Timestamp fecha = (Timestamp) document.getData().get("fecha");
+
+                        Date date = new Date(fecha.getSeconds()*1000);
+
+                        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+                        SimpleDateFormat dfh = new SimpleDateFormat("HH:mm");
+
+                        df.setTimeZone(TimeZone.getTimeZone("UTC"));
+                        dfh.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+                        String formattedDate = df.format(date);
+                        String formattedDateH = dfh.format(date);
+
+                        TextView fecha_view = findViewById(R.id.fechatutor);
+                        fecha_view.setText(formattedDate);
+                        TextView hora_view = findViewById(R.id.horatutor);
+                        hora_view.setText(formattedDateH);
+
                     } else {
                         Log.d(TAG, "No such document");
                     }
@@ -212,10 +232,6 @@ public void onClick(View v) {
         case R.id.btnatrasaut:
             volver();
         break;
-
-        case R.id.btnmasinfo:
-            verActividad();
-            break;
 
             case R.id.btnapuntarse:
                 permitir();
