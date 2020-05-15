@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -24,8 +25,11 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TimeZone;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,8 +45,7 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
     String titulo;
     String descripcion;
     String imagen;
-    String fecha;
-    String hora;
+    Timestamp fecha;
     String precio;
     String plazas_socios;
     String plazas_voluntarios;
@@ -58,7 +61,9 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
     private String idautor;
     private boolean rechazado;
     private String TAG = "Vista Actividad";
-
+    private String necesita_aut;
+    private String elauth;
+    private boolean pend;
 
 
     @Override
@@ -66,7 +71,11 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vista_actividad);
 
+        findViewById(R.id.txtinfo).setVisibility(GONE);
+
         loading();
+
+        elauth = null;
 
         atras = findViewById(R.id.btnatras);
 
@@ -78,6 +87,8 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         idautor = uid;
         rechazado = false;
+        pend = false;
+        elauth = intent.getStringExtra("uid_auth");
 
         FirebaseFirestore.getInstance().collection("actividades").document(uid_act).collection("rechazados")
                 .get()
@@ -94,6 +105,24 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                         }
                     }
                 });
+
+        FirebaseFirestore.getInstance().collection("actividades").document(uid_act).collection("pendientes")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                if(document.getId().equals(uid))
+                                    pend = true;
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+
 
         final DocumentReference docRef = FirebaseFirestore.getInstance().collection("actividades").document(uid_act);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -117,6 +146,10 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                                     DocumentSnapshot document2 = task.getResult();
                                     if (document2.exists()) {
                                         findViewById(R.id.cvplazas).setVisibility(GONE);
+                                        findViewById(R.id.txtinfo).setVisibility(VISIBLE);
+                                        TextView txt = findViewById(R.id.txtinfo);
+                                        txt.setText("Estas apuntado a esta actividad");
+
                                         Button boton = findViewById(R.id.boton);
                                         boton.setText("CHAT");
                                         boton.setOnClickListener(new View.OnClickListener() {
@@ -127,6 +160,9 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                                         ready();
                                     } else {
                                         Button boton = findViewById(R.id.boton);
+                                        findViewById(R.id.txtinfo).setVisibility(VISIBLE);
+                                        TextView txt = findViewById(R.id.txtinfo);
+                                        txt.setText("No estás apuntado a esta actividad aún");
                                         boton.setText("APUNTARSE");
                                         boton.setOnClickListener(new View.OnClickListener() {
                                             public void onClick(View v) {
@@ -147,6 +183,7 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                                                         TextView plazas = findViewById(R.id.plazas);
                                                         Log.d("aa", document3.getData().get("rol").toString());
                                                         rol_usuario = document3.getData().get("rol").toString();
+                                                        necesita_aut = document3.getData().get("siempre_autorizacion").toString();
                                                         if(document3.getData().get("rol").toString().equals("socio")){
 
                                                             plazas.setText("Plazas disponibles para socios: " + document.getData().get("plazas_socios").toString());
@@ -185,8 +222,7 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                                     titulo = document.getData().get("titulo").toString();
                                     descripcion = document.getData().get("descripcion").toString();
                                     imagen = document.getData().get("imagen").toString();
-                                    fecha = document.getData().get("fecha").toString();
-                                    hora = document.getData().get("hora").toString();
+                                    fecha = (Timestamp)document.getData().get("fecha");
                                     precio = document.getData().get("precio").toString();
                                     plazas_socios = document.getData().get("plazas_socios").toString();
                                     plazas_voluntarios = document.getData().get("plazas_voluntarios").toString();
@@ -200,9 +236,18 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                                     TextView descripcion_view = findViewById(R.id.descripcion);
                                     descripcion_view.setText(descripcion);
                                     TextView fecha_view = findViewById(R.id.fecha);
-                                    fecha_view.setText(fecha);
+
+                                    Date date = new Date(fecha.getSeconds()*1000);
+                                    SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+                                    SimpleDateFormat dfh = new SimpleDateFormat("HH:mm");
+                                    df.setTimeZone(TimeZone.getTimeZone("UTC"));
+                                    dfh.setTimeZone(TimeZone.getTimeZone("UTC"));
+                                    String formattedDate = df.format(date);
+                                    String formattedDateH = dfh.format(date);
+
+                                    fecha_view.setText(formattedDate);
                                     TextView hora_view = findViewById(R.id.hora);
-                                    hora_view.setText(hora);
+                                    hora_view.setText(formattedDateH);
                                     TextView precio_view = findViewById(R.id.precio);
                                     precio_view.setText(precio + "€");
                                 }
@@ -221,14 +266,26 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
 
     public void apuntarse(){
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
+        findViewById(R.id.boton).setVisibility(GONE);
 
         Map<String, Object> map1= new HashMap<>();
-        db.collection("users").document(uid).collection("mis_actividades").document(uid_act).set(map1);
-        db.collection("actividades").document(uid_act).collection("apuntados").document(uid).set(map1);
+        //Si el socio siempre requiere de autorizacion
+        if(rol_usuario.equals("socio") && necesita_aut.equals("true")){
+            db.collection("actividades").document(uid_act).collection("pendientes").document(uid).set(map1);
+        }
+        //Si la actividad requiere de autorizacion para los socios
+        else if(rol_usuario.equals("socio") && requiere_autorizacion.equals("true")){
+            db.collection("actividades").document(uid_act).collection("pendientes").document(uid).set(map1);
+        }
+        //en otro caso los apunta a la actividad directamente
+        else {
+            db.collection("users").document(uid).collection("mis_actividades").document(uid_act).set(map1);
+            db.collection("actividades").document(uid_act).collection("apuntados").document(uid).set(map1);
+        }
 
         DocumentReference docRef = FirebaseFirestore.getInstance().collection("actividades").document(uid_act);
 
-        if(rol_usuario.equals("socio")){
+        if(rol_usuario.equals("socio") && necesita_aut.equals("false") && requiere_autorizacion.equals("false")){
             db.collection("actividades").document(uid_act).update("plazas_socios", (Integer.parseInt(plazas_socios) - 1));
         }
         else if(rol_usuario.equals("voluntario")){
@@ -286,6 +343,12 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
         if(!rechazado)
             findViewById(R.id.boton).setVisibility(VISIBLE);
 
+        if(rechazado)
+            findViewById(R.id.txtinfo).setVisibility(GONE);
+
+        if(pend)
+            findViewById(R.id.boton).setVisibility(GONE);
+
         findViewById(R.id.gif).setVisibility(INVISIBLE);
         findViewById(R.id.verapuntados).setVisibility(VISIBLE);
 
@@ -325,8 +388,9 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
 
                         Toast.makeText(context, "Actividad eliminada.", Toast.LENGTH_SHORT).show();
 
+                        Intent intent = new Intent(VistaActividad.this, Mis_actividades.class);
+                        startActivity(intent);
                         finish();
-
                     }
                 });
         dialog.setNegativeButton("NO",

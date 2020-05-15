@@ -10,8 +10,14 @@
 
     <ImageView
         android:id="@+id/imtitular"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="120dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/valelogo" />
 
     <ScrollView
@@ -24,7 +30,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -36,8 +42,15 @@
                 android:id="@+id/logintxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/estilocampos"
                 android:fontFamily="sans-serif-condensed"
                 android:hint="@string/prompt_email"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:paddingBottom="5dp"
                 android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="30sp" />
@@ -53,6 +66,7 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
                 android:layout_marginBottom="4dp"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -60,38 +74,48 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_marginTop="12dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/jugador"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
                         android:contentDescription="@string/jugador"
                         android:onClick="onClick"
-                        android:src="@drawable/jugador"
+                        android:src="@drawable/futbol"
                         app:civ_border_color="#009688"
                         app:civ_border_width="3dp" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/juegomesa"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
                         android:contentDescription="@string/juegomesa"
                         android:onClick="onClick"
-                        android:src="@drawable/juegomesa"
+                        android:src="@drawable/flamenco"
                         app:civ_border_color="#009688"
                         app:civ_border_width="3dp" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/playa"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
                         android:contentDescription="@string/playa"
                         android:onClick="onClick"
-                        android:src="@drawable/playa"
+                        android:src="@drawable/surf"
                         app:civ_border_color="#009688"
                         app:civ_border_width="3dp" />
                 </LinearLayout>
@@ -100,38 +124,48 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_marginTop="8dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/flamenco"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
                         android:contentDescription="@string/flamenco"
                         android:onClick="onClick"
-                        android:src="@drawable/flamenco"
+                        android:src="@drawable/ski"
                         app:civ_border_color="#009688"
                         app:civ_border_width="3dp" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/paseo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
                         android:contentDescription="@string/paseocaballo"
                         android:onClick="onClick"
-                        android:src="@drawable/paseo"
+                        android:src="@drawable/caballo"
                         app:civ_border_color="#009688"
                         app:civ_border_width="3dp" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/corriendo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
                         android:contentDescription="@string/corriendo"
                         android:onClick="onClick"
-                        android:src="@drawable/corriendo"
+                        android:src="@drawable/cine"
                         app:civ_border_color="#009688"
                         app:civ_border_width="3dp" />
                 </LinearLayout>

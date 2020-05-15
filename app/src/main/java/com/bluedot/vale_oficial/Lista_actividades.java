@@ -2,6 +2,7 @@ package com.bluedot.vale_oficial;
 
 import android.content.Context;
 import android.content.Intent;
+import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -59,6 +61,7 @@ public class Lista_actividades extends AppCompatActivity {
 
         findViewById(R.id.button).setVisibility(GONE);
         findViewById(R.id.espacioac).setVisibility(GONE);
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -75,42 +78,43 @@ public class Lista_actividades extends AppCompatActivity {
                             findViewById(R.id.button).setVisibility(View.VISIBLE);
                             findViewById(R.id.espacioac).setVisibility(View.VISIBLE);
                         }
-
-                        final CollectionReference colRef = FirebaseFirestore.getInstance().collection("actividades");
-
-                        colRef.orderBy("fecha", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()) {
-
-                                    findViewById(R.id.gif).setVisibility(INVISIBLE);
-
-                                    for (QueryDocumentSnapshot document : task.getResult()) {
-
-                                        Log.d("aa", document.getId() + " => " + document.getData());
-
-                                        final ItemAdapter itemAdapter = new ItemAdapter();
-                                        if(document.getData().get("titulo") != null){
-                                            itemAdapter.setText(document.getData().get("titulo").toString());
-                                        }
-
-                                        if(document.getData().get("imagen") != null){
-                                            imagen_url = document.getData().get("imagen").toString();
-                                            itemAdapter.setImage(imagen_url);
-                                        }
-
-                                        itemAdapter.setUid(document.getId());
-                                        data.add(itemAdapter);
-                                    }
-                                    mAdapter = new MyAdapter(data, context);
-                                    recyclerView.setAdapter(mAdapter);
-
-                                } else {
-                                    Log.d("aa", "No existe el usuario");
-                                }
-                            }
-                        });
                     }
+                }
+            }
+        });
+
+        final CollectionReference colRef = FirebaseFirestore.getInstance().collection("actividades");
+
+        colRef.orderBy("fecha", Query.Direction.ASCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+
+                    findViewById(R.id.gif).setVisibility(INVISIBLE);
+
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+
+                        Date c = new Date();
+                        db.collection("update").document("update").update("a", c.getTime());
+
+                        final ItemAdapter itemAdapter = new ItemAdapter();
+                        if(document.getData().get("titulo") != null){
+                            itemAdapter.setText(document.getData().get("titulo").toString());
+                        }
+
+                        if(document.getData().get("imagen") != null){
+                            imagen_url = document.getData().get("imagen").toString();
+                            itemAdapter.setImage(imagen_url);
+                        }
+
+                        itemAdapter.setUid(document.getId());
+                        data.add(itemAdapter);
+                    }
+                    mAdapter = new MyAdapter(data, context);
+                    recyclerView.setAdapter(mAdapter);
+
+                } else {
+                    Log.d("aa", "No existe el usuario");
                 }
             }
         });

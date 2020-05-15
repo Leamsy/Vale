@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -25,8 +27,15 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TimeZone;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,6 +47,7 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
     byte[] imagen;
     Context context = this;
     Map<String, Object> map= new HashMap<>();
+    int dia, mes, año, hora, minutos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +74,10 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
     public void onDateSet(DatePicker view, int year, int month, int day) {
         TextView textView = (TextView) findViewById(R.id.fecha);
         textView.setText(day + "/" + (month+1) + "/" + year);
+
+        dia = day;
+        mes = month;
+        año = year;
     }
 
     public void openTime(android.view.View V){
@@ -75,6 +89,9 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         TextView textView = (TextView) findViewById(R.id.hora);
         textView.setText(String.format("%02d",hourOfDay) + " : " + String.format("%02d",minute));
+
+        hora = hourOfDay;
+        minutos = minute;
     }
 
     public void mas_s(android.view.View V){
@@ -112,6 +129,7 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
     public void enviar(android.view.View V) {
 
         if(agregarCampos() == 0){
+            findViewById(R.id.button3).setVisibility(View.GONE);
             FirebaseStorage storage = FirebaseStorage.getInstance();
 
             final StorageReference storageRef = storage.getReference();
@@ -162,7 +180,20 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
             return 1;
         }
         else{
-            map.put("fecha", fecha.getText().toString());
+
+            String dateString = año+"-"+(mes+1)+"-"+dia+" "+hora+":"+minutos;
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
+            df.setTimeZone(TimeZone.getTimeZone("UTC"));
+            Date date = null;
+            try {
+                date = df.parse(dateString);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            Timestamp t = new Timestamp(date);
+            map.put("fecha", t);
         }
 
         TextView hora = findViewById(R.id.hora);
@@ -171,7 +202,6 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
             return 1;
         }
         else{
-            map.put("hora", hora.getText().toString());
         }
 
         TextView precio = findViewById(R.id.precio);
@@ -199,11 +229,11 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
         }
         else{
             int n = Integer.parseInt(plazas_voluntarios.getText().toString());
-            if(n>1){
+            if(n>=1){
                 n--;
             }
-            plazas_voluntarios.setText(String.valueOf(n));
-            map.put("plazas_voluntarios", plazas_voluntarios.getText().toString());
+
+            map.put("plazas_voluntarios", n);
         }
 
         CheckBox requiere_autorizacion = findViewById(R.id.requiere_autorizacion);

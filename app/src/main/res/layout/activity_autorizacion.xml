@@ -5,122 +5,248 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
+    android:background="@color/blancoroto"
     tools:context=".Autorizacion">
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:id="@+id/linearLayout15"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="4dp"
-        android:gravity="center|top"
-        android:orientation="vertical"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/btnatras"
-                android:layout_width="100dp"
-                android:layout_height="75dp"
-                android:contentDescription="@string/volver"
-                android:onClick="volver"
-                app:srcCompat="@drawable/atras" />
-        </LinearLayout>
-
         <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="wrap_content"
-            android:layout_height="120dp"
-            app:srcCompat="@drawable/valelogo" />
+            android:id="@+id/btnatrasaut"
+            android:layout_width="100dp"
+            android:layout_height="75dp"
+            android:contentDescription="@string/volver"
+            android:onClick="onClick"
+            app:srcCompat="@drawable/atras" />
+    </LinearLayout>
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" />
-
-
-        <TextView
-            android:id="@+id/txtactividades3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed"
-            android:text="Su socio quiere participar en..."
-            android:textAlignment="center"
-            android:textColor="#3F51B5"
-            android:textSize="24sp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <TextView
-            android:id="@+id/titulo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            android:hint="Titulo de la actividad ejemplo"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="24sp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <TextView
-            android:id="@+id/descripcion"
-            android:layout_width="match_parent"
-            android:layout_height="213dp"
-            android:background="#FFFFFF"
-            android:hint="Ejemplo de descripción de la actividad"
-            android:textColor="#000000"
-            android:textSize="24sp" />
-
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="verActividad"
-            android:text="MÁS INFORMACIÓN" />
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout15">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:gravity="center|top"
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/button7"
-                android:layout_width="193dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#4CAF50"
-                android:text="Permitir"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="3dp">
 
-            <Button
-                android:id="@+id/button9"
-                android:layout_width="98dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="#F44336"
-                android:text="Denegar"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/nombreUser"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#009688"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingBottom="5dp"
+                        android:text="@string/nombre"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtactividades3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#009688"
+                        android:fontFamily="sans-serif-condensed"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingBottom="5dp"
+                        android:text="quiere participar en..."
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tituloaut"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#FFFFFF"
+                        android:hint="Titulo de la actividad ejemplo"
+                        android:inputType="textMultiLine|text"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingBottom="5dp"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/descripcionaut"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#FFFFFF"
+                        android:hint="Ejemplo de descripción de la actividad"
+                        android:inputType="textMultiLine"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingBottom="5dp"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="24sp" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/fechahora"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#009688"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingBottom="5dp"
+                        android:text="Fecha y Hora"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/fechatutor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingBottom="5dp"
+                        android:text="@string/Fecha"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/horatutor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingBottom="5dp"
+                        android:text="@string/hora"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:onClick="onClick"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="3dp">
+
+                    <Button
+                        android:id="@+id/btnapuntarse"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#4CAF50"
+                        android:backgroundTint="#4CAF50"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingBottom="5dp"
+                        android:text="Permitir"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24sp" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="3dp">
+
+                    <Button
+                        android:id="@+id/btndenegar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#F44336"
+                        android:backgroundTint="#F44336"
+                        android:onClick="onClick"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingBottom="5dp"
+                        android:text="Denegar"
+                        android:textColor="#FFFFFF"
+                        android:textSize="24sp" />
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
         </LinearLayout>
-
-    </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

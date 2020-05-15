@@ -38,9 +38,12 @@ public class MyAdapter_Autorizaciones extends RecyclerView.Adapter<RecyclerView.
             public void onClick(View v) {
                 Intent intent = new Intent(((ViewHolder) viewHolder).context, Autorizacion.class);
                 intent.putExtra("uid", itemAdapter.getUid());
+                intent.putExtra("uid_act", itemAdapter.getIdActividad());
+                intent.putExtra("act_nombre", itemAdapter.getText());
                 ((ViewHolder) viewHolder).context.startActivity(intent);
             }
         });
+
     }
 
     @Override
