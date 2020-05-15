@@ -34,6 +34,8 @@ public class ModificarActividad extends AppCompatActivity implements TimePickerD
     String uid_act;
     int dia, mes, año;
     int hora, minutos;
+    private boolean cambiado;
+    private boolean cambiadohora;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,8 @@ public class ModificarActividad extends AppCompatActivity implements TimePickerD
 
         Intent intent = getIntent();
         uid_act = intent.getStringExtra("uid");
+        cambiado = false;
+        cambiadohora = false;
 
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -96,6 +100,7 @@ public class ModificarActividad extends AppCompatActivity implements TimePickerD
         dia = day;
         mes = month;
         año = year;
+        cambiado = true;
     }
 
     public void openTime(android.view.View V){
@@ -110,6 +115,7 @@ public class ModificarActividad extends AppCompatActivity implements TimePickerD
 
         hora = hourOfDay;
         minutos = minute;
+        cambiadohora = true;
     }
 
     public void mas_s(android.view.View V){
@@ -152,29 +158,54 @@ public class ModificarActividad extends AppCompatActivity implements TimePickerD
         EditText p_voluntarios = findViewById(R.id.edit_voluntarios);
         EditText precio = findViewById(R.id.precio);
 
-        String dateString = año+"-"+(mes+1)+"-"+dia+" "+hora+":"+minutos;
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        int voluntarios = Integer.parseInt(p_voluntarios.getText().toString());
+        int socios = Integer.parseInt(p_socios.getText().toString());
 
-        df.setTimeZone(TimeZone.getTimeZone("UTC"));
-        Date date = null;
-        try {
-            date = df.parse(dateString);
-        } catch (ParseException e) {
-            e.printStackTrace();
+        if(cambiadohora && cambiado) {
+            String dateString = año + "-" + (mes + 1) + "-" + dia + " " + hora + ":" + minutos;
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
+            df.setTimeZone(TimeZone.getTimeZone("UTC"));
+            Date date = null;
+            try {
+                date = df.parse(dateString);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            Timestamp t = new Timestamp(date);
+
+            db.collection("actividades").document(uid_act).update("fecha", t);
+
+            db.collection("actividades").document(uid_act).update("precio", precio.getText().toString());
+            db.collection("actividades").document(uid_act).update("plazas_socios", socios);
+            db.collection("actividades").document(uid_act).update("plazas_voluntarios", voluntarios);
+
+            Toast.makeText(this, "Actividad modificada.", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(this, Mis_actividades.class);
+            startActivity(intent);
+            finish();
+
+        }else if(!cambiado && cambiadohora){
+            Toast.makeText(ModificarActividad.this, "Establece la fecha nuevamente",
+                    Toast.LENGTH_LONG).show();
         }
 
-        Timestamp t = new Timestamp(date);
+        else if(cambiado && !cambiadohora){
+            Toast.makeText(ModificarActividad.this, "Establece la hora nuevamente",
+                    Toast.LENGTH_LONG).show();
+        }else{
+            db.collection("actividades").document(uid_act).update("precio", precio.getText().toString());
+            db.collection("actividades").document(uid_act).update("plazas_socios", socios);
+            db.collection("actividades").document(uid_act).update("plazas_voluntarios", voluntarios);
 
-        db.collection("actividades").document(uid_act).update("fecha", t);
-        db.collection("actividades").document(uid_act).update("precio", precio.getText().toString());
-        db.collection("actividades").document(uid_act).update("plazas_socios", p_socios.getText());
-        db.collection("actividades").document(uid_act).update("plazas_voluntarios", p_voluntarios.getText());
+            Toast.makeText(this, "Actividad modificada.", Toast.LENGTH_SHORT).show();
 
-        Toast.makeText(this, "Actividad modificada.", Toast.LENGTH_SHORT).show();
-
-        Intent intent = new Intent(this, Mis_actividades.class);
-        startActivity(intent);
-        finish();
+            Intent intent = new Intent(this, Mis_actividades.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     public void volver(android.view.View V) {
