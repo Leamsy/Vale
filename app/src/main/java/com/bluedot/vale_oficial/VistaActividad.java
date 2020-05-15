@@ -20,9 +20,12 @@ import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -53,8 +56,8 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
     String sala_chat;
 
     private ImageView atras;
-    private Button reservar;
-    private Button chatear;
+    //private Button reservar;
+    //private Button chatear;
     Context context = this;
     private String rol_usuario;
     private Boolean es_autor;
@@ -62,8 +65,9 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
     private boolean rechazado;
     private String TAG = "Vista Actividad";
     private String necesita_aut;
-    private String elauth;
+    //private String elauth;
     private boolean pend;
+    FirebaseStorage storage;
 
 
     @Override
@@ -71,11 +75,25 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vista_actividad);
 
+        uid = null;
+        uid_act = null;
+        titulo =  null;
+        descripcion = null;
+        imagen = null;
+        fecha = null;
+        precio = null;
+        plazas_socios = null;
+        plazas_voluntarios = null;
+        requiere_autorizacion = null;
+        sala_chat = null;
+        rol_usuario = null;
+        es_autor = false;
+        idautor = null;
+        storage = FirebaseStorage.getInstance();
+
         findViewById(R.id.txtinfo).setVisibility(GONE);
 
         loading();
-
-        elauth = null;
 
         atras = findViewById(R.id.btnatras);
 
@@ -88,7 +106,6 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
         idautor = uid;
         rechazado = false;
         pend = false;
-        elauth = intent.getStringExtra("uid_auth");
 
         FirebaseFirestore.getInstance().collection("actividades").document(uid_act).collection("rechazados")
                 .get()
@@ -183,9 +200,8 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                                                         TextView plazas = findViewById(R.id.plazas);
                                                         Log.d("aa", document3.getData().get("rol").toString());
                                                         rol_usuario = document3.getData().get("rol").toString();
-                                                        necesita_aut = document3.getData().get("siempre_autorizacion").toString();
                                                         if(document3.getData().get("rol").toString().equals("socio")){
-
+                                                            necesita_aut = document3.getData().get("siempre_autorizacion").toString();
                                                             plazas.setText("Plazas disponibles para socios: " + document.getData().get("plazas_socios").toString());
                                                             if(document.getData().get("plazas_socios").toString().equals("0")){
                                                                 button.setText("No quedan plazas para esta actividad");
@@ -286,10 +302,12 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
         DocumentReference docRef = FirebaseFirestore.getInstance().collection("actividades").document(uid_act);
 
         if(rol_usuario.equals("socio") && necesita_aut.equals("false") && requiere_autorizacion.equals("false")){
-            db.collection("actividades").document(uid_act).update("plazas_socios", (Integer.parseInt(plazas_socios) - 1));
+            DocumentReference resRef = db.collection("actividades").document(uid_act);
+            resRef.update("plazas_socios", FieldValue.increment(-1));
         }
         else if(rol_usuario.equals("voluntario")){
-            db.collection("actividades").document(uid_act).update("plazas_voluntarios", (Integer.parseInt(plazas_voluntarios) - 1));
+            DocumentReference resRef = db.collection("actividades").document(uid_act);
+            resRef.update("plazas_voluntarios", FieldValue.increment(-1));
         }
         finish();
     }
@@ -403,6 +421,21 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
     }
 
     public void moveFirestoreDocument() {
+        //Borrar imagen de la actividad
+        StorageReference storageRef = storage.getReference();
+        StorageReference borrRef = storageRef.child("fotos_actividades/" + titulo + ".jpg");
+
+        borrRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                // File deleted successfully
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Uh-oh, an error occurred!
+            }
+        });
 
         //Borrar subcoleccion de apuntados
         FirebaseFirestore.getInstance().collection("actividades").document(uid_act).collection("apuntados")
