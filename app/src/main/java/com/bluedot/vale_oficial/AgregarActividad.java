@@ -113,7 +113,7 @@ public class AgregarActividad extends AppCompatActivity {
                         InputStream inputStream = cr.openInputStream(img_uri);
                         Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 30, baos);
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 25, baos);
                         img_bytes = baos.toByteArray();
                         findViewById(R.id.imagen).setVisibility(View.GONE);
                         findViewById(R.id.prueba).setVisibility(View.VISIBLE);
