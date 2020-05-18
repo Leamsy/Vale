@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -36,6 +37,7 @@ public class Mis_actividades extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter mAdapter;
     private List<String> misactividades = new ArrayList<>();
+    private SearchView searcher;
 
     private static final String TAG = "Mostrar mis actividades";
 
@@ -52,6 +54,8 @@ public class Mis_actividades extends AppCompatActivity {
         loading();
 
         recyclerView = (RecyclerView) findViewById(R.id.reciclermisactividades);
+
+        searcher = findViewById(R.id.searchmis);
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), ORIENTATION_PORTRAIT);
         recyclerView.addItemDecoration(dividerItemDecoration);
@@ -109,6 +113,30 @@ public class Mis_actividades extends AppCompatActivity {
                         }
                     }
                 });
+
+        searcher.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                buscar(newText);
+                return true;
+            }
+        });
+    }
+
+    public void buscar(String nt){
+        ArrayList<ItemAdapter> miLista = new ArrayList<>();
+        for (ItemAdapter obj: data){
+            if(obj.getText().toLowerCase().contains(nt.toLowerCase()))
+                miLista.add(obj);
+        }
+
+        mAdapter = new MyAdapter(miLista, context);
+        recyclerView.setAdapter(mAdapter);
     }
 
     public void volver(android.view.View V){
