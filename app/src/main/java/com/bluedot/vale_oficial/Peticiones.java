@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.SearchView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -35,11 +36,14 @@ public class Peticiones extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     String uid;
     Context context = this;
+    private SearchView searcher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_peticiones);
+
+        searcher = findViewById(R.id.searchpeticiones);
 
         loading();
 
@@ -81,6 +85,30 @@ public class Peticiones extends AppCompatActivity {
             }
         });
 
+        searcher.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                buscar(newText);
+                return true;
+            }
+        });
+
+    }
+
+    public void buscar(String nt){
+        ArrayList<ItemAdapter> miLista = new ArrayList<>();
+        for (ItemAdapter obj: data){
+            if(obj.getText().toLowerCase().contains(nt.toLowerCase()))
+                miLista.add(obj);
+        }
+
+        mAdapter = new MyAdapter_Peticiones(miLista, context);
+        recyclerView.setAdapter(mAdapter);
     }
 
     public void volver(android.view.View V){

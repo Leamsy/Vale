@@ -74,11 +74,18 @@ public class MyAdapterApuntados extends RecyclerView.Adapter<RecyclerView.ViewHo
         if(idautor.equals(idPersona))
             ((ViewHolder) viewHolder).btnEliminar.setVisibility(View.GONE);
 
+        /*
+
         try {
             Picasso.get().load(itemAdapter.getImage()).into(((ViewHolder) viewHolder).mImg);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        */
+
+        /*
+
         ((ViewHolder) viewHolder).mImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,6 +94,8 @@ public class MyAdapterApuntados extends RecyclerView.Adapter<RecyclerView.ViewHo
                 ((ViewHolder) viewHolder).context.startActivity(intent);
             }
         });
+
+        */
 
 
         ((ViewHolder) viewHolder).btnEliminar.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +123,7 @@ public class MyAdapterApuntados extends RecyclerView.Adapter<RecyclerView.ViewHo
             super(itemView);
             context = itemView.getContext();
             mTv_name = (TextView) itemView.findViewById(R.id.nombreuserapuntado);
-            mImg = (ImageView) itemView.findViewById(R.id.imguserapuntado);
+            //mImg = (ImageView) itemView.findViewById(R.id.imguserapuntado);
             btnEliminar = (ImageView) itemView.findViewById(R.id.btnBorrarUserActividad);
         }
     }

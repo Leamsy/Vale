@@ -50,6 +50,8 @@ public class MyAdapterRechazados extends RecyclerView.Adapter<RecyclerView.ViewH
                 ((ViewHolder) viewHolder).context.startActivity(intent);
             }
         });
+
+        /*
         try {
             Picasso.get().load(itemAdapter.getImage()).into(((ViewHolder) viewHolder).mImg);
         } catch (Exception e) {
@@ -63,6 +65,8 @@ public class MyAdapterRechazados extends RecyclerView.Adapter<RecyclerView.ViewH
                 ((ViewHolder) viewHolder).context.startActivity(intent);
             }
         });
+
+        */
 
         ((ViewHolder) viewHolder).btnEliminar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,7 +86,7 @@ public class MyAdapterRechazados extends RecyclerView.Adapter<RecyclerView.ViewH
 
     class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mTv_name;
-        public ImageView mImg;
+        //public ImageView mImg;
         public ImageView btnEliminar;
 
         private final Context context;
@@ -91,7 +95,7 @@ public class MyAdapterRechazados extends RecyclerView.Adapter<RecyclerView.ViewH
             super(itemView);
             context = itemView.getContext();
             mTv_name = (TextView) itemView.findViewById(R.id.nombreusereliminado);
-            mImg = (ImageView) itemView.findViewById(R.id.imgusereliminado);
+            //mImg = (ImageView) itemView.findViewById(R.id.imgusereliminado);
             btnEliminar = (ImageView) itemView.findViewById(R.id.btnBorrarUserdeEliminado);
         }
     }

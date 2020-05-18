@@ -56,6 +56,7 @@ public class ListaApuntadosActividad extends AppCompatActivity implements View.O
         actividad = intent.getStringExtra("uid");
         esautor = intent.getStringExtra("esautor");
         idautor = intent.getStringExtra("idautor");
+        imagen_url = null;
 
         if(!esautor.equals("true"))
             findViewById(R.id.btnrechazados).setVisibility(View.GONE);
