@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -41,6 +42,7 @@ public class Lista_actividades extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter mAdapter;
+    private SearchView searcher;
     Context context = this;
     String uid;
 
@@ -62,6 +64,8 @@ public class Lista_actividades extends AppCompatActivity {
         findViewById(R.id.button).setVisibility(GONE);
         findViewById(R.id.espacioac).setVisibility(GONE);
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        searcher = findViewById(R.id.search);
 
 
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -119,6 +123,18 @@ public class Lista_actividades extends AppCompatActivity {
             }
         });
 
+        searcher.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                buscar(newText);
+                return true;
+            }
+        });
 
     }
 
@@ -131,6 +147,17 @@ public class Lista_actividades extends AppCompatActivity {
     public void aniadir(android.view.View V){
         Intent intent = new Intent(this, AgregarActividad.class);
         startActivity(intent);
+    }
+
+    public void buscar(String nt){
+        ArrayList<ItemAdapter> miLista = new ArrayList<>();
+        for (ItemAdapter obj: data){
+            if(obj.getText().toLowerCase().contains(nt.toLowerCase()))
+                miLista.add(obj);
+        }
+
+        mAdapter = new MyAdapter(miLista, context);
+        recyclerView.setAdapter(mAdapter);
     }
 
 }
