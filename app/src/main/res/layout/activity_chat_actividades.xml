@@ -15,6 +15,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
         android:backgroundTint="#00FFFFFF"
+        android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,12 +23,28 @@
 
         <ImageButton
             android:id="@+id/atrasperfilchat"
-            android:layout_width="100dp"
-            android:layout_height="75dp"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
             android:background="#00FFFFFF"
             android:onClick="onClick"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/atras" />
+            app:srcCompat="@drawable/back" />
+
+        <ImageView
+            android:id="@+id/logocasachat"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/logocasa" />
 
 
     </LinearLayout>
@@ -50,6 +67,20 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/titulochatsuperior"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:paddingBottom="5dp"
+                android:text="CHAT DE LA ACTIVIDAD:"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/titulochat"
