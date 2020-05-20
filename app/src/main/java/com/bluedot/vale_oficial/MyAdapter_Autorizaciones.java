@@ -41,6 +41,7 @@ public class MyAdapter_Autorizaciones extends RecyclerView.Adapter<RecyclerView.
                 intent.putExtra("uid_act", itemAdapter.getIdActividad());
                 intent.putExtra("act_nombre", itemAdapter.getText());
                 ((ViewHolder) viewHolder).context.startActivity(intent);
+                ((ListaAutorizaciones)mContext).finish();
             }
         });
 
