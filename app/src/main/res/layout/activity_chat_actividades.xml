@@ -55,7 +55,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="5dp"
-        app:cardBackgroundColor="#009688"
+        app:cardBackgroundColor="#0A675E"
         app:cardCornerRadius="5dp"
         app:cardElevation="3dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout10"
@@ -73,13 +73,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="5dp"
-                android:paddingTop="5dp"
                 android:paddingEnd="5dp"
-                android:paddingBottom="5dp"
                 android:text="CHAT DE LA ACTIVIDAD:"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -98,6 +96,7 @@
                 android:paddingBottom="5dp"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -145,7 +144,7 @@
                 <ImageView
                     android:id="@+id/micro"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="40dp"
                     android:onClick="onClick"
                     android:paddingStart="5dp"
                     android:paddingTop="5dp"
@@ -157,7 +156,7 @@
                 <Button
                     android:id="@+id/record"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
+                    android:layout_height="70dp"
                     android:onClick="onClick"
                     android:paddingStart="5dp"
                     android:paddingTop="5dp"
@@ -187,18 +186,28 @@
                 android:id="@+id/campomensajes"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/estilocampos"
                 android:ems="10"
                 android:hint="@string/mensaje"
                 android:inputType="textPersonName"
                 android:paddingStart="5dp"
-                android:paddingEnd="5dp" />
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:paddingBottom="5dp" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/enviarchat"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
                 android:src="@android:drawable/ic_menu_send"
                 app:civ_border_color="#009688"
                 app:civ_border_width="3dp" />

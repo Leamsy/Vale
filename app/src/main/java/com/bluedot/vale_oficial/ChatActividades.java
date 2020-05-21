@@ -60,24 +60,17 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
     private String nombre;
     private Button grabar;
     private CardView cardView;
-
+    private ImageView casa;
     private MyAdapter_chat myAdapter_chat;
     String uid_act;
     String idchat;
     String iduser;
-
     private static String fileName = null;
-
     private MediaRecorder recorder = null;
-
-
     // Requesting permission to RECORD_AUDIO
     private boolean permissionToRecordAccepted = false;
     private String [] permissions = {Manifest.permission.RECORD_AUDIO};
-
     boolean mStartRecording = true;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +86,7 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
         cardView = findViewById(R.id.cvhablar);
         grabar = findViewById(R.id.record);
         grabar.setBackgroundColor(RED);
+        casa = findViewById(R.id.logocasachat);
 
         fileName = getExternalCacheDir().getAbsolutePath();
         fileName += "/audiorecordtest.aac";
@@ -101,6 +95,7 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
 
         btnatras.setOnClickListener(this);
         grabar.setOnClickListener(this);
+        casa.setOnClickListener(this);
 
 
         todosmensajes = findViewById(R.id.reciclerchat);
@@ -192,6 +187,12 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
         finish();
     }
 
+    public void irAcasa(){
+        Intent intent = new Intent(ChatActividades.this, Principal.class);
+        startActivity(intent);
+        finish();
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -209,6 +210,10 @@ public class ChatActividades extends AppCompatActivity implements View.OnClickLi
             case R.id.micro:
                 onRecord(mStartRecording);
                 mStartRecording = !mStartRecording;
+                break;
+
+            case R.id.logocasachat:
+                irAcasa();
                 break;
         }
     }
