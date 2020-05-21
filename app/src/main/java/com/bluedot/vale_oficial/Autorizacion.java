@@ -72,7 +72,7 @@ public class Autorizacion extends AppCompatActivity implements View.OnClickListe
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                        String nombresocio = document.getData().get("nombre").toString();;
+                        String nombresocio = document.getData().get("nombre").toString();
                         TextView elnombre = findViewById(R.id.nombreUser);
                         //Toast.makeText(Autorizacion.this, document.getData().get("nombre").toString(), Toast.LENGTH_SHORT).show();
                         //Toast.makeText(Autorizacion.this, nombresocio, Toast.LENGTH_SHORT).show();
