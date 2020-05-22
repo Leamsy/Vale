@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +41,8 @@ public class Autorizacion extends AppCompatActivity implements View.OnClickListe
     private Button apuntarse;
     private boolean hayplazas = false;
     private Button rechazarlo;
+    private ImageView ircasa;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,9 @@ public class Autorizacion extends AppCompatActivity implements View.OnClickListe
 
         rechazarlo = findViewById(R.id.btndenegar);
         rechazarlo.setOnClickListener(this);
+
+        ircasa = findViewById(R.id.backhome);
+        ircasa.setOnClickListener(this);
 
 
 
@@ -224,6 +230,12 @@ public class Autorizacion extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    public void irAcasa(){
+        Intent intent = new Intent(Autorizacion.this, Menu_tutor.class);
+        startActivity(intent);
+        finish();
+    }
+
 
 @Override
 public void onClick(View v) {
@@ -239,6 +251,10 @@ public void onClick(View v) {
 
             case R.id.btndenegar:
                 rechazar();
+                break;
+
+            case R.id.backhome:
+                irAcasa();
                 break;
         }
     }

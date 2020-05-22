@@ -154,4 +154,10 @@ public class Mis_actividades extends AppCompatActivity {
         findViewById(R.id.reciclermisactividades).setVisibility(VISIBLE);
         findViewById(R.id.gif).setVisibility(INVISIBLE);
     }
+
+    public void irAcasa(android.view.View V){
+        Intent intent = new Intent(Mis_actividades.this, Principal.class);
+        startActivity(intent);
+        finish();
+    }
 }

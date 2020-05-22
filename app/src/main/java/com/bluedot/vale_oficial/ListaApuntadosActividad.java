@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -42,6 +43,7 @@ public class ListaApuntadosActividad extends AppCompatActivity implements View.O
     private Button btnvereliminados;
     private String esautor = "false";
     private String idautor;
+    private ImageView casa;
 
     String idvistausuario;
     String imagen_url;
@@ -62,6 +64,8 @@ public class ListaApuntadosActividad extends AppCompatActivity implements View.O
             findViewById(R.id.btnrechazados).setVisibility(View.GONE);
 
         btnvereliminados = findViewById(R.id.btnrechazados);
+        casa = findViewById(R.id.btncasa);
+        casa.setOnClickListener(this);
 
         btnvereliminados.setOnClickListener(this);
 
@@ -136,6 +140,12 @@ public class ListaApuntadosActividad extends AppCompatActivity implements View.O
         startActivity(intent);
     }
 
+    public void irAcasa(){
+        Intent intent = new Intent(ListaApuntadosActividad.this, Principal.class);
+        startActivity(intent);
+        finish();
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -145,6 +155,10 @@ public class ListaApuntadosActividad extends AppCompatActivity implements View.O
 
             case R.id.btnrechazados:
                 verRechazados();
+                break;
+
+            case R.id.btncasa:
+                irAcasa();
                 break;
         }
     }

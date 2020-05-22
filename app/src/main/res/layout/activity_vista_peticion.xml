@@ -23,11 +23,28 @@
 
         <ImageView
             android:id="@+id/btnatrasvp"
-            android:layout_width="100dp"
-            android:layout_height="75dp"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
             android:contentDescription="@string/volver"
             android:onClick="onClick"
-            app:srcCompat="@drawable/atras" />
+            app:srcCompat="@drawable/back" />
+
+        <ImageView
+            android:id="@+id/btncasita"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            app:srcCompat="@drawable/logocasa" />
 
     </LinearLayout>
 
