@@ -150,7 +150,7 @@
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="5dp"
         android:background="@drawable/estiloboton"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="@color/azulboton"
         android:onClick="enviar"
         android:text="@string/Enviar"
         android:textColor="#FFFFFF"

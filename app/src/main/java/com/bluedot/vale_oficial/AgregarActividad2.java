@@ -279,7 +279,7 @@ public class AgregarActividad2 extends AppCompatActivity implements TimePickerDi
     public void mensaje(android.view.View V){
         AlertDialog.Builder dialog=new AlertDialog.Builder(this);
         dialog.setMessage("Si la actividad conlleva un riesgo, por mínimo que sea, para el usuario. Si tiene dudas de si la actividad debe requerir autorización, por favor, pongase en contacto con la asociación Vale");
-        dialog.setTitle("Se requerirá autorización por parte del tutor cuando...");
+        dialog.setTitle("Se requerirá autorización cuando...");
         dialog.setPositiveButton("Ok",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
