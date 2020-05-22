@@ -39,6 +39,12 @@ public class AgregarPeticion extends AppCompatActivity {
         finish();
     }
 
+    public void irAcasa(android.view.View V){
+        Intent intent = new Intent(AgregarPeticion.this, Principal.class);
+        startActivity(intent);
+        finish();
+    }
+
     public void enviar(android.view.View V){
         Timestamp timestamp = null;
         timestamp = timestamp.now();

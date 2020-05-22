@@ -211,4 +211,10 @@ public class ModificarActividad extends AppCompatActivity implements TimePickerD
     public void volver(android.view.View V) {
         finish();
     }
+
+    public void irAcasa(android.view.View V){
+        Intent intent = new Intent(ModificarActividad.this, Principal.class);
+        startActivity(intent);
+        finish();
+    }
 }

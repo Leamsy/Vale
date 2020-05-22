@@ -68,6 +68,7 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
     //private String elauth;
     private boolean pend;
     FirebaseStorage storage;
+    private ImageView casa;
 
 
     @Override
@@ -90,6 +91,8 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
         es_autor = false;
         idautor = null;
         storage = FirebaseStorage.getInstance();
+        casa = findViewById(R.id.gohome);
+        casa.setOnClickListener(this);
 
         findViewById(R.id.txtinfo).setVisibility(GONE);
 
@@ -351,6 +354,9 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
             case R.id.eliminar:
                 eliminarActividad();
                 break;
+            case R.id.gohome:
+                irAcasa();
+                break;
         }
     }
 
@@ -560,4 +566,10 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                 });
 
     }//Fin funcion borrar
+
+    public void irAcasa(){
+        Intent intent = new Intent(VistaActividad.this, Principal.class);
+        startActivity(intent);
+        finish();
+    }
 }
