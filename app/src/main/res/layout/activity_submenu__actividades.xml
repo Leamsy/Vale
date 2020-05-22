@@ -79,6 +79,10 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
                 android:onClick="irListaActividades"
                 app:cardBackgroundColor="#009688"
                 app:cardCornerRadius="10dp"
@@ -138,6 +142,10 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
                 android:onClick="irPeticiones"
                 app:cardBackgroundColor="#009688"
                 app:cardCornerRadius="10dp"
@@ -199,6 +207,10 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
                 android:onClick="cambiarMisActividades"
                 app:cardBackgroundColor="#009688"
                 app:cardCornerRadius="10dp"

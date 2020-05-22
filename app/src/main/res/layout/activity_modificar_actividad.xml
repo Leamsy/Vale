@@ -118,7 +118,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/estiloboton"
-                        android:backgroundTint="#3F51B5"
+                        android:backgroundTint="@color/azulboton"
                         android:onClick="openDate"
                         android:text="@string/elegirfecha"
                         android:textColor="#FFFFFF"
@@ -160,7 +160,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/estiloboton"
-                        android:backgroundTint="#3F51B5"
+                        android:backgroundTint="@color/azulboton"
                         android:onClick="openTime"
                         android:text="@string/hora"
                         android:textColor="#FFFFFF"
@@ -379,12 +379,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/estiloboton"
-                android:backgroundTint="#3F51B5"
+                android:backgroundTint="@color/azulboton"
                 android:onClick="modificar"
                 android:text="MODIFICAR"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
-                android:textSize="14pt" />
+                android:textSize="24sp" />
 
             <Space
                 android:layout_width="match_parent"

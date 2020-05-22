@@ -20,14 +20,17 @@
         <activity android:name="com.bluedot.vale_oficial.Vista_perfil_visitante"></activity>
         <activity android:name="com.bluedot.vale_oficial.ListaRechazadosActividad" />
         <activity android:name="com.bluedot.vale_oficial.ListaApuntadosActividad" />
-        <activity android:name="com.bluedot.vale_oficial.ModificarActividad" />
+        <activity android:name="com.bluedot.vale_oficial.ModificarActividad"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name="com.bluedot.vale_oficial.ChatActividades"
             android:windowSoftInputMode="stateHidden"/>
-        <activity android:name="com.bluedot.vale_oficial.AgregarActividad2" />
+        <activity android:name="com.bluedot.vale_oficial.AgregarActividad2"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name="com.bluedot.vale_oficial.Menu_tutor" />
         <activity android:name="com.bluedot.vale_oficial.Autorizacion" />
         <activity android:name="com.bluedot.vale_oficial.ListaAutorizaciones" />
-        <activity android:name="com.bluedot.vale_oficial.AgregarPeticion" />
+        <activity android:name="com.bluedot.vale_oficial.AgregarPeticion"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name="com.bluedot.vale_oficial.VistaPeticion" />
         <activity
             android:name="com.bluedot.vale_oficial.Peticiones"
@@ -46,7 +49,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.bluedot.vale_oficial.AgregarActividad" />
+        <activity android:name="com.bluedot.vale_oficial.AgregarActividad"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name="com.bluedot.vale_oficial.PerfilUsuario" />
     </application>
 
