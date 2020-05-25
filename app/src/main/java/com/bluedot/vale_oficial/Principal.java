@@ -60,9 +60,9 @@ public class Principal extends AppCompatActivity  {
                                                                 @Override
                                                                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                                                     if (task.isSuccessful()) {
-                                                                        final DocumentSnapshot document = task.getResult();
-                                                                        if (document.exists()) {
-                                                                            Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                                                                        final DocumentSnapshot documentvaloracion = task.getResult();
+                                                                        if (documentvaloracion.exists()) {
+                                                                            Log.d(TAG, "DocumentSnapshot data: " + documentvaloracion.getData());
                                                                         } else {
                                                                             //Si no existe que saque el comentario de valorar
 

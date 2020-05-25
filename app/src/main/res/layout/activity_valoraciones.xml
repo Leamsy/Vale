@@ -124,6 +124,7 @@
                             android:layout_marginTop="5dp"
                             android:layout_marginEnd="5dp"
                             android:layout_marginBottom="5dp"
+                            android:onClick="onClick"
                             app:srcCompat="@drawable/muyfeliz" />
 
                         <TextView
@@ -131,6 +132,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="#009688"
+                            android:onClick="onClick"
                             android:paddingStart="5dp"
                             android:paddingTop="5dp"
                             android:paddingEnd="5dp"
@@ -168,6 +170,7 @@
                             android:layout_marginTop="5dp"
                             android:layout_marginEnd="5dp"
                             android:layout_marginBottom="5dp"
+                            android:onClick="onClick"
                             app:srcCompat="@drawable/sonriente" />
 
                         <TextView
@@ -175,6 +178,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="#009688"
+                            android:onClick="onClick"
                             android:paddingStart="5dp"
                             android:paddingTop="5dp"
                             android:paddingEnd="5dp"
@@ -219,6 +223,7 @@
                             android:layout_marginTop="5dp"
                             android:layout_marginEnd="5dp"
                             android:layout_marginBottom="5dp"
+                            android:onClick="onClick"
                             app:srcCompat="@drawable/tristeza" />
 
                         <TextView
@@ -226,6 +231,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="#009688"
+                            android:onClick="onClick"
                             android:paddingStart="5dp"
                             android:paddingTop="5dp"
                             android:paddingEnd="5dp"
@@ -263,6 +269,7 @@
                             android:layout_marginTop="5dp"
                             android:layout_marginEnd="5dp"
                             android:layout_marginBottom="5dp"
+                            android:onClick="onClick"
                             app:srcCompat="@drawable/muymal" />
 
                         <TextView
@@ -270,6 +277,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="#009688"
+                            android:onClick="onClick"
                             android:paddingStart="5dp"
                             android:paddingTop="5dp"
                             android:paddingEnd="5dp"
@@ -294,6 +302,7 @@
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/estiloboton"
                 android:backgroundTint="#009688"
+                android:onClick="onClick"
                 android:text="No valorar"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp"
