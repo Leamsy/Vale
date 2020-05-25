@@ -19,7 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-public class Principal extends AppCompatActivity {
+public class Principal extends AppCompatActivity  {
     private String TAG = "Principal";
     private String uid;
     private String nActividad;
@@ -60,7 +60,7 @@ public class Principal extends AppCompatActivity {
                                                                 @Override
                                                                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                                                     if (task.isSuccessful()) {
-                                                                        DocumentSnapshot document = task.getResult();
+                                                                        final DocumentSnapshot document = task.getResult();
                                                                         if (document.exists()) {
                                                                             Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                                                                         } else {
@@ -73,6 +73,8 @@ public class Principal extends AppCompatActivity {
                                                                                     new DialogInterface.OnClickListener() {
                                                                                         public void onClick(DialogInterface dialog, int which) {
                                                                                             Intent intent = new Intent(Principal.this, Valoraciones.class);
+                                                                                            intent.putExtra("uid_act", document.getId());
+                                                                                            intent.putExtra("n_act", nActividad);
                                                                                             startActivity(intent);
                                                                                             //finish();
                                                                                         }
