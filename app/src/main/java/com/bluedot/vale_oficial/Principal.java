@@ -66,7 +66,24 @@ public class Principal extends AppCompatActivity {
                                                                         } else {
                                                                             //Si no existe que saque el comentario de valorar
 
-                                                                            //AQUÍ VA EL ALERT DIALOG
+                                                                            AlertDialog.Builder dialog=new AlertDialog.Builder(Principal.this);
+                                                                            dialog.setMessage("Se ha realizado la actividad: " + nActividad + ", donde estabas apuntado/a, pulsa sobre VALORAR para valorar a la persona o personas con las que has realizado la actividad");
+                                                                            dialog.setTitle("Valorar: " + nActividad);
+                                                                            dialog.setPositiveButton("VALORAR",
+                                                                                    new DialogInterface.OnClickListener() {
+                                                                                        public void onClick(DialogInterface dialog, int which) {
+                                                                                            Intent intent = new Intent(Principal.this, Valoraciones.class);
+                                                                                            startActivity(intent);
+                                                                                            //finish();
+                                                                                        }
+                                                                                    });
+                                                                            dialog.setNegativeButton("MÁS TARDE",
+                                                                                    new DialogInterface.OnClickListener() {
+                                                                                        public void onClick(DialogInterface dialog, int which) {
+                                                                                        }
+                                                                                    });
+                                                                            AlertDialog alertDialog=dialog.create();
+                                                                            alertDialog.show();
 
                                                                             /////////////////////////////////////////////////
                                                                         }
@@ -91,10 +108,6 @@ public class Principal extends AppCompatActivity {
                         }
                     }
                 });
-    }
-
-    public void valorar(String valoracion){
-
     }
 
 
