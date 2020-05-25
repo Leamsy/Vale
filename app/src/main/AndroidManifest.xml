@@ -9,49 +9,55 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
-        tools:ignore="HardcodedDebugMode"
-        android:debuggable = "false"
         android:allowBackup="true"
+        android:debuggable="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name="com.bluedot.vale_oficial.Vista_perfil_visitante"></activity>
-        <activity android:name="com.bluedot.vale_oficial.ListaRechazadosActividad" />
-        <activity android:name="com.bluedot.vale_oficial.ListaApuntadosActividad" />
-        <activity android:name="com.bluedot.vale_oficial.ModificarActividad"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name="com.bluedot.vale_oficial.ChatActividades"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name="com.bluedot.vale_oficial.AgregarActividad2"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name="com.bluedot.vale_oficial.Menu_tutor" />
-        <activity android:name="com.bluedot.vale_oficial.Autorizacion" />
-        <activity android:name="com.bluedot.vale_oficial.ListaAutorizaciones" />
-        <activity android:name="com.bluedot.vale_oficial.AgregarPeticion"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name="com.bluedot.vale_oficial.VistaPeticion" />
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        tools:ignore="HardcodedDebugMode">
+        <activity android:name=".Valoraciones"></activity>
+        <activity android:name=".Vista_perfil_visitante" />
+        <activity android:name=".ListaRechazadosActividad" />
+        <activity android:name=".ListaApuntadosActividad" />
         <activity
-            android:name="com.bluedot.vale_oficial.Peticiones"
+            android:name=".ModificarActividad"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ChatActividades"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".AgregarActividad2"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".Menu_tutor" />
+        <activity android:name=".Autorizacion" />
+        <activity android:name=".ListaAutorizaciones" />
+        <activity
+            android:name=".AgregarPeticion"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".VistaPeticion" />
+        <activity
+            android:name=".Peticiones"
             android:label="@string/title_activity_peticiones"
             android:theme="@style/NoActionBar" />
-        <activity android:name="com.bluedot.vale_oficial.VistaActividad" />
-        <activity android:name="com.bluedot.vale_oficial.Login" />
-        <activity android:name="com.bluedot.vale_oficial.Lista_actividades" />
-        <activity android:name="com.bluedot.vale_oficial.Submenu_Actividades" />
-        <activity android:name="com.bluedot.vale_oficial.Mis_actividades" />
-        <activity android:name="com.bluedot.vale_oficial.Principal" />
-        <activity android:name="com.bluedot.vale_oficial.splashscreen">
+        <activity android:name=".VistaActividad" />
+        <activity android:name=".Login" />
+        <activity android:name=".Lista_actividades" />
+        <activity android:name=".Submenu_Actividades" />
+        <activity android:name=".Mis_actividades" />
+        <activity android:name=".Principal" />
+        <activity android:name=".splashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.bluedot.vale_oficial.AgregarActividad"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name="com.bluedot.vale_oficial.PerfilUsuario" />
+        <activity
+            android:name=".AgregarActividad"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".PerfilUsuario" />
     </application>
 
 </manifest>
