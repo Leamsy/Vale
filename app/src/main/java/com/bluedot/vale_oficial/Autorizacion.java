@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +41,8 @@ public class Autorizacion extends AppCompatActivity implements View.OnClickListe
     private Button apuntarse;
     private boolean hayplazas = false;
     private Button rechazarlo;
+    private ImageView ircasa;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,9 @@ public class Autorizacion extends AppCompatActivity implements View.OnClickListe
 
         rechazarlo = findViewById(R.id.btndenegar);
         rechazarlo.setOnClickListener(this);
+
+        ircasa = findViewById(R.id.backhome);
+        ircasa.setOnClickListener(this);
 
 
 
@@ -72,7 +78,7 @@ public class Autorizacion extends AppCompatActivity implements View.OnClickListe
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                        String nombresocio = document.getData().get("nombre").toString();;
+                        String nombresocio = document.getData().get("nombre").toString();
                         TextView elnombre = findViewById(R.id.nombreUser);
                         //Toast.makeText(Autorizacion.this, document.getData().get("nombre").toString(), Toast.LENGTH_SHORT).show();
                         //Toast.makeText(Autorizacion.this, nombresocio, Toast.LENGTH_SHORT).show();
@@ -181,6 +187,11 @@ public class Autorizacion extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                        Toast.makeText(Autorizacion.this, "No ha autorizado al usuario a la actividad, no podrá volver a apuntarse a esta actividad", Toast.LENGTH_LONG).show();
+
+                        Intent intent = new Intent(Autorizacion.this, ListaAutorizaciones.class);
+                        startActivity(intent);
+                        finish();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -189,36 +200,37 @@ public class Autorizacion extends AppCompatActivity implements View.OnClickListe
                         Log.w(TAG, "Error deleting document", e);
                     }
                 });
-
-        Toast.makeText(Autorizacion.this, "No ha autorizado al usuario a la actividad, no podrá volver a apuntarse a esta actividad", Toast.LENGTH_LONG).show();
-
-        Intent intent = new Intent(Autorizacion.this, Menu_tutor.class);
-        startActivity(intent);
-        finish();
     }
 
     public void siapuntar(){
-        Map<String, Object> mapa = new HashMap<>();
-        FirebaseFirestore.getInstance().collection("actividades").document(uid_act).collection("apuntados").document(uid_auth).set(mapa);
         FirebaseFirestore.getInstance().collection("actividades").document(uid_act).collection("pendientes").document(uid_auth)
                 .delete()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                        Map<String, Object> mapa = new HashMap<>();
+                        FirebaseFirestore.getInstance().collection("actividades").document(uid_act).collection("apuntados").document(uid_auth).set(mapa);
+                        DocumentReference actualizarRef = FirebaseFirestore.getInstance().collection("actividades").document(uid_act);
+                        actualizarRef.update("plazas_socios", FieldValue.increment(-1));
+                        Toast.makeText(Autorizacion.this, "Se ha autorizado a la actividad correctamente", Toast.LENGTH_LONG).show();
+
+                        Intent intent = new Intent(Autorizacion.this, ListaAutorizaciones.class);
+                        startActivity(intent);
+                        finish();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.w(TAG, "Error deleting document", e);
+                        Toast.makeText(Autorizacion.this, "La autorización ha fallado, vuelva a intentarlo", Toast.LENGTH_LONG).show();
                     }
                 });
-        DocumentReference actualizarRef = FirebaseFirestore.getInstance().collection("actividades").document(uid_act);
-        actualizarRef.update("plazas_socios", FieldValue.increment(-1));
 
-        Toast.makeText(Autorizacion.this, "Se ha autorizado a la actividad correctamente", Toast.LENGTH_LONG).show();
+    }
 
+    public void irAcasa(){
         Intent intent = new Intent(Autorizacion.this, Menu_tutor.class);
         startActivity(intent);
         finish();
@@ -239,6 +251,10 @@ public void onClick(View v) {
 
             case R.id.btndenegar:
                 rechazar();
+                break;
+
+            case R.id.backhome:
+                irAcasa();
                 break;
         }
     }

@@ -9,7 +9,10 @@
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/blancoroto"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        app:cardBackgroundColor="@color/blancorotisimo"
         app:cardCornerRadius="5dp"
         app:cardElevation="3dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,12 +31,10 @@
                 android:background="#009688"
                 android:hint="@string/nombre"
                 android:paddingStart="5dp"
-                android:paddingTop="5dp"
                 android:paddingEnd="5dp"
-                android:paddingBottom="5dp"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -50,7 +51,7 @@
                 android:paddingEnd="5dp"
                 android:paddingBottom="5dp"
                 android:textColor="#000000"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/play"
@@ -66,7 +67,7 @@
                 android:paddingBottom="3dp"
                 android:text="► Reproducir audio"
                 android:textColor="#FFFFFF"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -78,12 +79,5 @@
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

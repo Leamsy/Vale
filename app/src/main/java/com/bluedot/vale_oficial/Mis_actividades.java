@@ -67,7 +67,8 @@ public class Mis_actividades extends AppCompatActivity {
 
         CollectionReference colRef = FirebaseFirestore.getInstance().collection("actividades");
 
-        FirebaseFirestore.getInstance().collection("actividades").orderBy("fecha", Query.Direction.DESCENDING)
+        //FirebaseFirestore.getInstance().collection("actividades")
+                colRef.orderBy("fecha", Query.Direction.ASCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -153,5 +154,11 @@ public class Mis_actividades extends AppCompatActivity {
     private void ready(){
         findViewById(R.id.reciclermisactividades).setVisibility(VISIBLE);
         findViewById(R.id.gif).setVisibility(INVISIBLE);
+    }
+
+    public void irAcasa(android.view.View V){
+        Intent intent = new Intent(Mis_actividades.this, Principal.class);
+        startActivity(intent);
+        finish();
     }
 }

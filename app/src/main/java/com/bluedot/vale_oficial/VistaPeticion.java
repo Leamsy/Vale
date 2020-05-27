@@ -24,6 +24,7 @@ public class VistaPeticion extends AppCompatActivity implements View.OnClickList
     String descripcion;
     String autor_nombre;
     private ImageView volver;
+    private ImageView casica;
 
 
     @Override
@@ -33,6 +34,9 @@ public class VistaPeticion extends AppCompatActivity implements View.OnClickList
 
         volver = findViewById(R.id.btnatrasvp);
         volver.setOnClickListener(this);
+
+        casica = findViewById(R.id.btncasita);
+        casica.setOnClickListener(this);
 
         Intent intent = getIntent();
         uid_act = intent.getStringExtra("uid");
@@ -72,11 +76,20 @@ public class VistaPeticion extends AppCompatActivity implements View.OnClickList
         finish();
     }
 
+    public void irAcasa(){
+        Intent intent = new Intent(VistaPeticion.this, Principal.class);
+        startActivity(intent);
+        finish();
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnatrasvp:
                 volver();
+                break;
+            case R.id.btncasita:
+                irAcasa();
                 break;
         }
     }
