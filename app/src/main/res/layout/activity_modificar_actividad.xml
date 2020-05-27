@@ -42,6 +42,7 @@
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
             android:layout_weight="1"
+            android:contentDescription="@string/casa"
             android:onClick="irAcasa"
             app:srcCompat="@drawable/logocasa" />
 
@@ -79,6 +80,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#009688"
+                    android:contentDescription="Modificar actividad"
                     android:paddingStart="5dp"
                     android:paddingTop="5dp"
                     android:paddingEnd="5dp"
@@ -106,6 +108,7 @@
                         android:id="@+id/imageView11"
                         android:layout_width="match_parent"
                         android:layout_height="75dp"
+                        android:contentDescription="@string/Fecha"
                         android:onClick="openDate"
                         android:paddingStart="5dp"
                         android:paddingTop="5dp"
@@ -119,6 +122,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/estiloboton"
                         android:backgroundTint="@color/azulboton"
+                        android:contentDescription="@string/Fecha"
                         android:onClick="openDate"
                         android:text="@string/elegirfecha"
                         android:textColor="#FFFFFF"
@@ -146,6 +150,7 @@
                         android:id="@+id/imageView12"
                         android:layout_width="match_parent"
                         android:layout_height="75dp"
+                        android:contentDescription="@string/hora"
                         android:onClick="openTime"
                         android:paddingStart="5dp"
                         android:paddingTop="5dp"
@@ -161,6 +166,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/estiloboton"
                         android:backgroundTint="@color/azulboton"
+                        android:contentDescription="@string/hora"
                         android:onClick="openTime"
                         android:text="@string/hora"
                         android:textColor="#FFFFFF"
@@ -190,6 +196,7 @@
                         android:id="@+id/imageView14"
                         android:layout_width="match_parent"
                         android:layout_height="75dp"
+                        android:contentDescription="@string/Precio"
                         android:paddingStart="5dp"
                         android:paddingTop="5dp"
                         android:paddingEnd="5dp"
@@ -202,6 +209,7 @@
                         android:id="@+id/precio"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/Precio"
                         android:ems="10"
                         android:hint="@string/Precio"
                         android:inputType="numberDecimal"
@@ -233,6 +241,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#009688"
+                        android:contentDescription="Plazas disponibles"
                         android:text="Plazas disponibles"
                         android:textAlignment="center"
                         android:textColor="#FFFFFF"
@@ -249,6 +258,7 @@
                             android:id="@+id/textView9"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:contentDescription="Voluntarios"
                             android:text="@string/numvoluntarios"
                             android:textAlignment="center"
                             android:textColor="#000000"
@@ -265,6 +275,7 @@
                                 android:id="@+id/imageView25"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
+                                android:contentDescription="menos voluntarios"
                                 android:onClick="menos_v"
                                 app:srcCompat="@drawable/menos" />
 
@@ -293,6 +304,7 @@
                                 android:id="@+id/imageView26"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
+                                android:contentDescription="mas voluntarios"
                                 android:onClick="mas_v"
                                 app:srcCompat="@drawable/mas" />
                         </LinearLayout>
@@ -313,6 +325,7 @@
                             android:id="@+id/textView3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:contentDescription="Socios"
                             android:text="@string/numsocios"
                             android:textAlignment="center"
                             android:textColor="#000000"
@@ -329,6 +342,7 @@
                                 android:id="@+id/imageView28"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
+                                android:contentDescription="menos socios"
                                 android:onClick="menos_s"
                                 app:srcCompat="@drawable/menos" />
 
@@ -356,6 +370,7 @@
                                 android:id="@+id/imageView27"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
+                                android:contentDescription="mas socios"
                                 android:onClick="mas_s"
                                 app:srcCompat="@drawable/mas" />
                         </LinearLayout>
@@ -380,6 +395,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/estiloboton"
                 android:backgroundTint="@color/azulboton"
+                android:contentDescription="Modificar"
                 android:onClick="modificar"
                 android:text="MODIFICAR"
                 android:textAlignment="center"

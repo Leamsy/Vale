@@ -107,6 +107,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#FFFFFF"
+                        android:contentDescription="@string/txtactividades"
                         android:onClick="irSubmenu"
                         android:scaleType="fitCenter"
                         app:srcCompat="@drawable/actividades_y_fiestas" />
@@ -126,6 +127,7 @@
                         android:id="@+id/txtsugerencias"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/txtactividades"
                         android:fontFamily="sans-serif-condensed"
                         android:maxLines="1"
                         android:onClick="irSubmenu"
@@ -168,6 +170,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#FFFFFF"
+                        android:contentDescription="@string/txtperfil"
                         android:onClick="cambiarPerfil"
                         android:scaleType="fitCenter"
                         app:srcCompat="@drawable/perfil" />
@@ -186,6 +189,7 @@
                         android:id="@+id/txtPerfil"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/txtperfil"
                         android:fontFamily="sans-serif-condensed"
                         android:maxLines="1"
                         android:onClick="cambiarPerfil"
@@ -230,6 +234,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="120dp"
                         android:background="#FFFFFF"
+                        android:contentDescription="@string/titulosalir"
                         android:onClick="cerrarApp"
                         android:scaleType="fitCenter"
                         app:srcCompat="@drawable/salida" />
@@ -248,6 +253,7 @@
                         android:id="@+id/textView5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/titulosalir"
                         android:maxLines="1"
                         android:onClick="cerrarApp"
                         android:paddingStart="5dp"

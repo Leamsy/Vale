@@ -43,6 +43,7 @@
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
             android:layout_weight="1"
+            android:contentDescription="@string/casa"
             android:onClick="irAcasa"
             app:srcCompat="@drawable/logocasa" />
     </LinearLayout>
@@ -82,6 +83,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#009688"
+                        android:contentDescription="@string/titulo"
                         android:text="@string/titulo"
                         android:textAlignment="center"
                         android:textColor="#FFFFFF"
@@ -125,6 +127,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#009688"
+                        android:contentDescription="@string/descripcion"
                         android:text="@string/descripcion"
                         android:textAlignment="center"
                         android:textColor="#FFFFFF"
@@ -172,6 +175,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="5dp"
                         android:layout_marginBottom="5dp"
+                        android:contentDescription="Imagen elegir fecha"
                         android:onClick="pickFromGallery"
                         app:srcCompat="@drawable/foto"
                         tools:layout_editor_absoluteX="173dp"
@@ -205,6 +209,7 @@
                             android:layout_marginTop="5dp"
                             android:layout_marginEnd="5dp"
                             android:layout_marginBottom="5dp"
+                            android:contentDescription="Imagen elegida"
                             android:onClick="pickFromGallery"
                             android:scaleType="centerCrop" />
 

@@ -65,6 +65,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#009688"
+                    android:contentDescription="Menú de actividades"
                     android:paddingStart="5dp"
                     android:paddingTop="5dp"
                     android:paddingEnd="5dp"
@@ -113,6 +114,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="#FFFFFF"
+                        android:contentDescription="@string/txttodaslasactividades"
                         android:onClick="irListaActividades"
                         android:scaleType="fitCenter"
                         app:srcCompat="@drawable/actividades_y_fiestas" />
@@ -120,6 +122,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/txttodaslasactividades"
                         android:fontFamily="sans-serif-condensed"
                         android:maxLines="1"
                         android:onClick="irListaActividades"
@@ -164,6 +167,7 @@
                         android:layout_height="120dp"
                         android:layout_weight="1"
                         android:background="#FFFFFF"
+                        android:contentDescription="@string/ListaPeticiones"
                         android:onClick="irPeticiones"
                         android:scaleType="fitCenter"
                         app:srcCompat="@drawable/tenerunaidea" />
@@ -185,6 +189,7 @@
                         android:id="@+id/txtmisactividades"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/ListaPeticiones"
                         android:fontFamily="sans-serif-condensed"
                         android:maxLines="1"
                         android:onClick="irPeticiones"
@@ -229,6 +234,7 @@
                         android:layout_height="120dp"
                         android:layout_weight="1"
                         android:background="#FFFFFF"
+                        android:contentDescription="@string/txtmisActividades"
                         android:onClick="cambiarMisActividades"
                         app:srcCompat="@drawable/mio" />
 
@@ -248,6 +254,7 @@
                         android:id="@+id/txtsugerencias"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/txtmisActividades"
                         android:fontFamily="sans-serif-condensed"
                         android:maxLines="1"
                         android:onClick="cambiarMisActividades"

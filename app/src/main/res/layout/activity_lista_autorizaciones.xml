@@ -30,6 +30,7 @@
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
             android:layout_weight="1"
+            android:contentDescription="@string/volver"
             android:onClick="volver"
             app:srcCompat="@drawable/back" />
 
@@ -42,6 +43,7 @@
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
             android:layout_weight="1"
+            android:contentDescription="@string/casa"
             android:onClick="irAcasa"
             app:srcCompat="@drawable/logocasa" />
     </LinearLayout>
@@ -77,6 +79,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#009688"
+                    android:contentDescription="Autorizaciones"
                     android:paddingStart="5dp"
                     android:paddingTop="5dp"
                     android:paddingEnd="5dp"
