@@ -72,7 +72,10 @@ public class splashscreen extends AppCompatActivity {
                                 else if (document.getData().get("activo").toString().equals("false")){
                                     mAuth.signOut();
                                     Toast.makeText(splashscreen.this, "No eres un usuario autorizado",
-                                            Toast.LENGTH_SHORT).show();
+                                            Toast.LENGTH_LONG).show();
+                                    Intent intent = new Intent(splashscreen.this, Login.class);
+                                    startActivity(intent);
+                                    finish();
                                 }
                                 else{
                                     new Handler().postDelayed(new Runnable() {
