@@ -1,6 +1,7 @@
 package com.bluedot.vale_oficial;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -144,6 +145,12 @@ public class ListaAutorizaciones extends AppCompatActivity {
     }
 
     public void volver(android.view.View V){
+        finish();
+    }
+
+    public void irAcasa(android.view.View V){
+        Intent intent = new Intent(ListaAutorizaciones.this, Principal.class);
+        startActivity(intent);
         finish();
     }
 }

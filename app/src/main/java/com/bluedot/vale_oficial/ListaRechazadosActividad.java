@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -38,6 +39,7 @@ public class ListaRechazadosActividad extends AppCompatActivity implements View.
     private List<String> listarechazados = new ArrayList<>();
     Context context = this;
     private boolean rechazado = false;
+    private ImageView casa;
 
     String idvistausuario;
     String imagen_url;
@@ -50,6 +52,9 @@ public class ListaRechazadosActividad extends AppCompatActivity implements View.
         //Recuperar el id de la actividad
         Intent intent = getIntent();
         actividad = intent.getStringExtra("uid");
+
+        casa = findViewById(R.id.btnhome);
+        casa.setOnClickListener(this);
 
         recyclerView = (RecyclerView) findViewById(R.id.listarechazados);
 
@@ -113,11 +118,20 @@ public class ListaRechazadosActividad extends AppCompatActivity implements View.
         finish();
     }
 
+    public void irAcasa(){
+        Intent intent = new Intent(ListaRechazadosActividad.this, Principal.class);
+        startActivity(intent);
+        finish();
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnatrasrechazados:
                 volver();
+                break;
+            case R.id.btnhome:
+                irAcasa();
                 break;
         }
     }

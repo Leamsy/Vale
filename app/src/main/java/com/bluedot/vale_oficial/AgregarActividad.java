@@ -79,6 +79,12 @@ public class AgregarActividad extends AppCompatActivity {
         finish();
     }
 
+    public void irAcasa(android.view.View V){
+        Intent intent = new Intent(AgregarActividad.this, Principal.class);
+        startActivity(intent);
+        finish();
+    }
+
 
     public void pickFromGallery(android.view.View V) {
         //Create an Intent with action as ACTION_PICK

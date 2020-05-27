@@ -22,6 +22,7 @@ public class MyAdapterRechazados extends RecyclerView.Adapter<RecyclerView.ViewH
     private List<ItemAdapter> mList;
     private Context mContext;
     private String TAG = "Borrar usuario de borrados";
+    private String idActividad;
 
     public MyAdapterRechazados(List<ItemAdapter> list, Context context) {
         super();
@@ -40,6 +41,7 @@ public class MyAdapterRechazados extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, int position) {
         final ItemAdapter itemAdapter = mList.get(position);
+        idActividad = itemAdapter.getIdActividad();
 
         ((ViewHolder) viewHolder).mTv_name.setText(itemAdapter.getText());
         ((ViewHolder) viewHolder).mTv_name.setOnClickListener(new View.OnClickListener() {
@@ -72,8 +74,10 @@ public class MyAdapterRechazados extends RecyclerView.Adapter<RecyclerView.ViewH
             @Override
             public void onClick(View v) {
                 borrarUsuarioDeRechazados(itemAdapter.getUidvisitante(), itemAdapter.getIdActividad());
-                Intent intent = new Intent(((ViewHolder) viewHolder).context, Mis_actividades.class);
+                Intent intent = new Intent(((ViewHolder) viewHolder).context, ListaRechazadosActividad.class);
+                intent.putExtra("uid", idActividad);
                 ((ViewHolder) viewHolder).context.startActivity(intent);
+                ((ListaRechazadosActividad)mContext).finish();
             }
         });
 
