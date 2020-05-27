@@ -22,29 +22,33 @@ import androidx.appcompat.app.AppCompatActivity;
 public class splashscreen extends AppCompatActivity {
 
     private final int DURACION_SPLASH = 1000;
-    private FirebaseAuth mAuth;
-    String uid;
+    //private FirebaseAuth mAuth;
+    private String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashscreen);
 
-        mAuth = FirebaseAuth.getInstance();
+        uid = null;
+        //mAuth = null;
+
+        //mAuth = FirebaseAuth.getInstance();
+        uid = FirebaseAuth.getInstance().getUid();
     }
 
     @Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+            updateUI(currentUser);
     }
 
     private void updateUI(FirebaseUser user) {
         if(isNetworkAvailable()){
             if (user != null) {
-                uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                //uid = FirebaseAuth.getInstance().getUid();
 
                 DocumentReference docRef = FirebaseFirestore.getInstance().collection("users").document(uid);
                 docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -65,7 +69,7 @@ public class splashscreen extends AppCompatActivity {
                                     }, DURACION_SPLASH);
                                 }
                                 else if (document.getData().get("activo").toString().equals("false")){
-                                    mAuth.signOut();
+                                    FirebaseAuth.getInstance().signOut();
                                     Toast.makeText(splashscreen.this, "No eres un usuario autorizado",
                                             Toast.LENGTH_SHORT).show();
                                 }

@@ -42,7 +42,8 @@
             android:label="@string/title_activity_peticiones"
             android:theme="@style/NoActionBar" />
         <activity android:name=".VistaActividad" />
-        <activity android:name=".Login" />
+        <activity android:name=".Login"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".Lista_actividades" />
         <activity android:name=".Submenu_Actividades" />
         <activity android:name=".Mis_actividades" />
