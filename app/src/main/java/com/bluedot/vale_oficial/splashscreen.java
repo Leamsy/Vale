@@ -22,7 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class splashscreen extends AppCompatActivity {
 
     private final int DURACION_SPLASH = 1000;
-    //private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
     private String uid;
 
     @Override
@@ -31,24 +31,25 @@ public class splashscreen extends AppCompatActivity {
         setContentView(R.layout.activity_splashscreen);
 
         uid = null;
-        //mAuth = null;
+        mAuth = null;
 
-        //mAuth = FirebaseAuth.getInstance();
-        uid = FirebaseAuth.getInstance().getUid();
+        mAuth = FirebaseAuth.getInstance();
+        uid = mAuth.getUid();
     }
 
     @Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        //Toast.makeText(this, currentUser.toString() , Toast.LENGTH_LONG).show();
             updateUI(currentUser);
     }
 
     private void updateUI(FirebaseUser user) {
         if(isNetworkAvailable()){
             if (user != null) {
-                //uid = FirebaseAuth.getInstance().getUid();
+                uid = mAuth.getUid();
 
                 DocumentReference docRef = FirebaseFirestore.getInstance().collection("users").document(uid);
                 docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -69,7 +70,7 @@ public class splashscreen extends AppCompatActivity {
                                     }, DURACION_SPLASH);
                                 }
                                 else if (document.getData().get("activo").toString().equals("false")){
-                                    FirebaseAuth.getInstance().signOut();
+                                    mAuth.signOut();
                                     Toast.makeText(splashscreen.this, "No eres un usuario autorizado",
                                             Toast.LENGTH_SHORT).show();
                                 }
@@ -85,8 +86,16 @@ public class splashscreen extends AppCompatActivity {
                                 }
 
                             } else {
+                                mAuth.signOut();
+                                Intent intent = new Intent(splashscreen.this, Login.class);
+                                startActivity(intent);
+                                finish();
                             }
                         } else {
+                            mAuth.signOut();
+                            Intent intent = new Intent(splashscreen.this, Login.class);
+                            startActivity(intent);
+                            finish();
                         }
                     }
                 });
