@@ -57,8 +57,7 @@ public class PerfilUsuario extends AppCompatActivity implements View.OnClickList
 
         loading();
 
-
-        uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        uid = FirebaseAuth.getInstance().getUid();
 
         DocumentReference docRef = FirebaseFirestore.getInstance().collection("users").document(uid);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
