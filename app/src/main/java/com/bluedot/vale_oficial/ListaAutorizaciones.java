@@ -149,7 +149,7 @@ public class ListaAutorizaciones extends AppCompatActivity {
     }
 
     public void irAcasa(android.view.View V){
-        Intent intent = new Intent(ListaAutorizaciones.this, Principal.class);
+        Intent intent = new Intent(ListaAutorizaciones.this, Menu_tutor.class);
         startActivity(intent);
         finish();
     }

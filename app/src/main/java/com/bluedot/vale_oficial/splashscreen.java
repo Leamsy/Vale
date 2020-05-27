@@ -30,11 +30,7 @@ public class splashscreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashscreen);
 
-        uid = null;
-        mAuth = null;
-
         mAuth = FirebaseAuth.getInstance();
-        uid = mAuth.getUid();
     }
 
     @Override

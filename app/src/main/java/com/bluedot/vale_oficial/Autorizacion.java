@@ -42,12 +42,15 @@ public class Autorizacion extends AppCompatActivity implements View.OnClickListe
     private boolean hayplazas = false;
     private Button rechazarlo;
     private ImageView ircasa;
+    private String plzstring;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_autorizacion);
+
+        plzstring = null;
 
         apuntarse = findViewById(R.id.btnapuntarse);
         apuntarse.setOnClickListener(this);
@@ -156,7 +159,7 @@ public class Autorizacion extends AppCompatActivity implements View.OnClickListe
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                         Integer plazas = 0;
-                        String plzstring = document.getData().get("plazas_socios").toString();
+                        plzstring = document.getData().get("plazas_socios").toString();
                         plazas = Integer.parseInt(plzstring);
                         if(plazas > 0) {
                             hayplazas = true;
@@ -209,10 +212,13 @@ public class Autorizacion extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                        Integer plazas = 0;
+                        plazas = Integer.parseInt(plzstring);
+                        plazas-=1;
                         Map<String, Object> mapa = new HashMap<>();
                         FirebaseFirestore.getInstance().collection("actividades").document(uid_act).collection("apuntados").document(uid_auth).set(mapa);
                         DocumentReference actualizarRef = FirebaseFirestore.getInstance().collection("actividades").document(uid_act);
-                        actualizarRef.update("plazas_socios", FieldValue.increment(-1));
+                        actualizarRef.update("plazas_socios", plazas);
                         Toast.makeText(Autorizacion.this, "Se ha autorizado a la actividad correctamente", Toast.LENGTH_LONG).show();
 
                         Intent intent = new Intent(Autorizacion.this, ListaAutorizaciones.class);
