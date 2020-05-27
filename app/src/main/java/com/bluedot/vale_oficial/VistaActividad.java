@@ -68,6 +68,7 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
     //private String elauth;
     private boolean pend;
     FirebaseStorage storage;
+    private ImageView casa;
 
 
     @Override
@@ -90,6 +91,8 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
         es_autor = false;
         idautor = null;
         storage = FirebaseStorage.getInstance();
+        casa = findViewById(R.id.gohome);
+        casa.setOnClickListener(this);
 
         findViewById(R.id.txtinfo).setVisibility(GONE);
 
@@ -292,15 +295,23 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
         //Si la actividad requiere de autorizacion para los socios
         else if(rol_usuario.equals("socio") && requiere_autorizacion.equals("true")){
             db.collection("actividades").document(uid_act).collection("pendientes").document(uid).set(map1);
+        } //Si es voluntario
+        else if(rol_usuario.equals("voluntario")){
+            db.collection("users").document(uid).collection("mis_actividades").document(uid_act).set(map1);
+            db.collection("actividades").document(uid_act).collection("apuntados").document(uid).set(map1);
+            DocumentReference resRef = db.collection("actividades").document(uid_act);
+            resRef.update("plazas_voluntarios", FieldValue.increment(-1));
         }
-        //en otro caso los apunta a la actividad directamente
+        //Si es socio pero no requiere ningun tipo de autorizacion
         else {
             db.collection("users").document(uid).collection("mis_actividades").document(uid_act).set(map1);
             db.collection("actividades").document(uid_act).collection("apuntados").document(uid).set(map1);
+            DocumentReference resRef = db.collection("actividades").document(uid_act);
+            resRef.update("plazas_socios", FieldValue.increment(-1));
         }
 
-        DocumentReference docRef = FirebaseFirestore.getInstance().collection("actividades").document(uid_act);
-
+        //DocumentReference docRef = FirebaseFirestore.getInstance().collection("actividades").document(uid_act);
+        /*
         if(rol_usuario.equals("socio") && necesita_aut.equals("false") && requiere_autorizacion.equals("false")){
             DocumentReference resRef = db.collection("actividades").document(uid_act);
             resRef.update("plazas_socios", FieldValue.increment(-1));
@@ -309,6 +320,8 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
             DocumentReference resRef = db.collection("actividades").document(uid_act);
             resRef.update("plazas_voluntarios", FieldValue.increment(-1));
         }
+        */
+
         finish();
     }
 
@@ -340,6 +353,9 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                 break;
             case R.id.eliminar:
                 eliminarActividad();
+                break;
+            case R.id.gohome:
+                irAcasa();
                 break;
         }
     }
@@ -550,4 +566,10 @@ public class VistaActividad extends AppCompatActivity  implements View.OnClickLi
                 });
 
     }//Fin funcion borrar
+
+    public void irAcasa(){
+        Intent intent = new Intent(VistaActividad.this, Principal.class);
+        startActivity(intent);
+        finish();
+    }
 }

@@ -132,4 +132,10 @@ public class Peticiones extends AppCompatActivity {
         findViewById(R.id.gif).setVisibility(INVISIBLE);
     }
 
+    public void irAcasa(android.view.View V){
+        Intent intent = new Intent(Peticiones.this, Principal.class);
+        startActivity(intent);
+        finish();
+    }
+
 }

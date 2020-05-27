@@ -160,4 +160,10 @@ public class Lista_actividades extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
     }
 
+    public void irAcasa(android.view.View V){
+        Intent intent = new Intent(Lista_actividades.this, Principal.class);
+        startActivity(intent);
+        finish();
+    }
+
 }

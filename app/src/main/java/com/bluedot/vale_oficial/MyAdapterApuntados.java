@@ -102,8 +102,12 @@ public class MyAdapterApuntados extends RecyclerView.Adapter<RecyclerView.ViewHo
             @Override
             public void onClick(View v) {
                 borrarUsuarioDeApuntado(itemAdapter.getUidvisitante(), itemAdapter.getIdActividad());
-                Intent intent = new Intent(((ViewHolder) viewHolder).context, Mis_actividades.class);
+                Intent intent = new Intent(((ViewHolder) viewHolder).context, ListaApuntadosActividad.class);
+                intent.putExtra("uid", idActividad);
+                intent.putExtra("esautor", esAutor);
+                intent.putExtra("idautor", idautor);
                 ((ViewHolder) viewHolder).context.startActivity(intent);
+                ((ListaApuntadosActividad)mContext).finish();
             }
         });
 

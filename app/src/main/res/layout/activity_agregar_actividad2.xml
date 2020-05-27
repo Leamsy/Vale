@@ -22,11 +22,27 @@
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="100dp"
-            android:layout_height="75dp"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
             android:contentDescription="@string/volver"
             android:onClick="volver"
-            app:srcCompat="@drawable/atras" />
+            app:srcCompat="@drawable/back" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/logocasa" />
 
     </LinearLayout>
 
@@ -62,6 +78,10 @@
                         android:id="@+id/imageView11"
                         android:layout_width="match_parent"
                         android:layout_height="75dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
                         android:onClick="openDate"
                         android:paddingStart="5dp"
                         android:paddingTop="5dp"
@@ -74,11 +94,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/estiloboton"
-                        android:backgroundTint="#009688"
+                        android:backgroundTint="@color/azulboton"
                         android:onClick="openDate"
                         android:text="@string/elegirfecha"
                         android:textColor="#FFFFFF"
-                        android:textSize="30sp" />
+                        android:textSize="24sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -101,6 +121,10 @@
                         android:id="@+id/imageView12"
                         android:layout_width="match_parent"
                         android:layout_height="75dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
                         android:onClick="openTime"
                         android:paddingStart="5dp"
                         android:paddingTop="5dp"
@@ -115,11 +139,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/estiloboton"
-                        android:backgroundTint="#009688"
+                        android:backgroundTint="@color/azulboton"
                         android:onClick="openTime"
                         android:text="@string/hora"
                         android:textColor="#FFFFFF"
-                        android:textSize="30sp" />
+                        android:textSize="24sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -142,6 +166,10 @@
                         android:id="@+id/imageView14"
                         android:layout_width="match_parent"
                         android:layout_height="75dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
                         app:srcCompat="@drawable/dinero"
                         tools:layout_editor_absoluteX="173dp"
                         tools:layout_editor_absoluteY="640dp" />
@@ -350,7 +378,7 @@
                 android:layout_height="50dp"
                 android:alpha="0.6"
                 android:background="@drawable/estiloboton"
-                android:backgroundTint="#808080"
+                android:backgroundTint="@color/azulboton"
                 android:onClick="mensaje"
                 android:text="?"
                 android:textAlignment="center"
@@ -367,7 +395,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/estiloboton"
-                android:backgroundTint="#3F51B5"
+                android:backgroundTint="@color/azulboton"
                 android:onClick="enviar"
                 android:text="@string/Enviar"
                 android:textAlignment="center"
